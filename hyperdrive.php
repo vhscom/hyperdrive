@@ -153,7 +153,7 @@ function fold_spacetime( $antimatter_particles ) {
   walk_recursive( $antimatter_particles, FALSE, $injectors );
 
   // assemble Fetch Inject string using ordered array
-  $first_element = array_shift(array_values($injectors));
+  $first_element = reset($injectors);
   $last_element = end($injectors);
   foreach ($injectors as $idx => $injector) {
     if ( $injector === $first_element ) {
