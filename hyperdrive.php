@@ -78,7 +78,7 @@ function calibrate_thrusters() {
   $calibration_data = [];
   $scripts = get_enqueued_scripts();
   foreach ( $scripts as $script ) {
-    if ( !$script->extra[ 'conditional' ] ) {
+    if ( empty($script->extra[ 'conditional' ]) ) {
       // exclude scripts using conditional comments
       // Internet Explorer will never support fetch
       $calibration_data[] = array(
