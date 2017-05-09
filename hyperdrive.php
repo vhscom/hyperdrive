@@ -36,6 +36,11 @@
  */
 
 namespace hyperdrive;
+if ( !defined('ABSPATH') ) { exit(); }
+
+// Basic configuration
+define('HYPERDRIVE_VERSION', '1.0.0-beta.2');
+
 add_action('wp_head', __NAMESPACE__ .'\engage');
 
 /**
@@ -133,25 +138,30 @@ function generate_antimatter( $calibration_data, $recursing = false ) {
  *     for Fetch Injection.
  */
 function fold_spacetime( $antimatter_particles ) {
-  $injectors = [];
+  $injectors = $particle_array = [];
   $fetch_inject_string = '';
 
   // create ordered array of JSON encoded strings for Fetch Injection
-  function walk_recursive( $array, $accumulator, &$injectors, &$injection_json = '') {
+  function walk_recursive( $array, $accumulator, &$injectors, &$particle_array, &$injection_json = '') {
     $accumulator = [];
-    array_walk( $array, function( $item ) use( &$accumulator, &$injectors, &$injection_json ) {
+    array_walk( $array, function( $item ) use( &$accumulator, &$injectors, &$particle_array, &$injection_json ) {
       if ( !empty($item) ) {
         if ( is_array($item) ) {
-          walk_recursive( $item, $accumulator, $injectors, $injection_json );
+          walk_recursive( $item, $accumulator, $injectors, $particle_array, $injection_json );
         } else {
-          $accumulator[] = $item;
+          if ( !in_multi_array($item, $particle_array) ) {
+            $accumulator[] = $particle_array[] = $item;
+          }
         }
       }
     });
-    $injection_json = json_encode($accumulator, JSON_UNESCAPED_SLASHES);
-    $injectors[] = $injection_json;
+
+    if ( !empty($accumulator) ) {
+      $injection_json = json_encode($accumulator, JSON_UNESCAPED_SLASHES);
+      $injectors[] = $injection_json;
+    }
   }
-  walk_recursive( $antimatter_particles, FALSE, $injectors );
+  walk_recursive( $antimatter_particles, FALSE, $injectors, $particle_array );
 
   // assemble Fetch Inject string using ordered array
   $first_element = reset($injectors);
@@ -169,7 +179,11 @@ function fold_spacetime( $antimatter_particles ) {
     }
   }
 
+  $hyperdrive_ver = HYPERDRIVE_VERSION;
   return <<<EOD
+/**
+ * Hyperdrive v$hyperdrive_ver
+ */
 (function () {
   if (!window.fetch) return;
   /**
@@ -253,7 +267,7 @@ function get_dependency_data( $handles ) {
  * @return array(_WP_Dependency) A list of enqueued dependencies
  */
 function get_enqueued_scripts() {
-  global $wp_scripts;
+  $wp_scripts = wp_scripts();
   foreach ( $wp_scripts->queue as $handle ) {
     $enqueued_scripts[] = $wp_scripts->registered[ $handle ];
   }
@@ -268,7 +282,7 @@ function get_enqueued_scripts() {
  * @return _WP_Dependency associated with input handle
  */
 function get_dep_for_handle( $handle ) {
-  global $wp_scripts;
+  $wp_scripts = wp_scripts();
   return $wp_scripts->registered[ $handle ];
 }
 
@@ -297,4 +311,25 @@ function get_src_for_handle( $handle ) {
 function get_deps_for_handle( $handle ) {
   $dep = get_dep_for_handle( $handle );
   return $dep->deps;
+}
+
+
+/**
+ * Checks if a value exists in a multidimensional array.
+ *
+ * @since Hyperdrive 1.0.0-beta
+ * @param string/array $needle The value(s) to search for.
+ * @param array $haystack The array to search.
+ * @return boolean True if found, false otherwise.
+ */
+function in_multi_array($needle, $haystack) {
+  $exists = false;
+  foreach ( $haystack as $item ) {
+    if ( is_array($item) && in_multi_array($needle, $item) ) {
+      $exists = true;
+    } else if ( $item == $needle ) {
+      $exists = true;
+    }
+  }
+  return $exists;
 }
