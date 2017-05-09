@@ -142,9 +142,9 @@ function fold_spacetime( $antimatter_particles ) {
     array_walk( $array, function( $item ) use( &$accumulator, &$injectors, &$injection_json ) {
       if ( !empty($item) ) {
         if ( is_array($item) ) {
-            walk_recursive( $item, $accumulator, $injectors, $injection_json );
+          walk_recursive( $item, $accumulator, $injectors, $injection_json );
         } else {
-            $accumulator[] = $item;
+          $accumulator[] = $item;
         }
       }
     });
