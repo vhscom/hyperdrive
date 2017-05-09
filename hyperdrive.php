@@ -140,11 +140,12 @@ function fold_spacetime( $antimatter_particles ) {
   function walk_recursive( $array, $accumulator, &$injectors, &$injection_json = '') {
     $accumulator = [];
     array_walk( $array, function( $item ) use( &$accumulator, &$injectors, &$injection_json ) {
-      $is_array = is_array( $item );
-      if ( $is_array ) {
-        walk_recursive( $item, $accumulator, $injectors, $injection_json );
-      } else {
-        $accumulator[] = $item;
+      if ( !empty($item) ) {
+        if ( is_array($item) ) {
+            walk_recursive( $item, $accumulator, $injectors, $injection_json );
+        } else {
+            $accumulator[] = $item;
+        }
       }
     });
     $injection_json = json_encode($accumulator, JSON_UNESCAPED_SLASHES);
