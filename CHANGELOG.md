@@ -2,9 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0-beta.3"></a>
+# [1.0.0-beta.3](https://github.com/wp-id/hyperdrive/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2017-05-10)
+
+Improves support levels for themes and plugins, and increases efficiency.
+
+### Bug Fixes
+
+Bugfixes
+
+* **hyperdrive.php:** add stability and security improvements ([762cc8b](https://github.com/wp-id/hyperdrive/commit/762cc8b)), closes [#23](https://github.com/wp-id/hyperdrive/issues/23) [#7](https://github.com/wp-id/hyperdrive/issues/7)
+
+
+
 <a name="1.0.0-beta.2"></a>
 # [1.0.0-beta.2](https://github.com/wp-id/hyperdrive/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2017-05-09)
 
+Improves support levels for themes and plugins.
 
 ### Bug Fixes
 
