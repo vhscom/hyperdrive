@@ -323,13 +323,12 @@ function get_deps_for_handle( $handle ) {
  * @return boolean True if found, false otherwise.
  */
 function in_multi_array($needle, $haystack) {
-  $exists = false;
   foreach ( $haystack as $item ) {
     if ( is_array($item) && in_multi_array($needle, $item) ) {
-      $exists = true;
+      return true;
     } else if ( $item == $needle ) {
-      $exists = true;
+      return true;
     }
   }
-  return $exists;
+  return false;
 }
