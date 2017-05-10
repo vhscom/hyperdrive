@@ -9,8 +9,6 @@ Improves support levels for themes and plugins, and increases efficiency.
 
 ### Bug Fixes
 
-Bugfixes
-
 * **hyperdrive.php:** add stability and security improvements ([762cc8b](https://github.com/wp-id/hyperdrive/commit/762cc8b)), closes [#23](https://github.com/wp-id/hyperdrive/issues/23) [#7](https://github.com/wp-id/hyperdrive/issues/7)
 
 
