@@ -29,7 +29,9 @@ Hyperdrive uses a performance optimization technique known as [Fetch Injection](
 
 # Contributing
 
-Please open issues when creating PRs and PR against the issue to close it. This helps separate the need (the issue) from the implementation (the pull) and will result in more robust code and better solutions longer-term. It also opens the ability to solve problems using multiple given approaches, so the best approach can be the one that is chosen.
+Please open issues when creating PRs and PR against the issue to close it. This helps separate the need (the issue) from the implementation (the pull), resulting in more robust solutions.
+
+Though not required, if you plan on contributing code please consider installing [EditorConfig](http://editorconfig.org/) for your editor or IDE to help normalize your code with our coding standards.
 
 # License
 
