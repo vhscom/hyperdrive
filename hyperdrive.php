@@ -3,7 +3,7 @@
  * Putting WordPress into Hyperdrive.
  *
  * @package     hyperdrive
- * @author      VHS and contributors
+ * @author      VHS
  * @link        https://wordpress.stackexchange.com/a/263733/117731
  * @license     GPL-3.0 or later
  *
