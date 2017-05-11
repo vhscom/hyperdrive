@@ -7,7 +7,7 @@
 # Documentation
 
 Hyperdrive docs available online at:
-http://hyperdrive.vhs.codeberg.page
+http://hyperdrive.wp-id.org/
 
 # Todo before 1.0.0 release
 
