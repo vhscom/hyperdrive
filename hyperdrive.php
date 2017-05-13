@@ -35,7 +35,8 @@
  */
 
 namespace hyperdrive;
-if ( !defined('ABSPATH') ) { exit(); }
+
+defined('ABSPATH') or die("Now you are going to die! BAM!");
 
 // Basic configuration
 define('HYPERDRIVE_VERSION', '1.0.0-beta.3');
