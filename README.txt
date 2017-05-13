@@ -22,7 +22,7 @@ Using Fetch Injection will reduce perceived latency during page load when compar
 
 == Contributing ==
 
-Please visit [the official repository](https://github.com/wp-id/hyperdrive) on GitHub for contributing guidelines.
+Please visit [the official repository](https://codeberg.org/vhs/hyperdrive) on GitHub for contributing guidelines.
 
 == Changelog ==
 

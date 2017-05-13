@@ -2,7 +2,13 @@
 
 > The fastest way to load pages in WordPress.
 
-![Hyperdrive for WordPress](https://github.com/wp-id/hyperdrive/blob/master/logo.png)
+![Hyperdrive Plugin for WordPress](https://codeberg.org/vhs/hyperdrive/blob/master/logo.png)
+
+# Installation
+
+Hyperdrive is [available on Packagist](https://packagist.org/packages/vhs/hyperdrive).
+
+- Installing with Composer: `composer require vhs/hyperdrive`
 
 # Documentation
 

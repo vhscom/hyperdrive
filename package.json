@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "release": "standard-version"
   },
-  "repository": "wp-id/hyperdrive.git",
+  "repository": "vhs/hyperdrive.git",
   "keywords": [
     "speed",
     "optimization",

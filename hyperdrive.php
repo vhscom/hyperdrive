@@ -4,16 +4,15 @@
  *
  * @package     hyperdrive
  * @author      VHS
- * @link        https://wordpress.stackexchange.com/a/263733/117731
  * @license     GPL-3.0 or later
  *
  * @wordpress-plugin
  * Plugin Name: Hyperdrive
- * Plugin URI:  https://github.com/wp-id/hyperdrive
- * Author URI:  https://wp-id.org/
+ * Plugin URI:  https://codeberg.org/vhs/hyperdrive
+ * Author URI:  https://vhs.codeberg.page
  * Description: The fastest way to load pages in WordPress.
- * Version:     1.0.0-beta
- * Author:      WordCamp 2017 Plugin Team
+ * Version:     1.0.0-beta.3
+ * Author:      VHS
  * License:     GPL-3.0 or later
  *
  * Hyperdrive. The fastest way to load pages in WordPress.
