@@ -1,7 +1,7 @@
 === Hyperdrive ===
 Contributors: vhs, nielslange, omrobbie, shantiscript, ariffsetiawan, ervannur, ipututoya, auraanar, 3hartanto, ervannur, joedewaweb, eirastudios
 Tags: optimize, javascript, async js, async javascript, speed
-Requires at least: 3.0
+Requires at least: 4.6
 Tested up to: 4.7.4
 Stable tag: 1.0
 License: GPL-3.0 or later

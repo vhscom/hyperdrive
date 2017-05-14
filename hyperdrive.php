@@ -2,17 +2,18 @@
 /**
  * Putting WordPress into Hyperdrive.
  *
- * @package     hyperdrive
+ * @package     Hyperdrive
  * @author      VHS
  * @license     GPL-3.0 or later
  *
  * @wordpress-plugin
  * Plugin Name: Hyperdrive
  * Plugin URI:  https://codeberg.org/vhs/hyperdrive
- * Author URI:  https://vhs.codeberg.page
  * Description: The fastest way to load pages in WordPress.
- * Version:     1.0.0-beta.3
  * Author:      VHS
+ * Author URI:  https://vhs.codeberg.page
+ * Text Domain: hyperdrive
+ * Version:     1.0.0-beta.3
  * License:     GPL-3.0 or later
  *
  * Hyperdrive. The fastest way to load pages in WordPress.
