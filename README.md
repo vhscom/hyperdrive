@@ -37,6 +37,8 @@ Hyperdrive uses a performance optimization technique known as [Fetch Injection](
 
 Please open issues when creating PRs and PR against the issue to close it. This helps separate the need (the issue) from the implementation (the pull), resulting in more robust solutions.
 
+All code must follow WordPress [PHP Documentation Standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/).
+
 Though not required, if you plan on contributing code please consider installing [EditorConfig](http://editorconfig.org/) for your editor or IDE to help normalize your code with our coding standards.
 
 # License
