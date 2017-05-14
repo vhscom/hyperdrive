@@ -4,7 +4,7 @@
  *
  * @package     Hyperdrive
  * @author      VHS
- * @license     GPL-3.0 or later
+ * @license     GPL-3.0
  *
  * @wordpress-plugin
  * Plugin Name: Hyperdrive
@@ -14,7 +14,7 @@
  * Author URI:  https://vhs.codeberg.page
  * Text Domain: hyperdrive
  * Version:     1.0.0-beta.3
- * License:     GPL-3.0 or later
+ * License:     GPL-3.0
  *
  * Hyperdrive. The fastest way to load pages in WordPress.
  * Copyright (C) 2017  VHS and contributors
@@ -51,7 +51,7 @@ add_action('wp_head', __NAMESPACE__ .'\engage');
  * @uses get_dependency_data
  * @uses get_enqueued_scripts
  * @uses get_src_for_handle
- * @since Hyperdrive 1.0.0-beta.0
+ * @since Hyperdrive 1.0.0
  * @return Associative array containing structured data. Data
  *     structure is assumed by functions using and used by this
  *     method and must be udpated if data structure changes.
@@ -103,7 +103,7 @@ function calibrate_thrusters() {
  * Prepares "Calibration data" for Fetch Injection.
  * Dedupes associative array and respect sort order.
  *
- * @since Hyperdrive 1.0.0-beta.0
+ * @since Hyperdrive 1.0.0
  * @param array(array(...)) $calibration_data Destination coordinates
  * @param boolean [$recursing=false] True when generating subparticles
  * @return A list of scripts for use in Fetch Injection
@@ -132,7 +132,7 @@ function generate_antimatter( $calibration_data, $recursing = false ) {
 /**
  * Converts antimatter particles into dark matter.
  *
- * @since Hyperdrive 1.0.0-beta.0
+ * @since Hyperdrive 1.0.0
  * @link https://github.com/vhs/fetch-inject
  * @param array $antimatter_particles Partical array
  * @return A string containing a fully-assembled inline script
@@ -184,6 +184,8 @@ function fold_spacetime( $antimatter_particles ) {
   return <<<EOD
 /**
  * Hyperdrive v$hyperdrive_ver
+ * Copyright (c) 2017 VHS
+ * @license GPL-3.0
  */
 (function () {
   if (!window.fetch) return;
@@ -201,7 +203,7 @@ EOD;
 /**
  * Echos an inline script into the document.
  *
- * @since Hyperdrive 1.0.0-beta.0
+ * @since Hyperdrive 1.0.0
  * @param string $dark_energy An inline script to asynchronously
  *     fetch previously enqueued page resources.
  */
@@ -217,7 +219,7 @@ function enter_hyperspace( $dark_energy ) {
  * @uses generate_antimatter
  * @uses fold_spacetime
  * @uses enter_hyperspace
- * @since Hyperdrive 1.0.0-beta.0
+ * @since Hyperdrive 1.0.0
  */
 function engage() {
   $calibration_data = calibrate_thrusters();
@@ -234,7 +236,7 @@ function engage() {
  *
  * @uses get_deps_for_handle
  * @uses get_src_for_handle
- * @since Hyperdrive 1.0.0-beta.0
+ * @since Hyperdrive 1.0.0
  * @param array(string) $handles An array of handles
  * @return array(array) Dependency data matching expected structure
  */
@@ -264,7 +266,7 @@ function get_dependency_data( $handles ) {
 /**
  * Gets scripts registered and enqueued.
  *
- * @since Hyperdrive 1.0.0-beta.0
+ * @since Hyperdrive 1.0.0
  * @return array(_WP_Dependency) A list of enqueued dependencies
  */
 function get_enqueued_scripts() {
@@ -278,7 +280,7 @@ function get_enqueued_scripts() {
 /**
  * Gets a script dependency for a handle
  *
- * @since Hyperdrive 1.0.0-beta.0
+ * @since Hyperdrive 1.0.0
  * @param string $handle The handle
  * @return _WP_Dependency associated with input handle
  */
@@ -290,7 +292,7 @@ function get_dep_for_handle( $handle ) {
 /**
  * Gets the source URL given a script handle.
  *
- * @since Hyperdrive 1.0.0-beta.0
+ * @since Hyperdrive 1.0.0
  * @param string $handle The handle
  * @return URL associated with handle, or empty string
  */
@@ -305,7 +307,7 @@ function get_src_for_handle( $handle ) {
 /**
  * Gets all dependencies for a given handle.
  *
- * @since Hyperdrive 1.0.0-beta.0
+ * @since Hyperdrive 1.0.0
  * @param string $handle The handle
  * @return array(string) List of handles for dependencies of $handle
  */
@@ -318,7 +320,7 @@ function get_deps_for_handle( $handle ) {
 /**
  * Checks if a value exists in a multidimensional array.
  *
- * @since Hyperdrive 1.0.0-beta.3
+ * @since Hyperdrive 1.0.0
  * @param string/array $needle The value(s) to search for.
  * @param array $haystack The array to search.
  * @return boolean True if found, false otherwise.
