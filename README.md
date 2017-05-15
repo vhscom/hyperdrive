@@ -35,11 +35,14 @@ Hyperdrive uses a performance optimization technique known as [Fetch Injection](
 
 # Contributing
 
-Please open issues when creating PRs and PR against the issue to close it. This helps separate the need (the issue) from the implementation (the pull), resulting in more robust solutions.
+Please open issues when creating PRs and PR against the issue to close it. This helps establish and separate a need (the issue) from the implementation (the pull), resulting in more robust solutions and ensuring current issues are considered before changes are requested.
 
-All code must follow WordPress [PHP Documentation Standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/).
+Additionally:
 
-Though not required, if you plan on contributing code please consider installing [EditorConfig](http://editorconfig.org/) for your editor or IDE to help normalize your code with our coding standards.
+- All code should follow WordPress [PHP Documentation Standards](https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/).
+- Pull requests should be linted prior to submission using the `lint` script in the Composer manifest file. If you have trouble running the linter ensure you have installed [WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards).
+
+Though not required, if you plan on contributing code, please consider installing [EditorConfig](http://editorconfig.org/) for your editor or IDE to help normalize your code automagically.
 
 # License
 

@@ -9,6 +9,9 @@
     "email": "josh@vhs.codeberg.page",
     "homepage": "https://vhs.codeberg.page"
   }],
+  "scripts": {
+    "lint": "phpcs --standard=phpcs.ruleset.xml $(find . -name '*.php')"
+  },
   "type": "wordpress-plugin",
   "require": {
     "composer/installers": "^1.3"
