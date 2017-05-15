@@ -32,12 +32,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see
  * <https://opensource.org/licenses/GPL-3.0>.
- *
  */
 
 namespace hyperdrive;
 
-defined('ABSPATH') or die("Now you are going to die! BAM!");
+defined( 'ABSPATH' ) or die( 'Now you are going to die! BAM!' );
 
 /**
  * Defines Hyperdrive version output to source.
@@ -55,7 +54,7 @@ const HYPERDRIVE_VERSION = '1.0.0-beta.3';
  *
  * @since 1.0.0
  */
-add_action('wp_head', __NAMESPACE__ .'\engage');
+add_action( 'wp_head', __NAMESPACE__ . '\engage' );
 
 /**
  * Calibrates Hyperdrive thrusters.
@@ -90,24 +89,23 @@ add_action('wp_head', __NAMESPACE__ .'\engage');
  *        )
  *      )
  *    );
- *
  */
 function calibrate_thrusters() {
-  $calibration_data = [];
-  $scripts = get_enqueued_scripts();
-  foreach ( $scripts as $script ) {
-    if ( empty($script->extra[ 'conditional' ]) ) {
-      // It's a good thing you were wearing that helmet.
-      $calibration_data[] = array(
-        $script->handle,
-        get_src_for_handle( $script->handle ),
-        get_dependency_data( $script->deps )
-      );
-      // Not in here, mister! This is a Mercedes!
-      wp_dequeue_script( $script->handle );
-    }
-  }
-  return $calibration_data;
+	$calibration_data = [];
+	$scripts = get_enqueued_scripts();
+	foreach ( $scripts as $script ) {
+		if ( empty( $script->extra['conditional'] ) ) {
+			// It's a good thing you were wearing that helmet.
+			$calibration_data[] = array(
+			$script->handle,
+			get_src_for_handle( $script->handle ),
+			get_dependency_data( $script->deps ),
+			);
+			// Not in here, mister! This is a Mercedes!
+			wp_dequeue_script( $script->handle );
+		}
+	}
+	return $calibration_data;
 }
 
 /**
@@ -119,29 +117,29 @@ function calibrate_thrusters() {
  * @since Hyperdrive 1.0.0
  *
  * @param array(array(...)) $calibration_data Destination coordinates.
- * @param boolean [$recursing=false] True when generating subparticles.
+ * @param boolean [    $recursing=false] True when generating subparticles.
  * @return A list of scripts for use in Fetch Injection.
  */
 function generate_antimatter( $calibration_data, $recursing = false ) {
-  $particle_array = [];
-  foreach ( $calibration_data as $idx => $data ) {
-    $handle = $data[0];
-    $url = $data[1];
-    $particle_array[] = "{$url}";
-    $subparticles = $data[2];
-    if ( $subparticles ) {
-      $particle_array[] = generate_antimatter( $subparticles, true );
-    }
-  }
-  // Remove numeric array keys.
-  array_multisort( $particle_array );
-  // Remove duplicate values.
-  $particle_array = array_map(
-    'unserialize', array_unique(
-      array_map( 'serialize', $particle_array )
-    )
-  );
-  return $particle_array;
+	$particle_array = [];
+	foreach ( $calibration_data as $idx => $data ) {
+		$handle = $data[0];
+		$url = $data[1];
+		$particle_array[] = "{$url}";
+		$subparticles = $data[2];
+		if ( $subparticles ) {
+			$particle_array[] = generate_antimatter( $subparticles, true );
+		}
+	}
+	// Remove numeric array keys.
+	array_multisort( $particle_array );
+	// Remove duplicate values.
+	$particle_array = array_map(
+		'unserialize', array_unique(
+			array_map( 'serialize', $particle_array )
+		)
+	);
+	return $particle_array;
 }
 
 /**
@@ -158,49 +156,49 @@ function generate_antimatter( $calibration_data, $recursing = false ) {
  * @return A string containing a fully-assembled inline script.
  */
 function fold_spacetime( $antimatter_particles ) {
-  $injectors = $particle_array = [];
-  $fetch_inject_string = '';
+	$injectors = $particle_array = [];
+	$fetch_inject_string = '';
 
-  // Create ordered array of JSON encoded strings for Fetch Injection.
-  function walk_recursive( $array, $accumulator, &$injectors, &$particle_array, &$injection_json = '' ) {
-    $accumulator = [];
-    array_walk( $array, function( $item ) use( &$accumulator, &$injectors, &$particle_array, &$injection_json ) {
-      if ( !empty( $item ) ) {
-        if ( is_array( $item ) ) {
-          walk_recursive( $item, $accumulator, $injectors, $particle_array, $injection_json );
-        } else {
-          if ( !in_multi_array( $item, $particle_array ) ) {
-            $accumulator[] = $particle_array[] = $item;
-          }
-        }
-      }
-    });
+	// Create ordered array of JSON encoded strings for Fetch Injection.
+	function walk_recursive( $array, $accumulator, &$injectors, &$particle_array, &$injection_json = '' ) {
+		$accumulator = [];
+		array_walk( $array, function( $item ) use ( &$accumulator, &$injectors, &$particle_array, &$injection_json ) {
+			if ( ! empty( $item ) ) {
+				if ( is_array( $item ) ) {
+					walk_recursive( $item, $accumulator, $injectors, $particle_array, $injection_json );
+				} else {
+					if ( ! in_multi_array( $item, $particle_array ) ) {
+						$accumulator[] = $particle_array[] = $item;
+					}
+				}
+			}
+		});
 
-    if ( !empty( $accumulator ) ) {
-      $injection_json = json_encode( $accumulator, JSON_UNESCAPED_SLASHES );
-      $injectors[] = $injection_json;
-    }
-  }
-  walk_recursive( $antimatter_particles, FALSE, $injectors, $particle_array );
+		if ( ! empty( $accumulator ) ) {
+			  $injection_json = json_encode( $accumulator, JSON_UNESCAPED_SLASHES );
+			  $injectors[] = $injection_json;
+		}
+	}
+	walk_recursive( $antimatter_particles, false, $injectors, $particle_array );
 
-  // Assemble Fetch Inject string using ordered array.
-  $first_element = reset( $injectors );
-  $last_element = end( $injectors );
-  foreach ( $injectors as $idx => $injector ) {
-    if ( $injector === $first_element ) {
-      $fetch_inject_string = "fetchInject($injector)";
-    } else if ( $injector === $last_element ) {
-      $fetch_inject_string = "fetchInject($injector, $fetch_inject_string)";
-    } else {
-      $array_with_empty_string = array(''); // like WordPress core jquery handle
-      if ( !(json_decode($injector) === $array_with_empty_string) ) {
-        $fetch_inject_string = "fetchInject($injector, $fetch_inject_string)";
-      }
-    }
-  }
+	// Assemble Fetch Inject string using ordered array.
+	$first_element = reset( $injectors );
+	$last_element = end( $injectors );
+	foreach ( $injectors as $idx => $injector ) {
+		if ( $injector === $first_element ) {
+			$fetch_inject_string = "fetchInject($injector)";
+		} elseif ( $injector === $last_element ) {
+			$fetch_inject_string = "fetchInject($injector, $fetch_inject_string)";
+		} else {
+			$array_with_empty_string = array( '' ); // like WordPress core jquery handle
+			if ( ! (json_decode( $injector ) === $array_with_empty_string) ) {
+				$fetch_inject_string = "fetchInject($injector, $fetch_inject_string)";
+			}
+		}
+	}
 
-  $hyperdrive_ver = HYPERDRIVE_VERSION;
-  return <<<EOD
+	$hyperdrive_ver = HYPERDRIVE_VERSION;
+	return <<<EOD
 /*!
  * Hyperdrive v$hyperdrive_ver
  * Copyright (c) 2017 VHS
@@ -229,7 +227,7 @@ EOD;
  *     fetch previously enqueued page resources.
  */
 function enter_hyperspace( $dark_energy ) {
-  echo "<script>{$dark_energy}</script>";
+	echo "<script>{$dark_energy}</script>";
 }
 
 /**
@@ -239,15 +237,14 @@ function enter_hyperspace( $dark_energy ) {
  * @todo return void (requires PHP 7.1).
  */
 function engage() {
-  $calibration_data = calibrate_thrusters();
-  $antimatter_particles = generate_antimatter( $calibration_data );
-  $dark_energy = fold_spacetime( $antimatter_particles );
-  enter_hyperspace( $dark_energy );
+	$calibration_data = calibrate_thrusters();
+	$antimatter_particles = generate_antimatter( $calibration_data );
+	$dark_energy = fold_spacetime( $antimatter_particles );
+	enter_hyperspace( $dark_energy );
 }
 
 // UTILITY FUNCTIONS
 // -----------------
-
 /**
  * Gets dependency data recursively.
  *
@@ -257,26 +254,26 @@ function engage() {
  * @return array(array) Dependency data matching expected structure.
  */
 function get_dependency_data( $handles ) {
-  $dependency_data = [];
-  foreach ( $handles as $idx => $handle ) {
-    $source_url = get_src_for_handle( $handle );
-    if ( $source_url ) {
-      $dependency_data[] = array(
-        $handle,
-        $source_url,
-        array() // maintain consistency
-      );
-    }
-    $deps = get_deps_for_handle( $handle );
-    if ( count( $deps ) > 0 ) {
-      $dependency_data[] = array(
-        $handle,
-        '', // maintain consistency
-        get_dependency_data( $deps )
-      );
-    }
-  }
-  return $dependency_data;
+	$dependency_data = [];
+	foreach ( $handles as $idx => $handle ) {
+		$source_url = get_src_for_handle( $handle );
+		if ( $source_url ) {
+			$dependency_data[] = array(
+			$handle,
+			$source_url,
+			array(), // maintain consistency
+			);
+		}
+		$deps = get_deps_for_handle( $handle );
+		if ( count( $deps ) > 0 ) {
+			$dependency_data[] = array(
+			$handle,
+			'', // maintain consistency
+			get_dependency_data( $deps ),
+			);
+		}
+	}
+	return $dependency_data;
 }
 
 /**
@@ -286,11 +283,11 @@ function get_dependency_data( $handles ) {
  * @return array(_WP_Dependency) A list of enqueued dependencies.
  */
 function get_enqueued_scripts() {
-  $wp_scripts = wp_scripts();
-  foreach ( $wp_scripts->queue as $handle ) {
-    $enqueued_scripts[] = $wp_scripts->registered[ $handle ];
-  }
-  return $enqueued_scripts;
+	$wp_scripts = wp_scripts();
+	foreach ( $wp_scripts->queue as $handle ) {
+		$enqueued_scripts[] = $wp_scripts->registered[ $handle ];
+	}
+	return $enqueued_scripts;
 }
 
 /**
@@ -302,8 +299,8 @@ function get_enqueued_scripts() {
  * @return _WP_Dependency associated with input handle.
  */
 function get_dep_for_handle( $handle ) {
-  $wp_scripts = wp_scripts();
-  return $wp_scripts->registered[ $handle ];
+	$wp_scripts = wp_scripts();
+	return $wp_scripts->registered[ $handle ];
 }
 
 /**
@@ -315,11 +312,11 @@ function get_dep_for_handle( $handle ) {
  * @return URL associated with handle, or empty string.
  */
 function get_src_for_handle( $handle ) {
-  $dep = get_dep_for_handle( $handle );
-  $suffix = ( $dep->src && $dep->ver )
-    ? "?ver={$dep->ver}"
-    : '';
-  return "{$dep->src}{$suffix}";
+	$dep = get_dep_for_handle( $handle );
+	$suffix = ( $dep->src && $dep->ver )
+	? "?ver={$dep->ver}"
+	: '';
+	return "{$dep->src}{$suffix}";
 }
 
 /**
@@ -331,8 +328,8 @@ function get_src_for_handle( $handle ) {
  * @return array(string) List of handles for dependencies of `$handle`.
  */
 function get_deps_for_handle( $handle ) {
-  $dep = get_dep_for_handle( $handle );
-  return $dep->deps;
+	$dep = get_dep_for_handle( $handle );
+	return $dep->deps;
 }
 
 
@@ -343,16 +340,16 @@ function get_deps_for_handle( $handle ) {
  * @todo Eliminate multiple return statements.
  *
  * @param string/array $needle The value(s) to search for.
- * @param array $haystack The array to search.
+ * @param array        $haystack The array to search.
  * @return boolean True if found, false otherwise.
  */
 function in_multi_array( $needle, $haystack ) {
-  foreach ( $haystack as $item ) {
-    if ( is_array( $item ) && in_multi_array( $needle, $item ) ) {
-      return true;
-    } else if ( $item == $needle ) {
-      return true;
-    }
-  }
-  return false;
+	foreach ( $haystack as $item ) {
+		if ( is_array( $item ) && in_multi_array( $needle, $item ) ) {
+			return true;
+		} elseif ( $item == $needle ) {
+			return true;
+		}
+	}
+	return false;
 }
