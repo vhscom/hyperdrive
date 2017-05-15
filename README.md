@@ -4,6 +4,8 @@
 
 ![Hyperdrive Plugin for WordPress](https://codeberg.org/vhs/hyperdrive/blob/master/logo.png)
 
+[![Build Status](https://travis-ci.org/vhs/hyperdrive.svg?branch=master)](https://travis-ci.org/vhs/hyperdrive)
+
 # Installation
 
 Hyperdrive is [available on Packagist](https://packagist.org/packages/vhs/hyperdrive).
