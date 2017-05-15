@@ -116,8 +116,8 @@ function calibrate_thrusters() {
  *
  * @since Hyperdrive 1.0.0
  *
- * @param array(array(...)) $calibration_data Destination coordinates.
- * @param boolean [    $recursing=false] True when generating subparticles.
+ * @param array $calibration_data Thurster calibration settings.
+ * @param boolean $recursing True when generating subparticles.
  * @return A list of scripts for use in Fetch Injection.
  */
 function generate_antimatter( $calibration_data, $recursing = false ) {
@@ -156,10 +156,12 @@ function generate_antimatter( $calibration_data, $recursing = false ) {
  * @return A string containing a fully-assembled inline script.
  */
 function fold_spacetime( $antimatter_particles ) {
-	$injectors = $particle_array = [];
+	$injectors = $particle_array = []; // @codingStandardsIgnoreLine
 	$fetch_inject_string = '';
 
-	// Create ordered array of JSON encoded strings for Fetch Injection.
+	/**
+	 * Create ordered array of JSON encoded strings for Fetch Injection.
+	 */
 	function walk_recursive( $array, $accumulator, &$injectors, &$particle_array, &$injection_json = '' ) {
 		$accumulator = [];
 		array_walk( $array, function( $item ) use ( &$accumulator, &$injectors, &$particle_array, &$injection_json ) {
@@ -168,7 +170,7 @@ function fold_spacetime( $antimatter_particles ) {
 					walk_recursive( $item, $accumulator, $injectors, $particle_array, $injection_json );
 				} else {
 					if ( ! in_multi_array( $item, $particle_array ) ) {
-						$accumulator[] = $particle_array[] = $item;
+						$accumulator[] = $particle_array[] = $item; // @codingStandardsIgnoreLine
 					}
 				}
 			}
@@ -181,7 +183,9 @@ function fold_spacetime( $antimatter_particles ) {
 	}
 	walk_recursive( $antimatter_particles, false, $injectors, $particle_array );
 
-	// Assemble Fetch Inject string using ordered array.
+	/**
+	 * Assemble Fetch Inject string using ordered array.
+	 */
 	$first_element = reset( $injectors );
 	$last_element = end( $injectors );
 	foreach ( $injectors as $idx => $injector ) {
@@ -190,7 +194,7 @@ function fold_spacetime( $antimatter_particles ) {
 		} elseif ( $injector === $last_element ) {
 			$fetch_inject_string = "fetchInject($injector, $fetch_inject_string)";
 		} else {
-			$array_with_empty_string = array( '' ); // like WordPress core jquery handle
+			$array_with_empty_string = array( '' ); // Like WordPress core jquery handle.
 			if ( ! (json_decode( $injector ) === $array_with_empty_string) ) {
 				$fetch_inject_string = "fetchInject($injector, $fetch_inject_string)";
 			}
@@ -245,6 +249,7 @@ function engage() {
 
 // UTILITY FUNCTIONS
 // -----------------
+
 /**
  * Gets dependency data recursively.
  *
@@ -261,14 +266,14 @@ function get_dependency_data( $handles ) {
 			$dependency_data[] = array(
 			$handle,
 			$source_url,
-			array(), // maintain consistency
+			array(), // Maintain thrust.
 			);
 		}
 		$deps = get_deps_for_handle( $handle );
 		if ( count( $deps ) > 0 ) {
 			$dependency_data[] = array(
 			$handle,
-			'', // maintain consistency
+			'', // Maintain thrust.
 			get_dependency_data( $deps ),
 			);
 		}
