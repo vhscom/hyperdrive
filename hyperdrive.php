@@ -116,7 +116,7 @@ function calibrate_thrusters() {
  *
  * @since Hyperdrive 1.0.0
  *
- * @param array $calibration_data Thurster calibration settings.
+ * @param array   $calibration_data Thurster calibration settings.
  * @param boolean $recursing True when generating subparticles.
  * @return A list of scripts for use in Fetch Injection.
  */
@@ -150,6 +150,7 @@ function generate_antimatter( $calibration_data, $recursing = false ) {
  *
  * @since Hyperdrive 1.0.0
  * @link https://github.com/vhs/fetch-inject
+ *
  * @todo Consolidate dedupe logic with `generate_antimatter`.
  *
  * @param array $antimatter_particles Partical array.
@@ -161,6 +162,12 @@ function fold_spacetime( $antimatter_particles ) {
 
 	/**
 	 * Create ordered array of JSON encoded strings for Fetch Injection.
+	 *
+	 * @param array $array Multidimensional array of antimatter particles.
+	 * @param array $accumulator Accumulates particles during recursion.
+	 * @param array $injectors JSON-encoded strings for Fetch Injection.
+	 * @param array $particle_array I'm not sure why this is here. See @todo above.
+	 * @param array $injection_json JSON-encoded representation of $accumulator.
 	 */
 	function walk_recursive( $array, $accumulator, &$injectors, &$particle_array, &$injection_json = '' ) {
 		$accumulator = [];
@@ -238,6 +245,7 @@ function enter_hyperspace( $dark_energy ) {
  * Main function engages the hyperdrive.
  *
  * @since Hyperdrive 1.0.0
+ *
  * @todo return void (requires PHP 7.1).
  */
 function engage() {
@@ -246,9 +254,6 @@ function engage() {
 	$dark_energy = fold_spacetime( $antimatter_particles );
 	enter_hyperspace( $dark_energy );
 }
-
-// UTILITY FUNCTIONS
-// -----------------
 
 /**
  * Gets dependency data recursively.
@@ -337,11 +342,11 @@ function get_deps_for_handle( $handle ) {
 	return $dep->deps;
 }
 
-
 /**
  * Checks if a value exists in a multidimensional array.
  *
  * @since Hyperdrive 1.0.0
+ *
  * @todo Eliminate multiple return statements.
  *
  * @param string/array $needle The value(s) to search for.
