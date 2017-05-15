@@ -10,7 +10,6 @@ notifications:
 branches:
   only:
     - master
-    - conventional-travis
 
 cache:
   - composer
