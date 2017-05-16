@@ -3,7 +3,7 @@ Contributors: nielslange, eirastudios, omrobbie, shantiscript, ariffsetiawan, er
 Donate link: https://me.and.co/vhsllc/?pay=15.00&for=Hyperdrive
 Tags: performance, speed, async, javascript, fetch
 Requires at least: 4.6
-Tested up to: 4.7.4
+Tested up to: 4.8 Beta 1
 Stable tag: 1.0
 License: AGPLv3+
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
