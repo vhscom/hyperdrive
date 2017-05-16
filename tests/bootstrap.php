@@ -1,5 +1,9 @@
 <?php
 /**
+ * PHPUnit bootstrap file
+ *
+ * @package Hyperdrive
+ *
  * Hyperdrive - The fastest way to load pages in WordPress.
  * Copyright (C) 2017  VHS
  *
@@ -15,12 +19,6 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/**
- * PHPUnit bootstrap file
- *
- * @package Hyperdrive
  */
 
 $_tests_dir = getenv( 'WP_TESTS_DIR' );
