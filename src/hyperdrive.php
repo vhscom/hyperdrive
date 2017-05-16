@@ -16,7 +16,7 @@
  * Version:         1.0.0-beta.3
  * License:         AGPLv3+
  *
- * Hyperdrive. The fastest way to load pages in WordPress.
+ * Hyperdrive - The fastest way to load pages in WordPress.
  * Copyright (C) 2017  VHS
  *
  * This program is free software: you can redistribute it and/or modify
