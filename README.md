@@ -48,6 +48,8 @@ And though Hyperdrive may have a high bar for quality, please don't let that det
 - **Customer Collaboration** over Contract Negotiation, and
 - **Responding to Change** over Following a Plan
 
+That said, always proceed with individual authenticity.
+
 ### Issues
 
 Hyperdrive accepts any issue. Be it gratuitously worded, devoid of information or just plain dumb we view all feedback as a gift and will treat it as such. No question is stupid, even the stupid ones.
