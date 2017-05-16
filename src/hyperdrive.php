@@ -5,7 +5,7 @@
  * @package     Hyperdrive
  * @author      VHS
  * @since       1.0.0
- * @license     GPL-3.0
+ * @license     AGPLv3+
  *
  * Plugin Name:     Hyperdrive
  * Plugin URI:      https://codeberg.org/vhs/hyperdrive
@@ -14,24 +14,23 @@
  * Author URI:      https://vhs.codeberg.page
  * Text Domain:     hyperdrive
  * Version:         1.0.0-beta.3
- * License:         GPL-3.0
+ * License:         AGPLv3+
  *
  * Hyperdrive. The fastest way to load pages in WordPress.
- * Copyright (C) 2017  VHS and contributors
+ * Copyright (C) 2017  VHS
  *
  * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see
- * <https://opensource.org/licenses/GPL-3.0>.
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 namespace hyperdrive;

@@ -4,8 +4,8 @@ Tags: optimize, javascript, async js, async javascript, speed
 Requires at least: 4.6
 Tested up to: 4.7.4
 Stable tag: 1.0
-License: GPL-3.0 or later
-License URI: https://opensource.org/licenses/GPL-3.0
+License: AGPLv3+
+License URI: https://www.gnu.org/licenses/agpl-3.0.html
 
 The fastest way to load pages in WordPress.
 
