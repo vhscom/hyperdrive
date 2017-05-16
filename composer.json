@@ -18,5 +18,11 @@
   },
   "require-dev": {
     "codeclimate/php-test-reporter": "dev-master"
+  },
+  "autoload": {
+    "psr-4": { "": "src/" }
+  },
+  "autoload-dev": {
+    "psr-4": { "": "tests/" }
   }
 }

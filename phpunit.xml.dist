@@ -8,7 +8,7 @@
   >
   <testsuites>
     <testsuite>
-      <directory prefix="test-" suffix=".php">./tests/</directory>
+      <directory suffix=".spec.php">./tests/</directory>
     </testsuite>
   </testsuites>
   <logging>
@@ -16,7 +16,7 @@
   </logging>
   <filter>
     <whitelist processUncoveredFilesFromWhitelist="true">
-      <file>./hyperdrive.php</file>
+      <directory suffix=".php">./src/</directory>
     </whitelist>
   </filter>
 </phpunit>
