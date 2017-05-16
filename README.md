@@ -58,11 +58,9 @@ Hyperdrive accepts any issue. Be it gratuitously worded, devoid of information o
 
 Please open issues when creating PRs and PR against the issue to close it. This helps establish a need (the issue) and helps separate it from the implementation (the pull), resulting in more robust solutions and helps ensure ongoing code quality.
 
-Pulls submitted to Hyperdrive should adhere to [WordPress Coding Standards](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) and, additionally, all [standards subsets](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards#standards-subsets), including, but not limited to: `Core`, `Docs`, `Extra` and `VIP`.
+Pull requests will be statically analyzed to identify code smells and style inconsistencies, and a report generated automatically each time a change is made on a branch. See [`.codeclimate.yml`](https://codeberg.org/vhs/hyperdrive/blob/master/.codeclimate.yml) for a listing of analysis engines and configured rulesets.
 
-Adherence to standards are monitored programmatically using [`PHP_CodeSniffer`](https://github.com/squizlabs/PHP_CodeSniffer) in conjunction with [Code Climate](https://codeclimate.com/). Pull requests will automatically be sniffed for code smell upon submission and feedback on code quality and conformance made available automatically whenever possible.
-
-If you plan on contributing code please install [EditorConfig](http://editorconfig.org/) for your editor or IDE to help normalize your code with our coding standards before submitting pulls.
+Before working on a pull please install and configure [EditorConfig](http://editorconfig.org/) for your editor or IDE to help normalize your code syntax with that of the project.
 
 ## License
 
