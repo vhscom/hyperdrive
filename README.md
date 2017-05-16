@@ -41,18 +41,18 @@ Hyperdrive uses a performance optimization technique known as [Fetch Injection](
 
 Hundreds of thousands of individuals and users rely on WordPress every day to consume and share information online. For that reason Hyperdrive has strict conventions when it comes to code contributions.
 
-And though Hyperdrive may have a high bar for quality, please don't let that deter you in attempting to make a contribution. Where possible owners, collaborators and contributors should make every effort possible to foster the following values [shared by Dave Thomas](https://pragdave.me/blog/2014/03/04/time-to-kill-agile.html):
+And though Hyperdrive may have a high bar for quality, please don't let that deter you from making contribution. Where possible project owners, collaborators and contributors should make every effort possible to foster the following values [shared by Dave Thomas](https://pragdave.me/blog/2014/03/04/time-to-kill-agile.html):
 
-- **Individuals and Interactions** over Processes and Tools
-- **Working Software** over Comprehensive Documentation
-- **Customer Collaboration** over Contract Negotiation, and
-- **Responding to Change** over Following a Plan
+> - **Individuals and Interactions** over Processes and Tools
+> - **Working Software** over Comprehensive Documentation
+> - **Customer Collaboration** over Contract Negotiation, and
+> - **Responding to Change** over Following a Plan
 
-That said, always proceed with individual authenticity.
+That said, always proceed with authenticity. :saxophone:
 
 ### Issues
 
-Hyperdrive accepts any issue. Be it gratuitously worded, devoid of information or just plain dumb we view all feedback as a gift and will treat it as such. No question is stupid, even the stupid ones.
+Hyperdrive accepts any issue. Be it gratuitously worded, devoid of information or just plain dumb: all feedback is viewed as a gift and will treat it as such. No question is stupid, even the stupid ones.
 
 ### Pull requests
 
