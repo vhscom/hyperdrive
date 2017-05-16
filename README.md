@@ -64,4 +64,4 @@ Before working on a pull please install and configure [EditorConfig](http://edit
 
 ## License
 
-[GPL-3.0](https://opensource.org/licenses/GPL-3.0)
+[AGPLv3](http://www.gnu.org/licenses/)
