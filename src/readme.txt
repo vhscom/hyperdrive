@@ -1,10 +1,11 @@
 === Hyperdrive ===
+
 Contributors: nielslange, eirastudios, omrobbie, shantiscript, ariffsetiawan, ervannur, ipututoya, auraanar, 3hartanto, ervannur, joedewaweb
 Donate link: https://me.and.co/vhsllc/?pay=15.00&for=Hyperdrive
 Tags: performance, speed, async, javascript, fetch
 Requires at least: 4.6
 Tested up to: 4.8 Beta 1
-Stable tag: 1.0
+Stable tag: 1.0.0-beta.3
 License: AGPLv3+
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
 
@@ -12,14 +13,39 @@ The fastest way to load pages in WordPress.
 
 == Description ==
 
-Hyperdrive is a WordPress plugin giving [supporting browsers](http://caniuse.com/#search=fetch) access to a performance optimization technique known as [Fetch Injection](https://hackcabin.com/post/managing-async-dependencies-javascript/), enabling themes and sites to download resources such as JavaScript and CSS asynchronously and in parallel while preserving execution order.
+Hyperdrive speeds up your website by using modern web standards and can reduce perceived latency for first time visitors from 200 to 300% or greater depending on theme. Repeat visitors will experience even greater performance.
 
-Using Fetch Injection will reduce perceived latency during page load when compared with traditional methods and has been shown to increase time to initial render by as much as 200-300% for new visitors. Returning visitors are capable of even greater performance gains thanks to modern browser caching techniques such as Service Workers, commonly used in Progressive Web Applications.
+**Coming soon**
+- The `1.0.0` release, codenamed [Ensign Crusher](https://stt.wiki/wiki/Ensign_Crusher).
+
+**Planned updates**
+- Admin UI with warp speed configuration options
+
+Thank you for getting involved in the Hyperdrive beta. *Prepare for Ludicrous Speed*.
+
+[youtube https://www.youtube.com/watch?v=ygE01sOhzz0]
 
 == Installation ==
 
-1. Place `hyperdrive` inside the `/wp-content/plugins/` directory
-2. Activate the plugin from the WordPress Admin dashboard
+Though the Hyperdrive beta was made available in the WordPress Plugin gallery temporarily, the number of installations grew so fast we had to temporarily disengage our thrusters. We want to ensure your Hyperdrive experience is a positive one from the start and that you have a safe flight.
+
+In the meanwhile, you can install the Hypderdrive beta in the following ways to gain access to our thrusters:
+
+= Automatic Transmission =
+
+If you have Composer installed on your WordPress site you can install Hyperdrive automatically by running the following command sequence:
+
+1. Install with `composer require vhs/hyperdrive` from a terminal connected to your WordPress site.
+2. Activate the plugin through the *Plugins* menu in WordPress.
+
+If you have any issues with this approach, please [let engineering know](https://codeberg.org/vhs/hyperdrive/issues/new).
+
+= Manual Transmission =
+
+If you experience any issues with automatic installation, or would prefer to install the plugin manually, simply:
+
+1. Upload `hyperdrive.php` to the `/wp-content/plugins/` directory,
+2. Activate the plugin through the *Plugins* menu in WordPress.
 
 == Contributing ==
 
@@ -27,6 +53,18 @@ Please visit [the official repository](https://codeberg.org/vhs/hyperdrive) on G
 
 == Changelog ==
 
-### 1.0.0-beta (alias 0.9.0) ###
+**1.0.0-beta.3**
 
-* Initial beta pre-release for testing.
+* Enhanced thruster stability for multidimensional flight.
+
+**1.0.0-beta.2**
+
+* Increased interplanetary theme compatibility.
+
+**1.0.0-beta.1**
+
+* Improved ability to fold spacetime across browsers.
+
+**1.0.0-beta.0**
+
+* Initial Hyperdrive pre-release beta for fledging space cadets.
