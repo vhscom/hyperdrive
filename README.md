@@ -52,7 +52,7 @@ That said, always proceed with authenticity. :saxophone:
 
 ### Issues
 
-Hyperdrive accepts any issue. Be it gratuitously worded, devoid of information or just plain dumb: all feedback is viewed as a gift and will treat it as such. No question is stupid, even the stupid ones.
+Hyperdrive accepts any issue. Be it gratuitously worded, devoid of information or just plain dumb: all feedback should be perceived as a gift and treated as such. No question is stupid, even the stupid ones.
 
 ### Pull requests
 
