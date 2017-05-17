@@ -1,7 +1,7 @@
 {
   "name": "vhs/hyperdrive",
   "description": "The fastest way to load pages in WordPress.",
-  "keywords": ["wordpress", "plugin", "hyperdrive"],
+  "keywords": ["wordpress", "wp", "performance", "plugin", "hyperdrive"],
   "homepage": "http://hyperdrive.vhs.codeberg.page",
   "license": "GPL-3.0",
   "authors": [{
@@ -20,10 +20,9 @@
   "require-dev": {
     "codeclimate/php-test-reporter": "dev-master"
   },
-  "autoload": {
-    "psr-4": { "": "src/" }
-  },
-  "autoload-dev": {
-    "psr-4": { "": "tests/" }
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
   }
 }
