@@ -27,7 +27,7 @@ To install using [Composer](https://getcomposer.org/doc/00-intro.md#installation
 
     composer require vhs/hyperdrive:1.0.x-dev
 
-The above script will download Hyperdrive and install it directly to the `/wp-content/plugins` directory of your WordPress installation.
+The above script will download Hyperdrive and install it directly to the `/wp-content/plugins` directory.
 
 ### Manual
 
