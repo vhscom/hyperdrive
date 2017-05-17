@@ -36,6 +36,8 @@ If you experience any issues with automatic installation, or would prefer to ins
 1. Upload `hyperdrive.php` to the `/wp-content/plugins/` directory,
 1. Activate the plugin through the *Plugins* menu in WordPress.
 
+### Hacker
+
 If you're clever you'll `ssh` into the server running WordPress and do the following:
 
 1. Navigate to the installation `plugins` directory,
@@ -48,7 +50,7 @@ If you're clever you'll `ssh` into the server running WordPress and do the follo
 1. Active it using [WP-CLI](http://wp-cli.org/):
 
     ```shell
-    wp plugin activate hyperdrive.
+    wp plugin activate hyperdrive
     ```
 
 ## Todo before 1.0.0 release candidates
