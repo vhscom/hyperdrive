@@ -35,7 +35,7 @@
 
 namespace hyperdrive;
 
-defined( 'ABSPATH' ) or die( 'Now you are going to die! BAM!' );
+defined( 'ABSPATH' ) || die( 'Now you are going to die! BAM!' );
 
 /**
  * Defines Hyperdrive version output to source.
@@ -199,11 +199,9 @@ function fold_spacetime( $antimatter_particles ) {
 			$fetch_inject_string = "fetchInject($injector)";
 		} elseif ( $injector === $last_element ) {
 			$fetch_inject_string = "fetchInject($injector, $fetch_inject_string)";
-		} else {
-			$array_with_empty_string = array( '' ); // Like WordPress core jquery handle.
-			if ( ! (json_decode( $injector ) === $array_with_empty_string) ) {
-				$fetch_inject_string = "fetchInject($injector, $fetch_inject_string)";
-			}
+		} elseif ( ! (json_decode( $injector ) === array( '' )) ) {
+			// Like WordPress core jquery handle.
+			$fetch_inject_string = "fetchInject($injector, $fetch_inject_string)";
 		}
 	}
 
@@ -356,7 +354,7 @@ function in_multi_array( $needle, $haystack ) {
 	foreach ( $haystack as $item ) {
 		if ( is_array( $item ) && in_multi_array( $needle, $item ) ) {
 			return true;
-		} elseif ( $item == $needle ) {
+		} elseif ( $item === $needle ) {
 			return true;
 		}
 	}
