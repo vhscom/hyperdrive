@@ -4,9 +4,9 @@
 
 ![Hyperdrive Plugin for WordPress](https://codeberg.org/vhs/hyperdrive/blob/master/logo.png)
 
-[![Build Status](https://travis-ci.org/vhs/hyperdrive.svg?branch=master)](https://travis-ci.org/vhs/hyperdrive)
-[![Code Climate](https://codeclimate.com/github/vhs/hyperdrive/badges/gpa.svg)](https://codeclimate.com/github/vhs/hyperdrive)
-[![Test Coverage](https://codeclimate.com/github/vhs/hyperdrive/badges/coverage.svg)](https://codeclimate.com/github/vhs/hyperdrive)
+[![Build Status](https://img.shields.io/travis/vhs/hyperdrive.svg?style=flat-square)](https://travis-ci.org/vhs/hyperdrive)
+[![Code Climate](https://img.shields.io/codeclimate/github/vhs/hyperdrive.svg?style=flat-square)](https://codeclimate.com/github/vhs/hyperdrive)
+[![Test Coverage](https://img.shields.io/codeclimate/coverage/github/vhs/hyperdrive.svg?style=flat-square)](https://codeclimate.com/github/vhs/hyperdrive)
 
 ## Installation
 
