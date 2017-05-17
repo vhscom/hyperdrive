@@ -38,14 +38,6 @@ namespace hyperdrive;
 defined( 'ABSPATH' ) || die( 'Now you are going to die! BAM!' );
 
 /**
- * Defines Hyperdrive version output to source.
- *
- * @since 1.0.0
- * @var HYPERDRIVE_VERSION Semantic program version.
- */
-const HYPERDRIVE_VERSION = '1.0.0-beta.3';
-
-/**
  * Engages Hyperdrive.
  *
  * Engages Hyperdrive while printing scripts or data
@@ -205,10 +197,9 @@ function fold_spacetime( $antimatter_particles ) {
 		}
 	}
 
-	$hyperdrive_ver = HYPERDRIVE_VERSION;
 	return <<<EOD
 /*!
- * Hyperdrive v$hyperdrive_ver
+ * Hyperdrive v1.0.0-beta.3
  * Copyright (c) 2017 VHS
  * @license AGPLv3+
  */
