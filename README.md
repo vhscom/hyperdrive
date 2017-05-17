@@ -21,24 +21,24 @@ Hyperdrive uses a performance optimization technique known as [Fetch Injection](
 
 Several installation options are available. Choose the one which best meets your skill level and desired workflow.
 
-### Composer
+### Crewman
 
-To install using [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx) run the following from your WordPress installation directory:
-
-    composer require vhs/hyperdrive:1.0.x-dev
-
-The above script will download Hyperdrive and install it directly to the `/wp-content/plugins` directory.
-
-### Manual
-
-If you experience any issues with automatic installation, or would prefer to install the plugin manually, simply:
+To install the plugin manually, simply:
 
 1. Upload `hyperdrive.php` to the `/wp-content/plugins/` directory,
 1. Activate the plugin through the *Plugins* menu in WordPress.
 
-### Hacker
+### Ensign
 
-If you're clever you'll `ssh` into the server running WordPress and do the following:
+To install and manage with [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx) run the following from the WP installation directory:
+
+    composer require vhs/hyperdrive:1.0.x-dev
+
+The above will download the Hyperdrive beta under version control and install it directly to the `/wp-content/plugins` directory. Run `composer update` for to get the new and shiny.
+
+### Lieutenant
+
+If you're clever you'll `ssh` into the server and:
 
 1. Navigate to the installation `plugins` directory,
 1. Download and save the plugin source to a file:
