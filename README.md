@@ -19,7 +19,7 @@ Hyperdrive uses a performance optimization technique known as [Fetch Injection](
 
 ## Installation
 
-Two types of installations are possible during the beta period. Choose the one which best meets your development workflow.
+Several installation options are available. Choose the one which best meets your skill level and desired workflow.
 
 ### Composer
 
