@@ -23,7 +23,7 @@ Several installation options are available. Choose the one which best meets your
 
 ### Composer
 
-To automate installation using [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx) run the following command from your WordPress installation:
+To install using [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx) run the following from your WordPress installation directory:
 
     composer require vhs/hyperdrive:1.0.x-dev
 
