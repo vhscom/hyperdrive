@@ -9,7 +9,7 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/vhs/hyperdrive.svg?style=flat-square)](https://codeclimate.com/github/vhs/hyperdrive)
 [![Test Coverage](https://img.shields.io/codeclimate/coverage/github/vhs/hyperdrive.svg?style=flat-square)](https://codeclimate.com/github/vhs/hyperdrive)
 
-Hyperdrive is a WordPress plugin that helps you increase the speed of your WordPress site using [modern Web standards](https://fetch.spec.whatwg.org/).
+Hyperdrive is a zero-configuration WordPress plugin that increases the speed of your WordPress site using [modern Web standards](https://fetch.spec.whatwg.org/).
 
 ## How it works
 
@@ -39,19 +39,11 @@ If you experience any issues with automatic installation, or would prefer to ins
 1. Upload `hyperdrive.php` to the `/wp-content/plugins/` directory,
 2. Activate the plugin through the *Plugins* menu in WordPress.
 
-## Todo before 1.0.0 release
+## Todo before 1.0.0 release candidates
 
 - [ ] Only dequeue scripts if [browser supports Fetch](http://caniuse.com/#search=fetch) for backwards compatibility with older browsers
 - [ ] Integrate localization behaviors [as shown here](https://gist.github.com/vhs/64e8380010e43a526fb9c9ee511fad17#file-functions-php-L507).
 - [ ] Test with a few different themes and open bugs and needed
-
-## Post 1.0.0 roadmap
-
-- [ ] Integrate User Interface created by [@wedangsu](https://github.com/wedangsusu)
-- [ ] Ensure interface gives ability to defer script execution for scripts querying the DOM until after the DOM is fully parsed.
-- [ ] Give ability to perform grouping, so non-jQuery scripts can download and execute without waiting for jQuery.
-- [ ] Add ability to load icon fonts and [non-critical CSS](https://gist.github.com/scottjehl/87176715419617ae6994) (also possible with Fetch Inject)
-- [ ] Build API enabling theme authors greater control
 
 ## Contributing
 
