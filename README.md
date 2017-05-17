@@ -41,11 +41,11 @@ If you're clever you'll `ssh` into the server running WordPress and do the follo
 1. Navigate to the installation `plugins` directory,
 1. Download and save the plugin source to a file:
 
-    `curl -O https://raw.githubusercontent.com/vhs/hyperdrive/master/src/hyperdrive.php`
+    curl -O https://raw.githubusercontent.com/vhs/hyperdrive/master/src/hyperdrive.php
 
 1. Active it using [WP-CLI](http://wp-cli.org/):
 
-    `wp plugin activate hyperdrive`.
+    wp plugin activate hyperdrive.
 
 ## Todo before 1.0.0 release candidates
 
