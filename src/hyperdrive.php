@@ -210,7 +210,7 @@ function fold_spacetime( $antimatter_particles ) {
 /*!
  * Hyperdrive v$hyperdrive_ver
  * Copyright (c) 2017 VHS
- * @license GPL-3.0
+ * @license AGPLv3+
  */
 (function () {
   if (!window.fetch) return;
