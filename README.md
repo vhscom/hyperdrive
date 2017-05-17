@@ -28,7 +28,7 @@ Two types of installations are possible during the beta period. Choose the one w
 
 To automate installation using [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx) run the following command from your WordPress installation:
 
-    composer require vhs/hyperdrive:dev-master
+    composer require vhs/hyperdrive:1.0.x-dev
 
 The above script will download Hyperdrive and install it automatically to the `/wp-content/plugins` directory of your WordPress installation.
 
