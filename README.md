@@ -5,6 +5,8 @@
 ![Hyperdrive](https://codeberg.org/vhs/hyperdrive/blob/master/logo.png "Hyperdrive Plugin for WordPress")
 
 [![Packagist](https://img.shields.io/packagist/v/vhs/hyperdrive.svg?style=flat-square)](https://packagist.org/packages/vhs/hyperdrive)
+[![PHP](https://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg?style=flat-square)](https://php.net/)
+[![WordPress](https://img.shields.io/badge/WordPress-%3E%3D%204.6-0087BE.svg?style=flat-square)](https://wordpress.com/)
 [![Travis](https://img.shields.io/travis/vhs/hyperdrive.svg?style=flat-square)](https://travis-ci.org/vhs/hyperdrive)
 [![Code Climate](https://img.shields.io/codeclimate/github/vhs/hyperdrive.svg?style=flat-square)](https://codeclimate.com/github/vhs/hyperdrive)
 [![Test Coverage](https://img.shields.io/codeclimate/coverage/github/vhs/hyperdrive.svg?style=flat-square)](https://codeclimate.com/github/vhs/hyperdrive)
@@ -15,16 +17,11 @@ Hyperdrive is a zero-configuration WordPress plugin that increases site performa
 
 Hyperdrive uses a performance optimization technique known as [Fetch Injection](https://hackcabin.com/post/managing-async-dependencies-javascript/) available in [supported browsers](http://caniuse.com/#search=fetch). Fetch is the modern replacement for Ajax.
 
-## Requirements
-
-- WordPress >= 4.6
-- PHP >= 5.6
-
 ## Installation
 
 Two types of installations are possible during the beta period. Choose the one which best meets your development workflow.
 
-### Composer
+### Using Composer
 
 To automate installation using [Composer](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx) run the following command from your WordPress installation:
 
@@ -38,6 +35,8 @@ If you experience any issues with automatic installation, or would prefer to ins
 
 1. Upload `hyperdrive.php` to the `/wp-content/plugins/` directory,
 2. Activate the plugin through the *Plugins* menu in WordPress.
+
+If you're clever you'll `ssh` directly into the server running WordPress and `curl -O https://raw.githubusercontent.com/vhs/hyperdrive/master/src/hyperdrive.php` from your `wp-content/plugins` directory.
 
 ## Todo before 1.0.0 release candidates
 
