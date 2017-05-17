@@ -5,7 +5,7 @@ Donate link: https://me.and.co/vhsllc/?pay=15.00&for=Hyperdrive
 Tags: performance, speed, async, javascript, fetch
 Requires at least: 4.6
 Tested up to: 4.8 Beta 1
-Stable tag: 1.0.0-beta.3
+Stable tag: 1.0.0-beta.4
 License: AGPLv3+
 License URI: https://www.gnu.org/licenses/agpl-3.0.html
 
@@ -53,9 +53,13 @@ Please visit [the official repository](https://codeberg.org/vhs/hyperdrive) on G
 
 == Changelog ==
 
+**1.0.0-beta.4**
+
+* Creates a wormhole in the fabric of spacetime.
+
 **1.0.0-beta.3**
 
-* Enhanced thruster stability for multidimensional flight.
+* Enhanced thruster stability for interplanetary space flight.
 
 **1.0.0-beta.2**
 
