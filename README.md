@@ -48,7 +48,7 @@ If you're clever you'll `ssh` directly into the server running WordPress and `cu
 
 Hundreds of thousands of individuals and users rely on WordPress every day to consume and share information online. For that reason Hyperdrive has strict requirements for code contributions.
 
-Though Hyperdrive may have a high bar for quality, please don't let that deter you from making contribution. We take all comers.
+And though Hyperdrive may have a high bar for quality, please don't let that deter you from making contributions. We take on all comers.
 
 Where possible project owners, collaborators and contributors should embrace the [values of the Agile Manifesto](https://pragdave.me/blog/2014/03/04/time-to-kill-agile.html):
 
