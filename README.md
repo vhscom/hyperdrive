@@ -57,7 +57,7 @@ Where possible project owners, collaborators and contributors should embrace the
 > - **Customer Collaboration** over Contract Negotiation, and
 > - **Responding to Change** over Following a Plan
 
-And, most importantly, always proceed with authenticity. :saxophone:
+But most importantly, always proceed with authenticity. :saxophone:
 
 ### Issues
 
