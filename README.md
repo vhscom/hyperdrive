@@ -34,13 +34,15 @@ The above script will download Hyperdrive and install it automatically to the `/
 If you experience any issues with automatic installation, or would prefer to install the plugin manually, simply:
 
 1. Upload `hyperdrive.php` to the `/wp-content/plugins/` directory,
-2. Activate the plugin through the *Plugins* menu in WordPress.
+1. Activate the plugin through the *Plugins* menu in WordPress.
 
 If you're clever you'll `ssh` into the server running WordPress and do the following:
 
 1. Navigate to the installation `plugins` directory,
-2. Run `curl -O https://raw.githubusercontent.com/vhs/hyperdrive/master/src/hyperdrive.php` to download the raw source over the network, saving it to a file.
-3. Active the plugin [using the WP-CLI](https://developer.wordpress.org/cli/commands/plugin/) with `wp plugin activate hyperdrive`.
+1. Download and save the plugin source to a file:
+    `curl -O https://raw.githubusercontent.com/vhs/hyperdrive/master/src/hyperdrive.php`
+1. Active it using [WP-CLI](http://wp-cli.org/)
+    `wp plugin activate hyperdrive`.
 
 ## Todo before 1.0.0 release candidates
 
