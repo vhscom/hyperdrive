@@ -176,7 +176,7 @@ function fold_spacetime( $antimatter_particles ) {
 		});
 
 		if ( ! empty( $accumulator ) ) {
-			  $injection_json = json_encode( $accumulator, JSON_UNESCAPED_SLASHES );
+			  $injection_json = wp_json_encode( $accumulator, JSON_UNESCAPED_SLASHES );
 			  $injectors[] = $injection_json;
 		}
 	}
