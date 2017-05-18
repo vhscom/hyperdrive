@@ -38,20 +38,14 @@ The above will download the Hyperdrive beta under version control and install it
 
 ### Commander
 
-If you're clever you'll `ssh` into the server and:
+The only thing here you may not recognize is [`rupa/z`](https://github.com/rupa/z/):
 
-1. Navigate to the installation `plugins` directory,
-1. Download and save the plugin source to a file:
-
-    ```shell
+```shell
+ssh user:pass@wordpressbox.tld
+z plugins
+shell
     curl -O https://raw.githubusercontent.com/vhs/hyperdrive/master/src/hyperdrive.php
-    ```
-
-1. Active it using [WP-CLI](http://wp-cli.org/):
-
-    ```shell
-    wp plugin activate hyperdrive
-    ```
+wp plugin activate hyperdrive
 
 ## Todo before 1.0.0 release candidates
 
