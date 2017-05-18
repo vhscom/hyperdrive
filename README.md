@@ -15,7 +15,7 @@ Hyperdrive is a zero-configuration WordPress plugin that increases site performa
 
 ## How it works
 
-Hyperdrive uses a performance optimization technique known as [Fetch Injection](https://hackcabin.com/post/managing-async-dependencies-javascript/) available in [supported browsers](http://caniuse.com/#search=fetch). Fetch Injection leverages [Fetch](https://fetch.spec.whatwg.org/), the modern replacement for Ajax.
+Hyperdrive uses a performance optimization technique known as [Fetch Injection](https://hackcabin.com/post/managing-async-dependencies-javascript/) available in [supported browsers](http://caniuse.com/#search=fetch). Fetch Injection leverages [Fetch](https://github.com/whatwg/fetch), the modern replacement for Ajax.
 
 ## Installation
 
