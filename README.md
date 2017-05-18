@@ -80,4 +80,4 @@ Before working on a pull please install and configure [EditorConfig](http://edit
 
 ## License
 
-[![AGPLv3+](https://img.shields.io/github/license/vhs/hyperdrive.svg?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0.html "GNU Afferno General Public License v3.0")
+[![AGPLv3+](https://img.shields.io/github/license/vhs/hyperdrive.svg?style=flat-square)](https://choosealicense.com/licenses/agpl-3.0/ "GNU Afferno General Public License v3.0")

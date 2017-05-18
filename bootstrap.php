@@ -15,7 +15,7 @@
  * Author URI:      https://vhs.codeberg.page
  * Text Domain:     hyperdrive
  * License:         AGPLv3+
- * License URI:     https://www.gnu.org/licenses/agpl-3.0.html
+ * License URI:     https://choosealicense.com/licenses/agpl-3.0/
  *
  * Hyperdrive - The fastest way to load pages in WordPress.
  * Copyright (C) 2017  VHS
@@ -31,7 +31,8 @@
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see
+ * <https://choosealicense.com/licenses/agpl-3.0/>.
  */
 
 namespace hyperdrive;

@@ -7,7 +7,7 @@ Requires at least: 4.6
 Tested up to: 4.8 Beta 1
 Stable tag: 1.0.0-beta.4
 License: AGPLv3+
-License URI: https://www.gnu.org/licenses/agpl-3.0.html
+License URI: https://choosealicense.com/licenses/agpl-3.0/
 
 The fastest way to load pages in WordPress.
 
@@ -16,7 +16,7 @@ The fastest way to load pages in WordPress.
 Hyperdrive speeds up your website by using modern web standards and can reduce perceived latency for first time visitors from 200 to 300% or greater depending on theme. Repeat visitors will experience even greater performance.
 
 **Coming soon**
-- The `1.0.0` release, codenamed [Ensign Crusher](https://stt.wiki/wiki/Ensign_Crusher).
+- The `1.0.0` release, codenamed [Wesley Crusher](https://stt.wiki/wiki/Wesley_Crusher).
 
 **Planned updates**
 - Admin UI with warp speed configuration options
