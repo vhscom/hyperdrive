@@ -6,7 +6,7 @@ Tags: performance, speed, async, javascript, fetch
 Requires at least: 4.6
 Tested up to: 4.8 Beta 1
 Stable tag: 1.0.0-beta.4
-License: AGPLv3+
+License: AGPL-3.0
 License URI: https://choosealicense.com/licenses/agpl-3.0/
 
 The fastest way to load pages in WordPress.
