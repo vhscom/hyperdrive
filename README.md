@@ -46,6 +46,7 @@ z plugins
 shell
     curl -O https://raw.githubusercontent.com/vhs/hyperdrive/master/src/hyperdrive.php
 wp plugin activate hyperdrive
+```
 
 ## Todo before 1.0.0 release candidates
 
