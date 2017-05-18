@@ -44,7 +44,7 @@ The only thing here you may not recognize is [`rupa/z`](https://github.com/rupa/
 ssh user:pass@wordpressbox.tld
 z plugins
 shell
-    curl -O https://raw.githubusercontent.com/vhs/hyperdrive/master/src/hyperdrive.php
+curl -O https://raw.githubusercontent.com/vhs/hyperdrive/master/src/hyperdrive.php
 wp plugin activate hyperdrive
 ```
 
