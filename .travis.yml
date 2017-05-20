@@ -15,10 +15,6 @@ cache:
   - composer
   - $HOME/.composer/cache
 
-addons:
-  code_climate:
-    repo_token: $CODECLIMATE_REPO_TOKEN
-
 matrix:
   include:
     - php: 7.1

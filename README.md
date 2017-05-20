@@ -8,8 +8,6 @@
 [![PHP](https://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg?style=flat-square)](https://php.net/)
 [![WordPress](https://img.shields.io/badge/wordpress-%3E%3D%204.6-0087BE.svg?style=flat-square)](https://wordpress.com/)
 [![Travis](https://img.shields.io/travis/vhs/hyperdrive.svg?style=flat-square)](https://travis-ci.org/vhs/hyperdrive)
-[![Code Climate](https://img.shields.io/codeclimate/github/vhs/hyperdrive.svg?style=flat-square)](https://codeclimate.com/github/vhs/hyperdrive)
-[![Test Coverage](https://img.shields.io/codeclimate/coverage/github/vhs/hyperdrive.svg?style=flat-square)](https://codeclimate.com/github/vhs/hyperdrive)
 
 Hyperdrive is a WordPress plugin that increases site performance using [modern Web standards](https://fetch.spec.whatwg.org/). Based on initial testing Hyperdrive [has been shown](https://hackernoon.com/putting-wordpress-into-hyperdrive-4705450dffc2) to reduce perceived latency in the Twenty Seventeen theme by 200-300%.
 
