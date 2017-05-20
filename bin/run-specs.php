@@ -1,21 +1,9 @@
+#!/usr/bin/env php
 <?php
 /**
- * Putting WordPress into Hyperdrive.
+ * PHPUnit bootstrap file
  *
- * @package     Hyperdrive
- * @author      VHS
- * @since       1.0.0
- * @license     AGPL-3.0
- *
- * Plugin Name:     Hyperdrive
- * Plugin URI:      https://codeberg.org/vhs/hyperdrive
- * Description:     The fastest way to load pages in WordPress.
- * Version:         1.0.0-beta.4
- * Author:          VHS
- * Author URI:      https://vhs.codeberg.page
- * Text Domain:     hyperdrive
- * License:         AGPL-3.0
- * License URI:     https://choosealicense.com/licenses/agpl-3.0/
+ * @package Hyperdrive
  *
  * Hyperdrive - The fastest way to load pages in WordPress.
  * Copyright (C) 2017  VHS
@@ -35,10 +23,14 @@
  * <https://choosealicense.com/licenses/agpl-3.0/>.
  */
 
-namespace hyperdrive\bootstrap;
+$vendorDir = realpath(__DIR__ . "/../vendor");
 
-defined( 'ABSPATH' ) || die( 'Now you are going to die! BAM!' );
+include_once $vendorDir . "/antecedent/patchwork/Patchwork.php";
 
-$hyperdrive = __DIR__ . '/src/hyperdrive.php';
+use function Patchwork\redefine as redefine;
+use function Patchwork\always as always;
 
-file_exists($hyperdrive) && require_once $hyperdrive;
+redefine('die', always(null));
+redefine('add_action', always(null));
+
+include_once $vendorDir . "/bin/kahlan";

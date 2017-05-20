@@ -37,17 +37,17 @@
 
 namespace hyperdrive;
 
-defined( 'ABSPATH' ) || die( 'Now you are going to die! BAM!' );
-
 /**
  * Engages Hyperdrive.
  *
  * Engages Hyperdrive while printing scripts or data
- * in the head tag on the front end.
+ * in the head tag on the front end of WordPress. Exits otherwise.
  *
  * @since 1.0.0
  */
-add_action( 'wp_head', __NAMESPACE__ . '\engage' );
+defined( 'ABSPATH' )
+    ? add_action( 'wp_head', __NAMESPACE__ . '\engage' )
+    : die( 'Now you are going to die! BAM!' );
 
 /**
  * Calibrates Hyperdrive thrusters.
@@ -177,7 +177,7 @@ function fold_spacetime( $antimatter_particles ) {
 		});
 
 		if ( ! empty( $accumulator ) ) {
-			  $injection_json = wp_json_encode( $accumulator, JSON_UNESCAPED_SLASHES );
+			  $injection_json = json_encode( $accumulator, JSON_UNESCAPED_SLASHES );
 			  $injectors[] = $injection_json;
 		}
 	}
@@ -249,6 +249,9 @@ function engage() {
  * Gets dependency data recursively.
  *
  * @since Hyperdrive 1.0.0
+ *
+ * @todo stop using count here, it's probably causing a bug
+ * @link https://stackoverflow.com/a/2630032/712334
  *
  * @param array(string) $handles An array of handles.
  * @return array(array) Dependency data matching expected structure.
