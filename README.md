@@ -64,8 +64,6 @@ Where possible project owners, collaborators and contributors should embrace the
 > - **Customer Collaboration** over Contract Negotiation, and
 > - **Responding to Change** over Following a Plan
 
-But most importantly, always proceed with authenticity. :saxophone:
-
 ### Issues
 
 Hyperdrive accepts any issue. Be it gratuitously worded, devoid of information or just plain dumb. Feedback is a gift and will be treated as such. No question is stupid, even the stupid ones.
