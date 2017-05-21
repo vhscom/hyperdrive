@@ -12,7 +12,7 @@
 
 <h4 align="center">The fastest way to load pages in WordPress</h4>
 
-<p align="center"><em>Hyperdrive is a WordPress plugin that increases site performance using [modern Web standards](https://fetch.spec.whatwg.org/). Based on initial testing Hyperdrive [has been shown](https://hackernoon.com/putting-wordpress-into-hyperdrive-4705450dffc2) to reduce perceived latency in the Twenty Seventeen theme by 200-300%.</em></p>
+<p align="center"><em>Hyperdrive is a WordPress plugin that increases site performance using <a href="https://fetch.spec.whatwg.org/">modern Web standards</a>. Based on initial testing Hyperdrive <a href="https://hackernoon.com/putting-wordpress-into-hyperdrive-4705450dffc2">has been shown</a> to reduce perceived latency in the Twenty Seventeen theme by 200-300%.</em></p>
 
 <p align="center">
   Translations:

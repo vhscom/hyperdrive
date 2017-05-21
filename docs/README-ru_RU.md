@@ -12,7 +12,7 @@
 
 <h4 align="center">Самый быстрый способ загрузки страниц на WordPress</h4>
 
-<p align="center"><em>Hyperdrive - это плагин WordPress, повышающий скорость загрузки страниц используя [современные веб-стандарты](https://fetch.spec.whatwg.org/). На основе проведенного тестирования Hyperdrive, [можно сказать](https://hackernoon.com/putting-wordpress-into-hyperdrive-4705450dffc2) что скорость загрузки всех видимых элементов страницы увеличилась на 200-300%.</em></p>
+<p align="center"><em>Hyperdrive - это плагин WordPress, повышающий скорость загрузки страниц используя <a href="https://fetch.spec.whatwg.org/">современные веб-стандарты</a>. На основе проведенного тестирования Hyperdrive, <a href="https://hackernoon.com/putting-wordpress-into-hyperdrive-4705450dffc2">можно сказать</a> что скорость загрузки всех видимых элементов страницы увеличилась на 200-300%.</em></p>
 
 <p align="center">
   Translations:
