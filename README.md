@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="http://hyperdrive.vhs.codeberg.page"><img src="https://codeberg.org/vhs/hyperdrive/blob/master/logo.png" alt="Hyperdrive - The fastest way to load pages in WordPress" width="888"></a>
+  <a href="http://hyperdrive.vhs.codeberg.page"><img src="https://codeberg.org/vhs/hyperdrive/blob/master/logo.png" alt="Hyperdrive plugin for WordPress" title="Hyperdrive - The fastest way to load pages in WordPress" width="888"></a>
   <span style="clip: rect(1px, 1px, 1px, 1px); clip-path: polygon(0px 0px, 0px 0px,0px 0px, 0px 0px); position: absolute !important; white-space: nowrap; height: 1px; width: 1px; overflow: hidden;">Hyperdrive</span>
 </h1>
 
@@ -10,14 +10,14 @@
   <a href="https://travis-ci.org/vhs/hyperdrive"><img src="https://img.shields.io/travis/vhs/hyperdrive.svg?style=flat-square" alt="Travis"></a>
 </p>
 
-<h4>The fastest way to load pages in WordPress</h4>
+<h4 align="center">The fastest way to load pages in WordPress</h4>
+
+<p align="center"><em>Hyperdrive is a WordPress plugin that increases site performance using [modern Web standards](https://fetch.spec.whatwg.org/). Based on initial testing Hyperdrive [has been shown](https://hackernoon.com/putting-wordpress-into-hyperdrive-4705450dffc2) to reduce perceived latency in the Twenty Seventeen theme by 200-300%.</em></p>
 
 <p align="center">
   Translations:
   <a href="docs/README-ru_RU.md">ру́сский</a>
 </p>
-
-Hyperdrive is a WordPress plugin that increases site performance using [modern Web standards](https://fetch.spec.whatwg.org/). Based on initial testing Hyperdrive [has been shown](https://hackernoon.com/putting-wordpress-into-hyperdrive-4705450dffc2) to reduce perceived latency in the Twenty Seventeen theme by 200-300%.
 
 ## How it works
 

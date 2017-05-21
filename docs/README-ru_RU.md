@@ -1,15 +1,23 @@
-# [Hyperdrive](http://hyperdrive.vhs.codeberg.page)
+<h1 align="center">
+  <a href="http://hyperdrive.vhs.codeberg.page"><img src="https://codeberg.org/vhs/hyperdrive/blob/master/logo.png" alt="Hyperdrive плагин для WordPress" title="Самый быстрый способ загрузки страниц на WordPress" width="888"></a>
+  <span style="clip: rect(1px, 1px, 1px, 1px); clip-path: polygon(0px 0px, 0px 0px,0px 0px, 0px 0px); position: absolute !important; white-space: nowrap; height: 1px; width: 1px; overflow: hidden;">Hyperdrive</span>
+</h1>
 
-> Самый быстрый способ загрузки страниц на WordPress.
+<p align="center">
+  <a href="https://packagist.org/packages/vhs/hyperdrive"><img src="https://img.shields.io/packagist/v/vhs/hyperdrive.svg?style=flat-square" alt="Packagist"></a>
+  <a href="https://php.net/"><img src="https://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg?style=flat-square" alt="PHP"></a>
+  <a href="https://wordpress.com/"><img src="https://img.shields.io/badge/wordpress-%3E%3D%204.6-0087BE.svg?style=flat-square" alt="WordPress"></a>
+  <a href="https://travis-ci.org/vhs/hyperdrive"><img src="https://img.shields.io/travis/vhs/hyperdrive.svg?style=flat-square" alt="Travis"></a>
+</p>
 
-![Hyperdrive](https://codeberg.org/vhs/hyperdrive/blob/master/logo.png "Hyperdrive плагин для WordPress")
+<h4 align="center">Самый быстрый способ загрузки страниц на WordPress</h4>
 
-[![Packagist](https://img.shields.io/packagist/v/vhs/hyperdrive.svg?style=flat-square)](https://packagist.org/packages/vhs/hyperdrive)
-[![PHP](https://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg?style=flat-square)](https://php.net/)
-[![WordPress](https://img.shields.io/badge/wordpress-%3E%3D%204.6-0087BE.svg?style=flat-square)](https://wordpress.com/)
-[![Travis](https://img.shields.io/travis/vhs/hyperdrive.svg?style=flat-square)](https://travis-ci.org/vhs/hyperdrive)
+<p align="center"><em>Hyperdrive - это плагин WordPress, повышающий скорость загрузки страниц используя [современные веб-стандарты](https://fetch.spec.whatwg.org/). На основе проведенного тестирования Hyperdrive, [можно сказать](https://hackernoon.com/putting-wordpress-into-hyperdrive-4705450dffc2) что скорость загрузки всех видимых элементов страницы увеличилась на 200-300%.</em></p>
 
-Hyperdrive - это плагин WordPress, повышающий скорость загрузки страниц используя [современные веб-стандарты](https://fetch.spec.whatwg.org/). На основе проведенного тестирования Hyperdrive, [можно сказать](https://hackernoon.com/putting-wordpress-into-hyperdrive-4705450dffc2) что скорость загрузки всех видимых элементов страницы увеличилась на 200-300%.
+<p align="center">
+  Translations:
+  <a href="../README.md">English</a>
+</p>
 
 ## Как это работает
 
@@ -62,7 +70,7 @@ wp plugin activate hyperdrive
 > - **Люди и взаимодействие** важнее процессов и инструментов
 > - **Работающий продукт** важнее исчерпывающей документации
 > - **Сотрудничество с заказчиком** важнее согласования условий контракта
-> - **Готовность к изменениям** важнее следования первоначальному плану 
+> - **Готовность к изменениям** важнее следования первоначальному плану
 
 ### Вопросы
 
