@@ -8,6 +8,7 @@
   <a href="https://php.net/"><img src="https://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg?style=flat-square" alt="PHP"></a>
   <a href="https://wordpress.com/"><img src="https://img.shields.io/badge/wordpress-%3E%3D%204.6-0087BE.svg?style=flat-square" alt="WordPress"></a>
   <a href="https://travis-ci.org/vhs/hyperdrive"><img src="https://img.shields.io/travis/vhs/hyperdrive.svg?style=flat-square" alt="Travis"></a>
+  <a href="https://codecov.io/gh/vhs/hyperdrive"><img src="https://img.shields.io/codecov/c/github/vhs/hyperdrive.svg" alt="Codecov"></a>
 </p>
 
 <h4 align="center">The fastest way to load pages in WordPress</h4>
