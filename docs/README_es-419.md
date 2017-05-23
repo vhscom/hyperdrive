@@ -33,7 +33,7 @@ Hay disponible varias formas para realizar la instalación. Utilice la opción q
 
 Para instalar el plugin de forma manual, simplemente:
 
-1. Suba el archivo `hyperdrive.php` al directorio `/wp-content/plugins/,
+1. Suba el archivo `hyperdrive.php` al directorio `/wp-content/plugins/`,
 1. Active el plugin utilizando el menú *Plugins* de WordPress.
 
 ### Teniente
