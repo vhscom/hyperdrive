@@ -1,6 +1,6 @@
 <?php
 /**
- * PHPUnit bootstrap file
+ * Hyperdrive unit tests
  *
  * @package Hyperdrive
  *
