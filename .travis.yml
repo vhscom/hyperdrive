@@ -34,9 +34,6 @@ matrix:
     - php: 5.6
       env: WP_TRAVISCI=phpcs
 
-install:
-  - composer install --prefer-dist
-
 before_script:
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
   - |
