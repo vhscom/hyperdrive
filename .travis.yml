@@ -55,18 +55,19 @@ before_script:
 
 script:
   - |
-    if [[ ! -z "$WP_VERSION" ]] ; then
+    if [[ ! -z "$WP_VERSION" ]]; then
       composer test:plugin:unit
+      bash <(curl -s https://codecov.io/bash) -cF unittests
     fi
   - |
-    if [[ ! -z "$WP_VERSION" ]] ; then
+    if [[ ! -z "$WP_VERSION" ]]; then
       phpunit
       WP_MULTISITE=1 phpunit
     fi
   - |
-    if [[ "$WP_TRAVISCI" == "phpcs" ]] ; then
+    if [[ "$WP_TRAVISCI" == "phpcs" ]]; then
       composer lint:plugin
     fi
 
 after_success:
-  - if [[ "$COVERAGE" == "yes" ]] ; then bash <(curl -s https://codecov.io/bash) ; fi
+  - if [[ "$COVERAGE" == "yes" ]] ; then bash <(curl -s https://codecov.io/bash) -cF integration ; fi
