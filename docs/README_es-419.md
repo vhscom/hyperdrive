@@ -1,4 +1,7 @@
-<a href="http://hyperdrive.vhs.codeberg.page"><img src="https://codeberg.org/vhs/hyperdrive/blob/master/logo.png" alt="Hyperdrive plugin for WordPress" title="Hyperdrive - La forma más rápida de cargar páginas en WordPress" width="888"></a>
+<h1 align="center">
+  <a href="http://hyperdrive.vhs.codeberg.page"><img src="https://codeberg.org/vhs/hyperdrive/blob/master/logo.png" alt="Hyperdrive plugin for WordPress" title="Hyperdrive - La forma más rápida de cargar páginas en WordPress" width="888"></a>
+  <span style="clip: rect(1px, 1px, 1px, 1px); clip-path: polygon(0px 0px, 0px 0px,0px 0px, 0px 0px); position: absolute !important; white-space: nowrap; height: 1px; width: 1px; overflow: hidden;">Hyperdrive</span>
+</h1>
 
 <p align="center">
   <a href="https://packagist.org/packages/vhs/hyperdrive"><img src="https://img.shields.io/packagist/v/vhs/hyperdrive.svg?style=flat-square" alt="Packagist"></a>
@@ -8,7 +11,6 @@
   <a href="https://codecov.io/gh/vhs/hyperdrive"><img src="https://img.shields.io/codecov/c/github/vhs/hyperdrive.svg?style=flat-square" alt="Codecov"></a>
 </p>
 
-<h1 align="center">Hyperdrive</h1>
 <h4 align="center">La forma más rápida de cargar páginas en WordPress</h4>
 
 <p align="center"><em>Hyperdrive es un plugin de WordPress el cual incrementa el rendimiento de un sitio web usando <a href="https://fetch.spec.whatwg.org/">estandares web modernos</a>. Basado en pruebas iniciales Hyperdrive <a href="https://hackernoon.com/putting-wordpress-into-hyperdrive-4705450dffc2">ha demostrado</a> reducir la latencia percibida al cargar el tema Twenty Seventeen en 200-300%.</em></p>
