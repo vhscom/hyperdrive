@@ -1,7 +1,4 @@
-<h1 align="center">
-  <a href="http://hyperdrive.vhs.codeberg.page"><img src="https://codeberg.org/vhs/hyperdrive/blob/master/logo.png" alt="Hyperdrive плагин для WordPress" title="Самый быстрый способ загрузки страниц на WordPress" width="888"></a>
-  <span style="clip: rect(1px, 1px, 1px, 1px); clip-path: polygon(0px 0px, 0px 0px,0px 0px, 0px 0px); position: absolute !important; white-space: nowrap; height: 1px; width: 1px; overflow: hidden;">Hyperdrive</span>
-</h1>
+<a href="http://hyperdrive.vhs.codeberg.page"><img src="https://codeberg.org/vhs/hyperdrive/blob/master/logo.png" alt="Hyperdrive плагин для WordPress" title="Самый быстрый способ загрузки страниц на WordPress" width="888"></a>
 
 <p align="center">
   <a href="https://packagist.org/packages/vhs/hyperdrive"><img src="https://img.shields.io/packagist/v/vhs/hyperdrive.svg?style=flat-square" alt="Packagist"></a>
@@ -11,6 +8,7 @@
   <a href="https://codecov.io/gh/vhs/hyperdrive"><img src="https://img.shields.io/codecov/c/github/vhs/hyperdrive.svg?style=flat-square" alt="Codecov"></a>
 </p>
 
+<h1 align="center">Hyperdrive</h1>
 <h4 align="center">Самый быстрый способ загрузки страниц на WordPress</h4>
 
 <p align="center"><em>Hyperdrive - это плагин WordPress, повышающий скорость загрузки страниц используя <a href="https://fetch.spec.whatwg.org/">современные веб-стандарты</a>. На основе проведенного тестирования Hyperdrive, <a href="https://hackernoon.com/putting-wordpress-into-hyperdrive-4705450dffc2">можно сказать</a> что скорость загрузки всех видимых элементов страницы увеличилась на 200-300%.</em></p>
