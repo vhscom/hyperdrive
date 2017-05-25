@@ -17,6 +17,14 @@ Filter::register('hyperdrive.coverage', function ($chain) {
   // Get the reporter called `'coverage'` from the list of reporters.
   $reporter = $this->reporters()->get('coverage');
 
+  // Get the environment variable called `'CI'` from PHP.
+  $ci = getenv('CI');
+
+  // Abort if not running in CI.
+  if (!$ci) {
+    return $chain->next();
+  }
+
   // Abort if no coverage is available.
   if (!$reporter || !$this->commandLine()->exists('coverage-clover')) {
     return $chain->next();
