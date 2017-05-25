@@ -115,7 +115,7 @@ function calibrate_thrusters() {
  */
 function generate_antimatter( $calibration_data, $recursing = false ) {
 	$particle_array = [];
-	foreach ( $calibration_data as $idx => $data ) {
+	foreach ( $calibration_data as $data ) {
 		$handle = $data[0];
 		$url = $data[1];
 		$particle_array[] = "{$url}";
@@ -124,8 +124,6 @@ function generate_antimatter( $calibration_data, $recursing = false ) {
 			$particle_array[] = generate_antimatter( $subparticles, true );
 		}
 	}
-	// Remove numeric array keys.
-	array_multisort( $particle_array );
 	// Remove duplicate values.
 	$particle_array = array_map(
 		'unserialize', array_unique(

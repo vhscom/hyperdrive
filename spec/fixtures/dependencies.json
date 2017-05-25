@@ -1,0 +1,39 @@
+{
+  "singleWithQuery": [[
+    "jquery-core",
+    "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+    []
+  ]],
+  "singleWithoutQuery": [[
+    "jquery-core",
+    "/wp-includes/js/jquery/jquery.js",
+    []
+  ]],
+  "twoIndependent": [[
+    "jquery-core",
+    "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+    []
+  ], [
+    "jquery-migrate",
+    "/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1",
+    []
+  ]],
+  "withoutLocator": [[
+    "jquery",
+    "",
+    []
+  ]],
+  "fauxCompoundDeepDependency": [[
+    "jquery",
+    "",
+    [[
+      "jquery-core",
+      "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+      []
+    ], [
+      "jquery-migrate",
+      "/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1",
+      []
+    ]]
+  ]]
+}
