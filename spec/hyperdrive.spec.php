@@ -81,7 +81,7 @@ describe('hyperdrive', function () {
       });
     });
 
-    describe('handles two independent dependencies', function () {
+    describe('handles two shallow dependencies', function () {
       given('dependencies', function () {
         return $this->fixtures->twoIndependent;
       });
