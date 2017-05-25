@@ -103,8 +103,8 @@ describe('hyperdrive', function () {
       given('dependencyWithoutLocator', function () {
         return $this->fixtures->withoutLocator;
       });
-      given('fauxCompoundDeepDependency', function () {
-        return $this->fixtures->fauxCompoundDeepDependency;
+      given('fauxCompoundDeep', function () {
+        return $this->fixtures->fauxCompoundDeep;
       });
 
       // Not a realistic isolated scenario.
@@ -130,14 +130,14 @@ describe('hyperdrive', function () {
         });
 
         it('has expected deep dependencies', function () {
-          $deepDependencies = $this->fauxCompoundDeepDependency[0][2];
+          $deepDependencies = $this->fauxCompoundDeep[0][2];
           $numDeepDependencies = count($deepDependencies);
           $expected = [
             $deepDependencies[0][1],
             $deepDependencies[1][1]
           ];
           expect(
-            generate_antimatter($this->fauxCompoundDeepDependency)
+            generate_antimatter($this->fauxCompoundDeep)
           )
             ->toHaveLength($numDeepDependencies)
             ->toContain($expected);

@@ -23,7 +23,7 @@
     "",
     []
   ]],
-  "fauxCompoundDeepDependency": [[
+  "fauxCompoundDeep": [[
     "jquery",
     "",
     [[
