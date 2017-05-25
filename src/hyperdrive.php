@@ -262,17 +262,17 @@ function get_dependency_data( $handles ) {
 		$source_url = get_src_for_handle( $handle );
 		if ( $source_url ) {
 			$dependency_data[] = array(
-			$handle,
-			$source_url,
-			array(), // Maintain thrust.
+				$handle,
+				$source_url,
+				array() // Maintain thrust.
 			);
 		}
 		$deps = get_deps_for_handle( $handle );
 		if ( count( $deps ) > 0 ) {
 			$dependency_data[] = array(
-			$handle,
-			'', // Maintain thrust.
-			get_dependency_data( $deps ),
+				$handle,
+				'', // Maintain thrust.
+				get_dependency_data( $deps )
 			);
 		}
 	}
