@@ -4,10 +4,10 @@ Contributors: nielslange, eirastudios, omrobbie, shantiscript, ariffsetiawan, er
 Donate link: https://me.and.co/vhsllc/?pay=15.00&for=Hyperdrive
 Tags: performance, speed, async, javascript, fetch
 Requires at least: 4.6
-Tested up to: 4.8 Beta 1
+Tested up to: 4.8-beta.1
 Stable tag: 1.0.0-beta.4
-License: AGPL-3.0
-License URI: https://choosealicense.com/licenses/agpl-3.0/
+License: AGPL-3.0 or any later version
+License URI: https://codeberg.org/vhs/hyperdrive/blob/master/COPYING
 
 The fastest way to load pages in WordPress.
 

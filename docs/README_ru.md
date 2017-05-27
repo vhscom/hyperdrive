@@ -86,4 +86,4 @@ Hyperdrive принимает к рассмотрению любые вопро�
 
 ## Лицензия
 
-[![AGPL-3.0](https://img.shields.io/github/license/vhs/hyperdrive.svg?style=flat-square)](https://choosealicense.com/licenses/agpl-3.0/ "GNU Afferno General Public License v3.0")
+[![AGPL-3.0 or any later version](https://img.shields.io/github/license/vhs/hyperdrive.svg?style=flat-square)](https://codeberg.org/vhs/hyperdrive/blob/master/COPYING)

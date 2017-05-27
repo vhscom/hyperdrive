@@ -1,25 +1,28 @@
 <?php
 /**
- * Hyperdrive unit tests
+ * Unit tests.
  *
- * @package Hyperdrive
+ * @package     Hyperdrive
+ * @author      VHS
+ * @since       1.0.0
+ * @license     AGPL-3.0 or any later version
  *
  * Hyperdrive - The fastest way to load pages in WordPress.
  * Copyright (C) 2017  VHS
  *
- * This program is free software: you can redistribute it and/or modify
+ * Hyperdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
  * by the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ * Hyperdrive is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see
- * <https://choosealicense.com/licenses/agpl-3.0/>.
+ * along with Hyperdrive.  If not, see
+ * https://codeberg.org/vhs/hyperdrive/blob/master/COPYING.
  */
 
 namespace hyperdrive\spec;
