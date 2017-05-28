@@ -10,18 +10,16 @@
     "homepage": "https://vhs.codeberg.page"
   }],
   "scripts": {
-    "lint:config": "bin/lint-config.sh",
-    "lint:plugin": "bin/lint-php.sh ./src",
+    "lint:plugin:config": "phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs",
+    "lint:plugin:sniff": "phpcs --standard=phpcs.ruleset.xml $(find src tests -name '*.php')",
+    "lint:plugin:fix": "phpcbf --standard=phpcs.ruleset.xml $(find src tests -name '*.php')",
     "test:plugin:unit": "bin/run-specs.php"
   },
   "type": "wordpress-plugin",
-  "repositories": [{
-    "url": "https://github.com/vhs/wp-enforcer.git",
-    "type": "git"
-  }],
   "require": {
     "php": ">=5.6",
-    "composer/installers": "^1.3"
+    "composer/installers": "^1.3",
+    "wp-coding-standards/wpcs": "*"
   },
   "autoload": {
     "files": [
@@ -30,18 +28,11 @@
   },
   "require-dev": {
     "kahlan/kahlan": "^3.1",
-    "stevegrunwell/wp-enforcer": "dev-master",
     "antecedent/patchwork": "^2.0"
   },
   "extra": {
     "branch-alias": {
       "dev-master": "1.0.x-dev"
     }
-  },
-  "post-install-cmd": [
-  	"wp-enforcer -c phpcs.ruleset.xml"
-  ],
-  "post-update-cmd": [
-  	"wp-enforcer -c phpcs.ruleset.xml"
-  ]
+  }
 }

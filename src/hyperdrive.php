@@ -46,8 +46,8 @@ namespace hyperdrive;
  * @since 1.0.0
  */
 defined( 'ABSPATH' )
-    ? add_action( 'wp_head', __NAMESPACE__ . '\engage' )
-    : die( 'Now you are going to die! BAM!' );
+	? add_action( 'wp_head', __NAMESPACE__ . '\engage' )
+	: die( 'Now you are going to die! BAM!' );
 
 /**
  * Calibrates Hyperdrive thrusters.
@@ -262,7 +262,7 @@ function get_dependency_data( $handles ) {
 			$dependency_data[] = array(
 				$handle,
 				$source_url,
-				array() // Maintain thrust.
+				array(), // Maintain thrust.
 			);
 		}
 		$deps = get_deps_for_handle( $handle );
@@ -270,7 +270,7 @@ function get_dependency_data( $handles ) {
 			$dependency_data[] = array(
 				$handle,
 				'', // Maintain thrust.
-				get_dependency_data( $deps )
+				get_dependency_data( $deps ),
 			);
 		}
 	}

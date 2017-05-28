@@ -1,7 +1,12 @@
 <?php
-
 /**
  * Sample test case.
+ *
+ * @package Hyperdrive
+ */
+
+/**
+ * Sample test.
  */
 class SampleTest extends WP_UnitTestCase {
 
