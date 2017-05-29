@@ -75,157 +75,97 @@ defined( 'ABSPATH' )
  * and used by this method.
  *
  * @since Hyperdrive 1.0.0
- * @return Associative array containing thruster calibration data.
- *
- * Example structured data ("Calibration data"):
- *
- *    array(
- *      string "jquery-scrollto",
- *      string "/assets/js/jquery.scrollTo.js?ver=2.1.2",
- *      array(
- *        string "jquery",
- *        string ""
- *        array(
- *          array(
- *            string "jquery-core",
- *            string "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
- *            array(0)
- *          )
- *          array(
- *            string "jquery-migrate",
- *            string "/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1",
- *            array(0)
- *          )
- *        )
- *      )
- *    );
+ * @return Associative array with destination coordinates.
  */
 function calibrate_thrusters() {
-	$calibration_data = [];
+	$coordinates = [];
 	$scripts = get_enqueued_scripts();
 	foreach ( $scripts as $script ) {
 		if ( empty( $script->extra['conditional'] ) ) {
 			// It's a good thing you were wearing that helmet.
-			$calibration_data[] = array(
-			$script->handle,
-			get_src_for_handle( $script->handle ),
-			get_dependency_data( $script->deps ),
+			$coordinates[] = array(
+				$script->handle,
+				get_src_for_handle( $script->handle ),
+				get_dependency_data( $script->deps ),
 			);
 			// Not in here, mister! This is a Mercedes!
 			wp_dequeue_script( $script->handle );
 		}
 	}
-	return $calibration_data;
+	return $coordinates;
 }
 
 /**
- * Generates antimatter particles.
+ * Generates antiparticles.
  *
- * Translates thruster calibration data into an antimatter
- * particle array and dedupes it while respecting sort order.
+ * Recursive function translates destination coordinates into
+ * into antimatter particles recursively with some deduplication
+ * and sorting. Throws away empty locators used by WordPress and
+ * prevents nesting arrays with single array children.
  *
  * @since Hyperdrive 1.0.0
- *
- * @param array   $calibration_data Thurster calibration settings.
- * @param boolean $recursing True when generating subparticles.
- * @return A list of scripts for use in Fetch Injection.
+ * @param array $coordinates Destination coordinates.
+ * @return Antiparticles for use in folding spacetime.
  */
-function generate_antimatter( $calibration_data, $recursing = false ) {
-	$particle_array = [];
-	foreach ( $calibration_data as $data ) {
-		$handle = $data[0];
-		$url = $data[1];
-		$particle_array[] = "{$url}";
-		$subparticles = $data[2];
-		if ( $subparticles ) {
-			$particle_array[] = generate_antimatter( $subparticles, true );
-		}
+function generate_antimatter( $coordinates ) {
+	$antiparticles = [];
+	foreach ( $coordinates as $coordinate ) {
+		list( $handle, $locator, $dimensions ) = $coordinate;
+		!empty( $locator ) && $antiparticles[] = "{$locator}";
+		$dimensions && $antiparticles[] = generate_antimatter( $dimensions, true );
 	}
-	// Remove duplicate values.
-	$particle_array = array_map(
-		'unserialize', array_unique(
-			array_map( 'serialize', $particle_array )
-		)
-	);
-	return $particle_array;
+	is_array(reset($antiparticles)) && $antiparticles = reset($antiparticles);
+	array_multisort( $antiparticles );
+	$antiparticles = array_map('unserialize', array_unique(
+		array_map( 'serialize', $antiparticles )
+	));
+	return $antiparticles;
 }
 
 /**
- * Converts antimatter particles into dark matter.
+ * Converts antiparticles into dark matter.
  *
- * Takes an antimatter particle array transforms it into something
- * Fetch Inject understands, making FTL a future possibility.
+ * Performs a moonwalk to dedupe any remaining multidimensional
+ * dopplegangers in alternate dimensions and constructs a script
+ * to handle page resource Fetch Injection.
  *
  * @since Hyperdrive 1.0.0
- * @link https://github.com/vhs/fetch-inject
- *
- * @todo Consolidate dedupe logic with `generate_antimatter`.
- *
- * @param array $antimatter_particles Partical array.
+ * @param array $antiparticles Partical array.
  * @return A string containing a fully-assembled inline script.
  */
-function fold_spacetime( $antimatter_particles ) {
-	$injectors = $particle_array = []; // @codingStandardsIgnoreLine
-	$fetch_inject_string = '';
+function fold_spacetime( $antiparticles ) {
+	$injection = '';
+	$injectors = [];
 
-	/**
-	 * Create ordered array of JSON encoded strings for Fetch Injection.
-	 *
-	 * @param array $array Multidimensional array of antimatter particles.
-	 * @param array $accumulator Accumulates particles during recursion.
-	 * @param array $injectors JSON-encoded strings for Fetch Injection.
-	 * @param array $particle_array I'm not sure why this is here. See @todo above.
-	 * @param array $injection_json JSON-encoded representation of $accumulator.
-	 */
-	function walk_recursive( $array, $accumulator, &$injectors, &$particle_array, &$injection_json = '' ) {
-		$accumulator = [];
-		array_walk( $array, function( $item ) use ( &$accumulator, &$injectors, &$particle_array, &$injection_json ) {
-			if ( ! empty( $item ) ) {
-				if ( is_array( $item ) ) {
-					walk_recursive( $item, $accumulator, $injectors, $particle_array, $injection_json );
-				} else {
-					if ( ! in_multi_array( $item, $particle_array ) ) {
-						$accumulator[] = $particle_array[] = $item; // @codingStandardsIgnoreLine
-					}
-				}
-			}
-		});
+	array_moonwalk( $antiparticles, $injectors );
+	$depths = array_count_values( $injectors );
+	$locators = array_keys( $injectors );
 
-		if ( ! empty( $accumulator ) ) {
-			  $injection_json = json_encode( $accumulator, JSON_UNESCAPED_SLASHES );
-			  $injectors[] = $injection_json;
-		}
-	}
-	walk_recursive( $antimatter_particles, false, $injectors, $particle_array );
-
-	/**
-	 * Assemble Fetch Inject string using ordered array.
-	 */
-	$first_element = reset( $injectors );
-	$last_element = end( $injectors );
-	foreach ( $injectors as $idx => $injector ) {
-		if ( $injector === $first_element ) {
-			$fetch_inject_string = "fetchInject($injector)";
-		} elseif ( $injector === $last_element ) {
-			$fetch_inject_string = "fetchInject($injector, $fetch_inject_string)";
-		} elseif ( ! (json_decode( $injector ) === array( '' )) ) {
-			// Like WordPress core jquery handle.
-			$fetch_inject_string = "fetchInject($injector, $fetch_inject_string)";
-		}
+	foreach ($depths as $depth => $quantity) {
+		$injections = [];
+		$remaining = $quantity;
+		do {
+			$injections[] = array_shift($locators);
+			$remaining--;
+		} while ($remaining > 0);
+		$encoded = json_encode($injections, JSON_UNESCAPED_SLASHES);
+		$injection .= "fetchInject($encoded";
+		count( $injections ) === count( $depths  )
+			? $injection .= array_reduce(
+				$depths, function ($s) {return $s . ")"; }
+			) : $injection .= ", ";
 	}
 
 	return <<<EOD
 /*! Hyperdrive v1.0.0-beta.4 | (c) 2017 VHS | @license AGPL-3.0 or any later version */
 /*! Fetch Inject v1.7.0 | (c) 2017 VHS | @license ISC */
 !function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.fetchInject=t()}(this,function(){"use strict";const e=function(e,t,n,o,r,i,c){i=t.createElement(n),c=t.getElementsByTagName(n)[0],i.appendChild(t.createTextNode(o.text)),i.onload=r(o),c?c.parentNode.insertBefore(i,c):t.head.appendChild(i)};return function(t,n){if(!t||!Array.isArray(t))return Promise.reject(new Error("`inputs` must be an array"));if(n&&!(n instanceof Promise))return Promise.reject(new Error("`promise` must be a promise"));const o=[],r=n?[].concat(n):[],i=[];return t.forEach(e=>r.push(window.fetch(e).then(e=>[e.clone().text(),e.blob()]).then(e=>Promise.all(e).then(e=>{o.push({text:e[0],blob:e[1]})})))),Promise.all(r).then(()=>{o.forEach(t=>{i.push({then:n=>{t.blob.type.includes("text/css")?e(window,document,"style",t,n):e(window,document,"script",t,n)}})});return Promise.all(i)})}});
-$fetch_inject_string;
+$injection;
 EOD;
 }
 
 /**
- * Enter hyperspace.
- *
- * Echos an inline script into the document.
+ * Enters hyperspace.
  *
  * @since Hyperdrive 1.0.0
  * @param string $dark_energy An inline script to asynchronously
@@ -239,24 +179,18 @@ function enter_hyperspace( $dark_energy ) {
  * Main function engages the hyperdrive.
  *
  * @since Hyperdrive 1.0.0
- *
  * @todo return void (requires PHP 7.1).
  */
 function engage() {
-	$calibration_data = calibrate_thrusters();
-	$antimatter_particles = generate_antimatter( $calibration_data );
-	$dark_energy = fold_spacetime( $antimatter_particles );
-	enter_hyperspace( $dark_energy );
+	enter_hyperspace( // May the schwartz be with you!
+		fold_spacetime( generate_antimatter( calibrate_thrusters() ) )
+	);
 }
 
 /**
  * Gets dependency data recursively.
  *
  * @since Hyperdrive 1.0.0
- *
- * @todo stop using count here, it's probably causing a bug
- * @link https://stackoverflow.com/a/2630032/712334
- *
  * @param array(string) $handles An array of handles.
  * @return array(array) Dependency data matching expected structure.
  */
@@ -284,6 +218,29 @@ function get_dependency_data( $handles ) {
 }
 
 /**
+ * Moonwalks an array.
+ *
+ * Deduplicates multidimensional array by flattening it while preserving
+ * the deepest depth and flipping it inside out. Array values become the
+ * keys and the new values contain the depths.
+ *
+ * @since Hyperdrive 1.0.0
+ * @link https://gist.github.com/vhs/2c805d3c9f9abe584ba22c5b5e35b9a3
+ * @param array $array A multidimensional array of variable depth.
+ * @param array $accumulator A reference identifier for a stored result.
+ * @return A flattened, deduplicated array with leaf node values as keys
+ *     and deepest depth of any given leaf as the value.
+ */
+function array_moonwalk( $array, &$accumulator, &$depth = 1, $recursing = false ) {
+	array_walk( $array, function ( $element ) use ( &$accumulator, &$depth, $recursing ) {
+		is_array( $element )
+			? ++$depth && array_moonwalk( $element, $accumulator, $depth, true )
+			: $accumulator[ $element ] = $depth;
+	});
+	$recursing && --$depth;
+}
+
+/**
  * Gets scripts registered and enqueued.
  *
  * @since Hyperdrive 1.0.0
@@ -301,7 +258,6 @@ function get_enqueued_scripts() {
  * Gets a script dependency for a handle.
  *
  * @since Hyperdrive 1.0.0
- *
  * @param string $handle The handle.
  * @return _WP_Dependency associated with input handle.
  */
@@ -314,7 +270,6 @@ function get_dep_for_handle( $handle ) {
  * Gets the source URL given a script handle.
  *
  * @since Hyperdrive 1.0.0
- *
  * @param string $handle The handle.
  * @return URL associated with handle, or empty string.
  */
@@ -330,33 +285,10 @@ function get_src_for_handle( $handle ) {
  * Gets all dependencies for a given handle.
  *
  * @since Hyperdrive 1.0.0
- *
  * @param string $handle The handle.
  * @return array(string) List of handles for dependencies of `$handle`.
  */
 function get_deps_for_handle( $handle ) {
 	$dep = get_dep_for_handle( $handle );
 	return $dep->deps;
-}
-
-/**
- * Checks if a value exists in a multidimensional array.
- *
- * @since Hyperdrive 1.0.0
- *
- * @todo Eliminate multiple return statements.
- *
- * @param string/array $needle The value(s) to search for.
- * @param array        $haystack The array to search.
- * @return boolean True if found, false otherwise.
- */
-function in_multi_array( $needle, $haystack ) {
-	foreach ( $haystack as $item ) {
-		if ( is_array( $item ) && in_multi_array( $needle, $item ) ) {
-			return true;
-		} elseif ( $item === $needle ) {
-			return true;
-		}
-	}
-	return false;
 }
