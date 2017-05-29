@@ -22,6 +22,6 @@
     "standard-version": "^4.0.0"
   },
   "dependencies": {
-    "fetch-inject": "^1.6.11"
+    "fetch-inject": "^1.7.0"
   }
 }
