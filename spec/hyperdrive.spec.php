@@ -223,7 +223,7 @@ describe('hyperdrive', function () {
             return $this->fixtures->complexCommonDeepWithFaux;
           });
 
-          it('removes common deep dependencies', function () {
+          it('has expected antimatter particles', function () {
             $firstCommonDeep = $this->complexCommonDeepWithFaux[0][2][0][2][0];
             $secondCommonDeep = $this->complexCommonDeepWithFaux[0][2][0][2][1];
             $expected = [
@@ -234,8 +234,11 @@ describe('hyperdrive', function () {
                   "/wp-content/themes/twentyseventeen/assets/js/hoverIntent.js",
                   "/wp-content/themes/twentyseventeen/assets/js/transit.min.js",
                   [
-                    "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
-                    "/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"
+                    "",
+                    [
+                      "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+                      "/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"
+                    ]
                   ]
                 ]
               ]
@@ -243,9 +246,7 @@ describe('hyperdrive', function () {
 
             expect(
               generate_antimatter($this->complexCommonDeepWithFaux)
-            )
-              ->toHaveLength(2)
-              ->toBe($expected);
+            )->toBe($expected);
           });
         });
       });
