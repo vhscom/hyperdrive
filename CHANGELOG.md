@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0-beta.5"></a>
+# [1.0.0-beta.5](https://codeberg.org/vhs/hyperdrive/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2017-05-31)
+
+### Bug Fixes
+
+* **$hyperdrive:** we fixed the glitch ([0e157f7](https://codeberg.org/vhs/hyperdrive/commit/0e157f7)), closes [#68](https://codeberg.org/vhs/hyperdrive/issues/68)
+
+### Features
+
+* **$hyperdrive:** upgrade to `fetch-inject@1.7.0` ([ff61e73](https://codeberg.org/vhs/hyperdrive/commit/ff61e73))
+
 <a name="1.0.0-beta.4"></a>
 # [1.0.0-beta.4](https://codeberg.org/vhs/hyperdrive/compare/v1.0.0-beta.3...v1.0.0-beta.4) (2017-05-17)
 
@@ -20,7 +31,7 @@ Improves support levels for themes and plugins, and increases efficiency.
 
 ### Bug Fixes
 
-* **hyperdrive.php:** add stability and security improvements ([762cc8b](https://codeberg.org/vhs/hyperdrive/commit/762cc8b)), closes [#23](https://codeberg.org/vhs/hyperdrive/issues/23) [#7](https://codeberg.org/vhs/hyperdrive/issues/7)
+* **$hyperdrive:** add stability and security improvements ([762cc8b](https://codeberg.org/vhs/hyperdrive/commit/762cc8b)), closes [#23](https://codeberg.org/vhs/hyperdrive/issues/23) [#7](https://codeberg.org/vhs/hyperdrive/issues/7)
 
 
 
@@ -31,9 +42,9 @@ Improves support levels for themes and plugins.
 
 ### Bug Fixes
 
-* **hyperdrive.php:** correct pass-by-reference error ([9cadd41](https://codeberg.org/vhs/hyperdrive/commit/9cadd41)), closes [#18](https://codeberg.org/vhs/hyperdrive/issues/18)
-* **hyperdrive.php:** prevent empty strings in $fetch_inject_string ([1788f89](https://codeberg.org/vhs/hyperdrive/commit/1788f89)), closes [#19](https://codeberg.org/vhs/hyperdrive/issues/19)
-* **hyperdrive.php:** prevent undefined error ([460879a](https://codeberg.org/vhs/hyperdrive/commit/460879a)), closes [#18](https://codeberg.org/vhs/hyperdrive/issues/18)
+* **$hyperdrive:** correct pass-by-reference error ([9cadd41](https://codeberg.org/vhs/hyperdrive/commit/9cadd41)), closes [#18](https://codeberg.org/vhs/hyperdrive/issues/18)
+* **$hyperdrive:** prevent empty strings in $fetch_inject_string ([1788f89](https://codeberg.org/vhs/hyperdrive/commit/1788f89)), closes [#19](https://codeberg.org/vhs/hyperdrive/issues/19)
+* **$hyperdrive:** prevent undefined error ([460879a](https://codeberg.org/vhs/hyperdrive/commit/460879a)), closes [#18](https://codeberg.org/vhs/hyperdrive/issues/18)
 
 
 

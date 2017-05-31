@@ -10,7 +10,7 @@
  * Plugin Name:     Hyperdrive
  * Plugin URI:      https://codeberg.org/vhs/hyperdrive
  * Description:     The fastest way to load pages in WordPress.
- * Version:         1.0.0-beta.4
+ * Version:         1.0.0-beta.5
  * Author:          VHS
  * Author URI:      https://vhs.codeberg.page
  * Text Domain:     hyperdrive
@@ -18,7 +18,7 @@
  * License URI:     https://codeberg.org/vhs/hyperdrive/blob/master/COPYING
  *
  * Hyperdrive - The fastest way to load pages in WordPress.
- * Copyright (C) 2017  VHS
+ * Copyright (C) 2017  VHS <josh@vhs.codeberg.page>
  *
  * Hyperdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published

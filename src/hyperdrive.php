@@ -10,7 +10,7 @@
  * Plugin Name:     Hyperdrive
  * Plugin URI:      https://codeberg.org/vhs/hyperdrive
  * Description:     The fastest way to load pages in WordPress.
- * Version:         1.0.0-beta.4
+ * Version:         1.0.0-beta.5
  * Author:          VHS
  * Author URI:      https://vhs.codeberg.page
  * Text Domain:     hyperdrive
@@ -157,7 +157,7 @@ function fold_spacetime( $antiparticles ) {
 	}
 
 	return <<<EOD
-/*! Hyperdrive v1.0.0-beta.4 | (c) 2017 VHS | @license AGPL-3.0 or any later version */
+/*! Hyperdrive v1.0.0-beta.5 | (c) 2017 VHS | @license AGPL-3.0 or any later version */
 /*! Fetch Inject v1.7.0 | (c) 2017 VHS | @license ISC */
 !function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.fetchInject=t()}(this,function(){"use strict";const e=function(e,t,n,o,r,i,c){i=t.createElement(n),c=t.getElementsByTagName(n)[0],i.appendChild(t.createTextNode(o.text)),i.onload=r(o),c?c.parentNode.insertBefore(i,c):t.head.appendChild(i)};return function(t,n){if(!t||!Array.isArray(t))return Promise.reject(new Error("`inputs` must be an array"));if(n&&!(n instanceof Promise))return Promise.reject(new Error("`promise` must be a promise"));const o=[],r=n?[].concat(n):[],i=[];return t.forEach(e=>r.push(window.fetch(e).then(e=>[e.clone().text(),e.blob()]).then(e=>Promise.all(e).then(e=>{o.push({text:e[0],blob:e[1]})})))),Promise.all(r).then(()=>{o.forEach(t=>{i.push({then:n=>{t.blob.type.includes("text/css")?e(window,document,"style",t,n):e(window,document,"script",t,n)}})});return Promise.all(i)})}});
 $injection;
