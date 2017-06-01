@@ -111,10 +111,10 @@ function generate_antimatter( $coordinates ) {
 	$antiparticles = [];
 	foreach ( $coordinates as $coordinate ) {
 		list( $handle, $locator, $dimensions ) = $coordinate;
-		!empty( $locator ) && $antiparticles[] = "{$locator}";
+		! empty( $locator ) && $antiparticles[] = "{$locator}";
 		$dimensions && $antiparticles[] = generate_antimatter( $dimensions, true );
 	}
-	is_array(reset($antiparticles)) && $antiparticles = reset($antiparticles);
+	is_array( reset( $antiparticles ) ) && $antiparticles = reset( $antiparticles );
 	array_multisort( $antiparticles );
 	$antiparticles = array_map('unserialize', array_unique(
 		array_map( 'serialize', $antiparticles )
@@ -141,19 +141,19 @@ function fold_spacetime( $antiparticles ) {
 	$depths = array_count_values( $injectors );
 	$locators = array_keys( $injectors );
 
-	foreach ($depths as $depth => $quantity) {
+	foreach ( $depths as $depth => $quantity ) {
 		$injections = [];
 		$remaining = $quantity;
 		do {
-			$injections[] = array_shift($locators);
+			$injections[] = array_shift( $locators );
 			$remaining--;
-		} while ($remaining > 0);
-		$encoded = json_encode($injections, JSON_UNESCAPED_SLASHES);
+		} while ( $remaining > 0 );
+		$encoded = json_encode( $injections, JSON_UNESCAPED_SLASHES );
 		$injection .= "fetchInject($encoded";
 		count( $injections ) === count( $depths  )
 			? $injection .= array_reduce(
-				$depths, function ($s) {return $s . ")"; }
-			) : $injection .= ", ";
+				$depths, function ( $string ) {return $string . ')'; }
+			) : $injection .= ', ';
 	}
 
 	return <<<EOD
@@ -232,6 +232,8 @@ function get_dependency_data( $handles ) {
  *
  * @param array $array A multidimensional array of variable depth.
  * @param array $accumulator A reference identifier for a stored result.
+ * @param integer [$depth = 1] Starting depth for array search.
+ * @param boolean [$recursing = false] True while doing a moonwalk.
  * @return A flattened, deduplicated array with leaf node values as keys
  *     and deepest depth of any given leaf as the value.
  */
