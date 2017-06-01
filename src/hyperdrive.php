@@ -150,9 +150,11 @@ function fold_spacetime( $antiparticles ) {
 		} while ( $remaining > 0 );
 		$encoded = json_encode( $injections, JSON_UNESCAPED_SLASHES );
 		$injection .= "fetchInject($encoded";
-		count( $injections ) === count( $depths  )
+		count( $injections ) === count( $depths )
 			? $injection .= array_reduce(
-				$depths, function ( $string ) {return $string . ')'; }
+				$depths, function ( $string ) {
+					return $string . ')';
+				}
 			) : $injection .= ', ';
 	}
 
@@ -225,11 +227,9 @@ function get_dependency_data( $handles ) {
  * keys and the new values contain the depths.
  *
  * @since Hyperdrive 1.0.0
+ * @license ISC
  * @link https://gist.github.com/vhs/2c805d3c9f9abe584ba22c5b5e35b9a3
  * @link https://stackoverflow.com/q/44304599/712334
- *
- * @license ISC
- *
  * @param array $array A multidimensional array of variable depth.
  * @param array $accumulator A reference identifier for a stored result.
  * @param integer [$depth = 1] Starting depth for array search.
