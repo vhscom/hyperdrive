@@ -68,7 +68,6 @@ describe('hyperdrive', function () {
         expect(
           generate_antimatter($this->dependencyWithQuery)
         )
-          ->toBeA('array')
           ->toBe($expected);
       });
 
@@ -77,16 +76,7 @@ describe('hyperdrive', function () {
         expect(
           generate_antimatter($this->dependencyWithoutQuery)
         )
-          ->toBeA('array')
           ->toBe($expected);
-      });
-
-      it('does not allow empty locators', function () {
-        // get rid of them as early as possible; easy
-      });
-
-      it('does not have unedessary depth', function () {
-        // when removing faux deps, we have [[]]
       });
     });
 
@@ -116,128 +106,100 @@ describe('hyperdrive', function () {
         return $this->fixtures->fauxCompoundDeep;
       });
 
-      describe('compound deep dependency', function () {
-        it('has expected deep dependencies', function () {
-          $deepDependencies = $this->fauxCompoundDeep[0][2];
-          $numDeepDependencies = count($deepDependencies);
-          $firstDeep = $deepDependencies[0][1];
-          $secondDeep = $deepDependencies[1][1];
+      it('has expected deep dependencies', function () {
+        $deepDependencies = $this->fauxCompoundDeep[0][2];
+        $numDeepDependencies = count($deepDependencies);
+        $firstDeep = $deepDependencies[0][1];
+        $secondDeep = $deepDependencies[1][1];
 
-          expect(
-            generate_antimatter($this->fauxCompoundDeep)
-          )
-            ->toContain($firstDeep)
-            ->toContain($secondDeep)
-            ->toHaveLength($numDeepDependencies);
-        });
+        expect(
+          generate_antimatter($this->fauxCompoundDeep)
+        )
+          ->toContain($firstDeep)
+          ->toContain($secondDeep)
+          ->toHaveLength($numDeepDependencies);
+      });
+
+      it('strips empty locators', function () {
+        $fauxDependency = $this->fauxCompoundDeep[0];
+
+        expect($fauxDependency)->toContain('');
+        expect(
+          generate_antimatter($this->fauxCompoundDeep)
+        )
+          ->not->toContain('');
+      });
+
+      it('does not have unnecessary depth', function () {
+        $deepDependencies = $this->fauxCompoundDeep[0][2];
+
+        expect($deepDependencies[0])->toBeAn('array');
+        expect(
+          generate_antimatter($this->fauxCompoundDeep)[0]
+        )
+          ->not->toBeAn('array');
+      });
+
+      it('sorts dependency locators', function () {
+        $deepDependencies = $this->fauxCompoundDeep[0][2];
+        $firstDeepLocator = $deepDependencies[0][1];
+        $secondDeepLocator = $deepDependencies[1][1];
+        $expected = [
+          $secondDeepLocator,
+          $firstDeepLocator
+        ];
+
+        expect(
+          generate_antimatter($this->fauxCompoundDeep)
+        )
+          ->toBe($expected);
       });
     });
 
-    describe('deduplicates deep dependencies', function () {
-      describe('at same depth', function () {
-        given('singleCommonDeep', function () {
-          return $this->fixtures->singleCommonDeep;
-        });
-        given('multipleCommonDeep', function () {
-          return $this->fixtures->multipleCommonDeep;
-        });
-
-        it('removes single common deep dependency', function () {
-          $firstWithCommonDeep = $this->singleCommonDeep[0];
-          $secondWithCommonDeep = $this->singleCommonDeep[1];
-          $commonDeepDependencies = [
-            $firstWithCommonDeep[2][0]
-          ];
-
-          expect($firstWithCommonDeep[2])->toBe($commonDeepDependencies);
-          expect($secondWithCommonDeep[2])->toBe($commonDeepDependencies);
-          expect(
-            generate_antimatter($this->singleCommonDeep)
-          )
-            ->toContain($firstWithCommonDeep[1])
-            ->toContain($secondWithCommonDeep[1])
-            ->toContain([$commonDeepDependencies[0][1]])
-            ->toHaveLength(3);
-        });
-
-        it('removes multiple common deep dependencies', function () {
-          $firstWithCommonDeep = $this->multipleCommonDeep[0];
-          $secondWithCommonDeep = $this->multipleCommonDeep[1];
-          $commonDeepDependencies = [
-            $firstWithCommonDeep[2][0],
-            $firstWithCommonDeep[2][1]
-          ];
-
-          $actual = $this->multipleCommonDeep;
-          var_dump($actual);
-
-          expect($firstWithCommonDeep[2])->toBe($commonDeepDependencies);
-          expect($secondWithCommonDeep[2])->toBe($commonDeepDependencies);
-          expect(
-            generate_antimatter($this->multipleCommonDeep)
-          )
-            ->toContain($firstWithCommonDeep[1])
-            ->toContain($secondWithCommonDeep[1])
-            ->toContain([
-              $commonDeepDependencies[0][1],
-              $commonDeepDependencies[1][1]
-            ])->toHaveLength(3);
-        });
+    describe('removes common deep dependencies at same depth', function () {
+      given('singleCommonDeepSameDepth', function () {
+        return $this->fixtures->singleCommonDeepSameDepth;
+      });
+      given('multipleCommonDeepSameDepth', function () {
+        return $this->fixtures->multipleCommonDeepSameDepth;
       });
 
-      describe('at different depths', function () {
-        given('singleCommonDeepDifferentDepths', function () {
-          return $this->fixtures->singleCommonDeepDifferentDepths;
-        });
-        given('multipleCommonDeepDifferentDepths', function () {
-          return $this->fixtures->multipleCommonDeepDifferentDepths;
-        });
+      it('removes single common deep dependency', function () {
+        $firstWithCommonDeep = $this->singleCommonDeepSameDepth[0];
+        $secondWithCommonDeep = $this->singleCommonDeepSameDepth[1];
+        $expected = [
+          '/js/global.js?ver=1.0',
+          '/js/jquery.scrollTo.js?ver=2.1.2',
+          [
+            '/js/jquery/jquery.js?ver=1.12.4'
+          ]
+        ];
 
-        // it('removes single common deep dependency', function () {
-        //   $firstWithCommonDeep = $this->singleCommonDeepDifferentDepths[0];
-        //   $secondWithCommonDeep = $this->singleCommonDeepDifferentDepths[1];
-        //   $commonDeepDependencies = [
-        //     $firstWithCommonDeep[2][0]
-        //   ];
-        //
-        //   expect($firstWithCommonDeep[2])->toBe($commonDeepDependencies);
-        //   expect($secondWithCommonDeep[2][0][2])->toBe($commonDeepDependencies);
-        //   expect(
-        //     generate_antimatter($this->singleCommonDeepDifferentDepths)
-        //   )
-        //     ->toContain($firstWithCommonDeep[1])
-        //     ->toContain($secondWithCommonDeep[1])
-        //     ->toContain([$commonDeepDependencies[0][1]])
-        //     ->toHaveLength(4);
-        // });
+        expect($firstWithCommonDeep[2])->toBe($secondWithCommonDeep[2]);
+        expect(
+          generate_antimatter($this->singleCommonDeepSameDepth)
+        )
+          ->toBe($expected);
+      });
 
-        it('removes multiple common deep dependencies', function () {
-          // $firstWithCommonDeep = $this->multipleCommonDeepDifferentDepths[0];
-          // $secondWithCommonDeep = $this->multipleCommonDeepDifferentDepths[1];
-          // $commonDeepDependencies = $firstWithCommonDeep[2];
-          //
-          // expect($firstWithCommonDeep[2])->toBe($commonDeepDependencies);
-          // expect($secondWithCommonDeep[2][0][2])->toBe($commonDeepDependencies);
-          //
-          // expect(
-          //   generate_antimatter($this->multipleCommonDeepDifferentDepths)
-          // )
-          //   // ->toContain($firstWithCommonDeep[1])
-          //   // ->toContain($secondWithCommonDeep[1])
-          //   // ->toContain([$commonDeepDependencies[0][1]])
-          //   ->toHaveLength(3);
-        });
+      it('removes multiple common deep dependencies', function () {
+        $firstWithCommonDeep = $this->multipleCommonDeepSameDepth[0];
+        $secondWithCommonDeep = $this->multipleCommonDeepSameDepth[1];
+        $expected = [
+          '/js/global.js?ver=1.0',
+          '/js/jquery.scrollTo.js?ver=2.1.2',
+          [
+            '/js/jquery/jquery-migrate.min.js?ver=1.4.1',
+            '/js/jquery/jquery.js?ver=1.12.4'
+          ]
+        ];
 
-        describe('with complex chains and faux dependencies', function () {
-          given('complexCommonDeepWithFaux', function () {
-            return $this->fixtures->complexCommonDeepWithFaux;
-          });
-
-          it('has expected antimatter particles', function () {
-            $firstCommonDeep = $this->complexCommonDeepWithFaux[0][2][0][2][0];
-            $secondCommonDeep = $this->complexCommonDeepWithFaux[0][2][0][2][1];
-          });
-        });
+        expect($firstWithCommonDeep[2][0])->toBe($secondWithCommonDeep[2][0]);
+        expect($firstWithCommonDeep[2][1])->toBe($secondWithCommonDeep[2][1]);
+        expect(
+          generate_antimatter($this->multipleCommonDeepSameDepth)
+        )
+          ->toBe($expected);
       });
     });
   });

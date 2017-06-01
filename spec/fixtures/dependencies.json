@@ -36,45 +36,45 @@
       []
     ]]
   ]],
-  "singleCommonDeep": [[
+  "singleCommonDeepSameDepth": [[
     "twentyseventeen-global",
-    "/wp-content/themes/twentyseventeen/assets/js/global.js?ver=1.0",
+    "/js/global.js?ver=1.0",
     [[
       "jquery-core",
-      "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+      "/js/jquery/jquery.js?ver=1.12.4",
       []
     ]]
   ], [
     "jquery-scrollto",
-    "/wp-content/themes/twentyseventeen/assets/js/jquery.scrollTo.js?ver=2.1.2",
+    "/js/jquery.scrollTo.js?ver=2.1.2",
     [[
       "jquery-core",
-      "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+      "/js/jquery/jquery.js?ver=1.12.4",
       []
     ]]
   ]],
-  "multipleCommonDeep": [[
+  "multipleCommonDeepSameDepth": [[
     "twentyseventeen-global",
-    "/wp-content/themes/twentyseventeen/assets/js/global.js?ver=1.0",
+    "/js/global.js?ver=1.0",
     [[
       "jquery-core",
-      "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+      "/js/jquery/jquery.js?ver=1.12.4",
       []
     ], [
       "jquery-migrate",
-      "/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1",
+      "/js/jquery/jquery-migrate.min.js?ver=1.4.1",
       []
     ]]
   ], [
     "jquery-scrollto",
-    "/wp-content/themes/twentyseventeen/assets/js/jquery.scrollTo.js?ver=2.1.2",
+    "/js/jquery.scrollTo.js?ver=2.1.2",
     [[
       "jquery-core",
-      "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+      "/js/jquery/jquery.js?ver=1.12.4",
       []
     ], [
       "jquery-migrate",
-      "/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1",
+      "/js/jquery/jquery-migrate.min.js?ver=1.4.1",
       []
     ]]
   ]],
