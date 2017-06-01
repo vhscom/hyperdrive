@@ -225,7 +225,9 @@ function get_dependency_data( $handles ) {
  * keys and the new values contain the depths.
  *
  * @since Hyperdrive 1.0.0
+ * @license ISC
  * @link https://gist.github.com/vhs/2c805d3c9f9abe584ba22c5b5e35b9a3
+ *
  * @param array $array A multidimensional array of variable depth.
  * @param array $accumulator A reference identifier for a stored result.
  * @return A flattened, deduplicated array with leaf node values as keys

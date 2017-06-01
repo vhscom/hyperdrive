@@ -161,24 +161,27 @@ describe('hyperdrive', function () {
         });
 
         it('removes multiple common deep dependencies', function () {
-          // $firstWithCommonDeep = $this->multipleCommonDeep[0];
-          // $secondWithCommonDeep = $this->multipleCommonDeep[1];
-          // $commonDeepDependencies = [
-          //   $firstWithCommonDeep[2][0],
-          //   $firstWithCommonDeep[2][1]
-          // ];
-          //
-          // expect($firstWithCommonDeep[2])->toBe($commonDeepDependencies);
-          // expect($secondWithCommonDeep[2])->toBe($commonDeepDependencies);
-          // expect(
-          //   generate_antimatter($this->multipleCommonDeep)
-          // )
-          //   ->toContain($firstWithCommonDeep[1])
-          //   ->toContain($secondWithCommonDeep[1])
-          //   ->toContain([
-          //     $commonDeepDependencies[0][1],
-          //     $commonDeepDependencies[1][1]
-          //   ])->toHaveLength(3);
+          $firstWithCommonDeep = $this->multipleCommonDeep[0];
+          $secondWithCommonDeep = $this->multipleCommonDeep[1];
+          $commonDeepDependencies = [
+            $firstWithCommonDeep[2][0],
+            $firstWithCommonDeep[2][1]
+          ];
+
+          $actual = $this->multipleCommonDeep;
+          var_dump($actual);
+
+          expect($firstWithCommonDeep[2])->toBe($commonDeepDependencies);
+          expect($secondWithCommonDeep[2])->toBe($commonDeepDependencies);
+          expect(
+            generate_antimatter($this->multipleCommonDeep)
+          )
+            ->toContain($firstWithCommonDeep[1])
+            ->toContain($secondWithCommonDeep[1])
+            ->toContain([
+              $commonDeepDependencies[0][1],
+              $commonDeepDependencies[1][1]
+            ])->toHaveLength(3);
         });
       });
 
@@ -190,26 +193,23 @@ describe('hyperdrive', function () {
           return $this->fixtures->multipleCommonDeepDifferentDepths;
         });
 
-        it('removes single common deep dependency', function () {
-          $firstWithCommonDeep = $this->singleCommonDeepDifferentDepths[0];
-          $secondWithCommonDeep = $this->singleCommonDeepDifferentDepths[1];
-          $commonDeepDependencies = [
-            $firstWithCommonDeep[2][0]
-          ];
-
-          $actual = generate_antimatter($this->singleCommonDeepDifferentDepths);
-          print_r($actual);
-
-          expect($firstWithCommonDeep[2])->toBe($commonDeepDependencies);
-          expect($secondWithCommonDeep[2][0][2])->toBe($commonDeepDependencies);
-          expect(
-            generate_antimatter($this->singleCommonDeepDifferentDepths)
-          )
-            ->toContain($firstWithCommonDeep[1])
-            ->toContain($secondWithCommonDeep[1])
-            ->toContain([$commonDeepDependencies[0][1]])
-            ->toHaveLength(4);
-        });
+        // it('removes single common deep dependency', function () {
+        //   $firstWithCommonDeep = $this->singleCommonDeepDifferentDepths[0];
+        //   $secondWithCommonDeep = $this->singleCommonDeepDifferentDepths[1];
+        //   $commonDeepDependencies = [
+        //     $firstWithCommonDeep[2][0]
+        //   ];
+        //
+        //   expect($firstWithCommonDeep[2])->toBe($commonDeepDependencies);
+        //   expect($secondWithCommonDeep[2][0][2])->toBe($commonDeepDependencies);
+        //   expect(
+        //     generate_antimatter($this->singleCommonDeepDifferentDepths)
+        //   )
+        //     ->toContain($firstWithCommonDeep[1])
+        //     ->toContain($secondWithCommonDeep[1])
+        //     ->toContain([$commonDeepDependencies[0][1]])
+        //     ->toHaveLength(4);
+        // });
 
         it('removes multiple common deep dependencies', function () {
           // $firstWithCommonDeep = $this->multipleCommonDeepDifferentDepths[0];
