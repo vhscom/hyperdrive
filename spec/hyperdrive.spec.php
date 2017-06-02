@@ -30,6 +30,7 @@ namespace hyperdrive\spec;
 use function hyperdrive\generate_antimatter;
 use function hyperdrive\enter_hyperspace;
 use function hyperdrive\array_moonwalk;
+use function hyperdrive\fold_spacetime;
 
 describe('hyperdrive', function () {
   describe('enter_hyperspace()', function () {
@@ -225,17 +226,44 @@ describe('hyperdrive', function () {
         '/js/jquery/jquery.js?ver=1.12.4' => 3,
         '/js/jquery.hoverIntent.js' => 2
       ];
-      $accumulator = [];
 
       expect($firstWithCommonDeep[2])->toBe($firstWithCommonDeep[2]);
-      $antimatter = generate_antimatter(
+      $antiparticles = generate_antimatter(
         $this->multipleCommonDeepDifferentDepths
       );
-      expect($antimatter)->not->toBe($expected);
-      expect($antimatter)->not->toBe($dependencies);
-      array_moonwalk($antimatter, $accumulator);
-      expect($antimatter)->not->toBe($expected);
-      expect($accumulator)->toBe($expected);
+      expect($antiparticles)->not->toBe($expected);
+      expect($antiparticles)->not->toBe($dependencies);
+
+      $accumulator = [];
+      array_moonwalk($antiparticles, $accumulator);
+
+      expect($antiparticles)->not->toBe($expected);
+      expect($accumulator)->toBeAn('array')->toBe($expected);
+    });
+  });
+
+  describe('fold_spacetime()', function () {
+    given('fixtures', function () {
+      return json_decode(
+        file_get_contents(__DIR__ . "/fixtures/dependencies.json")
+      );
+    });
+    given('multipleCommonDeepDifferentDepths', function () {
+      return $this->fixtures->multipleCommonDeepDifferentDepths;
+    });
+
+    it('outputs string containing program names and versions', function () {
+      $reSemVer = '\bv?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b';
+      $antiparticles = generate_antimatter(
+        $this->multipleCommonDeepDifferentDepths
+      );
+
+      expect(
+        fold_spacetime($antiparticles)
+      )
+        ->toBeA('string')
+        ->toMatch("/Hyperdrive\s{$reSemVer}/")
+        ->toMatch("/Fetch\sInject\s{$reSemVer}/");
     });
   });
 });

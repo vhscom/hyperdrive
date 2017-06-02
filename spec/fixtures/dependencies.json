@@ -1,21 +1,21 @@
 {
   "singleWithQuery": [[
     "jquery-core",
-    "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+    "/js/jquery/jquery.js?ver=1.12.4",
     []
   ]],
   "singleWithoutQuery": [[
     "jquery-core",
-    "/wp-includes/js/jquery/jquery.js",
+    "/js/jquery/jquery.js",
     []
   ]],
   "twoIndependent": [[
     "jquery-core",
-    "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+    "/js/jquery/jquery.js?ver=1.12.4",
     []
   ], [
     "jquery-migrate",
-    "/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1",
+    "/js/jquery/jquery-migrate.min.js?ver=1.4.1",
     []
   ]],
   "withoutLocator": [[
@@ -28,11 +28,11 @@
     "",
     [[
       "jquery-core",
-      "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+      "/js/jquery/jquery.js?ver=1.12.4",
       []
     ], [
       "jquery-migrate",
-      "/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1",
+      "/js/jquery/jquery-migrate.min.js?ver=1.4.1",
       []
     ]]
   ]],
@@ -80,29 +80,29 @@
   ]],
   "singleCommonDeepDifferentDepths": [[
     "twentyseventeen-custom-global",
-    "/wp-content/themes/twentyseventeen/assets/js/global.js?ver=1.0",
+    "/js/global.js?ver=1.0",
     [[
       "jquery-core",
-      "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+      "/js/jquery/jquery.js?ver=1.12.4",
       []
     ]]
   ], [
     "superfish",
-    "/wp-content/themes/twentyseventeen/assets/js/superfish.min.js",
+    "/js/superfish.min.js",
     [[
       "hoverIntent",
-      "/wp-includes/js/jquery/hoverIntent.js",
+      "/js/jquery/hoverIntent.js",
       [[
         "jquery-core",
-        "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+        "/js/jquery/jquery.js?ver=1.12.4",
         []
       ]]
     ], [
       "transit",
-      "/wp-content/themes/twentyseventeen/assets/js/transit.min.js",
+      "/js/transit.min.js",
       [[
         "jquery-core",
-        "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+        "/js/jquery/jquery.js?ver=1.12.4",
         []
       ]]
     ]]
@@ -146,51 +146,51 @@
   ]],
   "complexCommonDeepWithFaux": [[
     "twentyseventeen-custom-global",
-    "/wp-content/themes/twentyseventeen/assets/js/global.js?ver=1.0",
+    "/js/global.js?ver=1.0",
     [[
       "jquery",
       "",
       [[
         "jquery-core",
-        "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+        "/js/jquery/jquery.js?ver=1.12.4",
         []
       ], [
         "jquery-migrate",
-        "/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1",
+        "/js/jquery/jquery-migrate.min.js?ver=1.4.1",
         []
       ]]
     ], [
       "superfish",
-      "/wp-content/themes/twentyseventeen/assets/js/superfish.min.js",
+      "/js/superfish.min.js",
       [[
         "hoverIntent",
-        "/wp-content/themes/twentyseventeen/assets/js/hoverIntent.js",
+        "/js/hoverIntent.js",
         [[
           "jquery",
           "",
           [[
             "jquery-core",
-            "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+            "/js/jquery/jquery.js?ver=1.12.4",
             []
           ], [
             "jquery-migrate",
-            "/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1",
+            "/js/jquery/jquery-migrate.min.js?ver=1.4.1",
             []
           ]]
         ]]
       ], [
         "transit",
-        "/wp-content/themes/twentyseventeen/assets/js/transit.min.js",
+        "/js/transit.min.js",
         [[
           "jquery",
           "",
           [[
             "jquery-core",
-            "/wp-includes/js/jquery/jquery.js?ver=1.12.4",
+            "/js/jquery/jquery.js?ver=1.12.4",
             []
           ], [
             "jquery-migrate",
-            "/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1",
+            "/js/jquery/jquery-migrate.min.js?ver=1.4.1",
             []
           ]]
         ]]
