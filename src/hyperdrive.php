@@ -63,7 +63,7 @@ namespace hyperdrive;
  * @since 1.0.0
  */
 defined( 'ABSPATH' )
-	? add_action( 'wp_head', __NAMESPACE__ . '\engage' )
+	? \add_action( 'wp_head', __NAMESPACE__ . '\engage' )
 	: die( 'Now you are going to die! BAM!' );
 
 /**
@@ -75,6 +75,7 @@ defined( 'ABSPATH' )
  * and used by this method.
  *
  * @since Hyperdrive 1.0.0
+ * @todo Eliminate use of global namespace.
  * @return Associative array with destination coordinates.
  */
 function calibrate_thrusters() {
@@ -89,7 +90,7 @@ function calibrate_thrusters() {
 				get_dependency_data( $script->deps ),
 			);
 			// Not in here, mister! This is a Mercedes!
-			wp_dequeue_script( $script->handle );
+			\wp_dequeue_script( $script->handle );
 		}
 	}
 	return $coordinates;
@@ -130,7 +131,7 @@ function generate_antimatter( $coordinates ) {
  * to handle page resource Fetch Injection.
  *
  * @since Hyperdrive 1.0.0
- * @param array $antiparticles Partical array.
+ * @param array $antiparticles Antimatter particle array.
  * @return A string containing a fully-assembled inline script.
  */
 function fold_spacetime( $antiparticles ) {
@@ -190,36 +191,6 @@ function engage() {
 }
 
 /**
- * Gets dependency data recursively.
- *
- * @since Hyperdrive 1.0.0
- * @param array(string) $handles An array of handles.
- * @return array(array) Dependency data matching expected structure.
- */
-function get_dependency_data( $handles ) {
-	$dependency_data = [];
-	foreach ( $handles as $idx => $handle ) {
-		$source_url = get_src_for_handle( $handle );
-		if ( $source_url ) {
-			$dependency_data[] = array(
-				$handle,
-				$source_url,
-				array(), // Maintain thrust.
-			);
-		}
-		$deps = get_deps_for_handle( $handle );
-		if ( count( $deps ) > 0 ) {
-			$dependency_data[] = array(
-				$handle,
-				'', // Maintain thrust.
-				get_dependency_data( $deps ),
-			);
-		}
-	}
-	return $dependency_data;
-}
-
-/**
  * Moonwalks an array.
  *
  * Deduplicates multidimensional array by flattening it while preserving
@@ -247,13 +218,48 @@ function array_moonwalk( $array, &$accumulator, &$depth = 1, $recursing = false 
 }
 
 /**
- * Gets scripts registered and enqueued.
+ * Gets dependency data.
+ *
+ * Constructs a multidimensional array of dependency data
+ * given an array of `$handles`.
  *
  * @since Hyperdrive 1.0.0
- * @return array(_WP_Dependency) A list of enqueued dependencies.
+ * @param array(string) $handles An array of handles.
+ * @return Dependency data matching expected structure.
+ */
+function get_dependency_data( $handles ) {
+	$dependency_data = [];
+	foreach ( $handles as $handle ) {
+		$source_url = get_src_for_handle( $handle );
+		if ( $source_url ) {
+			$dependency_data[] = array(
+				$handle,
+				$source_url,
+				array(), // Maintain thrust.
+			);
+		}
+		$deps = get_deps_for_handle( $handle );
+		if ( count( $deps ) > 0 ) {
+			$dependency_data[] = array(
+				$handle,
+				'', // Maintain thrust.
+				get_dependency_data( $deps ),
+			);
+		}
+	}
+	return $dependency_data;
+}
+
+/**
+ * Gets enqueued dependencies.
+ *
+ * @since Hyperdrive 1.0.0
+ * @todo Eliminate use of global namespace.
+ * @todo Investigate potential use of `all_deps` method.
+ * @return An array of enqueued _WP_Dependency handle objects.
  */
 function get_enqueued_scripts() {
-	$wp_scripts = wp_scripts();
+	$wp_scripts = \wp_scripts();
 	foreach ( $wp_scripts->queue as $handle ) {
 		$enqueued_scripts[] = $wp_scripts->registered[ $handle ];
 	}
@@ -261,29 +267,30 @@ function get_enqueued_scripts() {
 }
 
 /**
- * Gets a script dependency for a handle.
+ * Gets dependency for `$handle`.
  *
  * @since Hyperdrive 1.0.0
+ * @todo Eliminate use of global namespace.
  * @param string $handle The handle.
- * @return _WP_Dependency associated with input handle.
+ * @return A _WP_Dependency handle object.
  */
 function get_dep_for_handle( $handle ) {
-	$wp_scripts = wp_scripts();
+	$wp_scripts = \wp_scripts();
 	return $wp_scripts->registered[ $handle ];
 }
 
 /**
- * Gets the source URL given a script handle.
+ * Gets locator for `$handle`.
  *
  * @since Hyperdrive 1.0.0
  * @param string $handle The handle.
- * @return URL associated with handle, or empty string.
+ * @return Locator associated with handle, or empty string.
  */
 function get_src_for_handle( $handle ) {
 	$dep = get_dep_for_handle( $handle );
 	$suffix = ( $dep->src && $dep->ver )
-	? "?ver={$dep->ver}"
-	: '';
+		? "?ver={$dep->ver}"
+		: '';
 	return "{$dep->src}{$suffix}";
 }
 
@@ -292,7 +299,7 @@ function get_src_for_handle( $handle ) {
  *
  * @since Hyperdrive 1.0.0
  * @param string $handle The handle.
- * @return array(string) List of handles for dependencies of `$handle`.
+ * @return An array of handles for dependencies of `$handle`.
  */
 function get_deps_for_handle( $handle ) {
 	$dep = get_dep_for_handle( $handle );

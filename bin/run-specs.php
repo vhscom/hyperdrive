@@ -34,6 +34,5 @@ use function Patchwork\redefine as redefine;
 use function Patchwork\always as always;
 
 redefine('die', always(null));
-redefine('add_action', always(null));
 
 include_once $vendorDir . "/bin/kahlan";

@@ -8,7 +8,7 @@
  * @license     AGPL-3.0 or any later version
  *
  * Hyperdrive - The fastest way to load pages in WordPress.
- * Copyright (C) 2017  VHS
+ * Copyright (C) 2017  VHS <josh@vhs.codeberg.page>
  *
  * Hyperdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
@@ -27,8 +27,9 @@
 
 namespace hyperdrive\spec;
 
-use function hyperdrive\enter_hyperspace;
 use function hyperdrive\generate_antimatter;
+use function hyperdrive\enter_hyperspace;
+use function hyperdrive\array_moonwalk;
 
 describe('hyperdrive', function () {
   describe('enter_hyperspace()', function () {
@@ -194,13 +195,47 @@ describe('hyperdrive', function () {
           ]
         ];
 
-        expect($firstWithCommonDeep[2][0])->toBe($secondWithCommonDeep[2][0]);
-        expect($firstWithCommonDeep[2][1])->toBe($secondWithCommonDeep[2][1]);
+        expect($firstWithCommonDeep[2])->toBe($secondWithCommonDeep[2]);
         expect(
           generate_antimatter($this->multipleCommonDeepSameDepth)
         )
           ->toBe($expected);
       });
+    });
+  });
+
+  describe('array_moonwalk()', function () {
+    given('fixtures', function () {
+      return json_decode(
+        file_get_contents(__DIR__ . "/fixtures/dependencies.json")
+      );
+    });
+    given('multipleCommonDeepDifferentDepths', function () {
+      return $this->fixtures->multipleCommonDeepDifferentDepths;
+    });
+
+    it('deduplicates an array at different depths', function () {
+      $firstWithCommonDeep = $this->multipleCommonDeepDifferentDepths[0];
+      $secondWithCommonDeep = $this->multipleCommonDeepDifferentDepths[1][2][0];
+      $dependencies = $this->multipleCommonDeepDifferentDepths;
+      $expected = [
+        '/js/global.js?ver=1.0' => 1,
+        '/js/superfish.min.js' => 1,
+        '/js/jquery/jquery-migrate.min.js?ver=1.4.1' => 3,
+        '/js/jquery/jquery.js?ver=1.12.4' => 3,
+        '/js/jquery.hoverIntent.js' => 2
+      ];
+      $accumulator = [];
+
+      expect($firstWithCommonDeep[2])->toBe($firstWithCommonDeep[2]);
+      $antimatter = generate_antimatter(
+        $this->multipleCommonDeepDifferentDepths
+      );
+      expect($antimatter)->not->toBe($expected);
+      expect($antimatter)->not->toBe($dependencies);
+      array_moonwalk($antimatter, $accumulator);
+      expect($antimatter)->not->toBe($expected);
+      expect($accumulator)->toBe($expected);
     });
   });
 });
