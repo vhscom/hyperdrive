@@ -38,13 +38,33 @@
 namespace hyperdrive;
 
 /**
- * Careful you idiot! I said across her nose, not up it!
+ * Put WordPress into Hyperdrive.
+ *
+ * Hook action into where most themes and plugins load scripts.
+ * Late in action lifecycle. Apply with unusually low priority.
+ * Exit early if executed outside WordPress.
  *
  * @since 1.0.0
  */
 defined( 'ABSPATH' )
 	? \add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\engage', 1987 )
 	: die( 'Now Princess Vespa, at last we are alone.' );
+
+/**
+ * Prevent WordPress from loading jQuery Migrate.
+ *
+ * @since 1.0.0
+ * @link https://stackoverflow.com/a/25977181/712334
+ * @param WP_Scripts $scripts Default WordPress scripts.
+ */
+defined( 'ABSPATH' ) && add_filter(
+	'wp_default_scripts',
+	function ( &$scripts ) {
+		if ( is_admin() ) return;
+		$scripts->remove( 'jquery' );
+		$scripts->add( 'jquery', false, [ 'jquery-core' ] );
+	}
+);
 
 /**
  * Calibrate thrusters.
@@ -117,26 +137,25 @@ function fold_spacetime( $antiparticles ) {
 	$injection = '';
 	$injectors = [];
 
+	// Careful you idiot! I said across her nose, not up it!
 	array_moonwalk( $antiparticles, $injectors );
 
 	$depths = array_count_values( $injectors );
 	$locators = array_keys( $injectors );
 
+	$left = count( $depths );
 	foreach ( $depths as $depth => $quantity ) {
+		$left--;
 		$injections = [];
-		$remaining = $quantity;
 		do {
 			$injections[] = array_shift( $locators );
-			$remaining--;
-		} while ( $remaining > 0 );
+			$quantity--;
+		} while ( $quantity > 0 );
 		$encoded = json_encode( $injections, JSON_UNESCAPED_SLASHES );
 		$injection .= "fetchInject($encoded";
-		count( $injections ) === count( $depths )
-			? $injection .= array_reduce(
-				$depths, function ( $string ) {
-					return $string . ')';
-				}
-			) : $injection .= ', ';
+		$injection .= $left
+			? ', '
+			: array_reduce( $depths, function ( $str ) { return $str . ')'; } );
 	}
 
 	return <<<EOD
