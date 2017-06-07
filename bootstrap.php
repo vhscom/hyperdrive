@@ -37,7 +37,7 @@
 
 namespace hyperdrive\bootstrap;
 
-defined( 'ABSPATH' ) || die( 'Now you are going to die! BAM!' );
+defined( 'ABSPATH' ) || die( 'Now Princess Vespa, at last we are alone.' );
 
 $hyperdrive = __DIR__ . '/src/hyperdrive.php';
 

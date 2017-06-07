@@ -33,41 +33,21 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with Hyperdrive.  If not, see
  * <https://codeberg.org/vhs/hyperdrive/blob/master/COPYING>.
- *
- * This file incorporates work covered by the following copyright and
- * permission notice:
- *
- *     Copyright (c) 2017, VHS <josh@vhs.codeberg.page>
- *
- *     Permission to use, copy, modify, and/or distribute this software for any
- *     purpose with or without fee is hereby granted, provided that the above
- *     copyright notice and this permission notice appear in all copies.
- *
- *     THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
- *     WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
- *     MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
- *     ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- *     WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
- *     ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
- *     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
 namespace hyperdrive;
 
 /**
- * Engages Hyperdrive.
- *
- * Engages Hyperdrive while printing scripts or data
- * in the head tag on the front end of WordPress. Exits otherwise.
+ * Careful you idiot! I said across her nose, not up it!
  *
  * @since 1.0.0
  */
 defined( 'ABSPATH' )
-	? \add_action( 'wp_head', __NAMESPACE__ . '\engage' )
-	: die( 'Now you are going to die! BAM!' );
+	? \add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\engage', 1987 )
+	: die( 'Now Princess Vespa, at last we are alone.' );
 
 /**
- * Calibrates Hyperdrive thrusters.
+ * Calibrate thrusters.
  *
  * Creates an associative array containing structured data required
  * for Fetch Injection. Also dequeues enqueued scripts so WordPress
@@ -75,7 +55,6 @@ defined( 'ABSPATH' )
  * and used by this method.
  *
  * @since Hyperdrive 1.0.0
- * @todo Eliminate use of global namespace.
  * @return Associative array with destination coordinates.
  */
 function calibrate_thrusters() {
@@ -97,7 +76,7 @@ function calibrate_thrusters() {
 }
 
 /**
- * Generates antiparticles.
+ * Generate antiparticles.
  *
  * Recursive function translates destination coordinates into
  * into antimatter particles recursively with some deduplication
@@ -124,7 +103,7 @@ function generate_antimatter( $coordinates ) {
 }
 
 /**
- * Converts antiparticles into dark matter.
+ * Convert antiparticles.
  *
  * Performs a moonwalk to dedupe any remaining multidimensional
  * dopplegangers in alternate dimensions and constructs a script
@@ -132,13 +111,14 @@ function generate_antimatter( $coordinates ) {
  *
  * @since Hyperdrive 1.0.0
  * @param array $antiparticles Antimatter particle array.
- * @return A string containing a fully-assembled inline script.
+ * @return A Fetch Inject script.
  */
 function fold_spacetime( $antiparticles ) {
 	$injection = '';
 	$injectors = [];
 
 	array_moonwalk( $antiparticles, $injectors );
+
 	$depths = array_count_values( $injectors );
 	$locators = array_keys( $injectors );
 
@@ -168,39 +148,35 @@ EOD;
 }
 
 /**
- * Enters hyperspace.
+ * Enter hyperspace.
  *
  * @since Hyperdrive 1.0.0
- * @param string $dark_energy An inline script to asynchronously
- *     fetch previously enqueued page resources.
+ * @param string $dark_energy A Fetch Inject script.
  */
 function enter_hyperspace( $dark_energy ) {
 	echo "<script>{$dark_energy}</script>";
 }
 
 /**
- * Main function engages the hyperdrive.
+ * Engage the hyperdrive.
  *
  * @since Hyperdrive 1.0.0
- * @todo return void (requires PHP 7.1).
+ * @return A black hole.
  */
 function engage() {
-	enter_hyperspace( // May the schwartz be with you!
+	enter_hyperspace( // Sir hadn't you better buckle up?
 		fold_spacetime( generate_antimatter( calibrate_thrusters() ) )
 	);
 }
 
 /**
- * Moonwalks an array.
+ * Moonwalk an array.
  *
  * Deduplicates multidimensional array by flattening it while preserving
  * the deepest depth and flipping it inside out. Array values become the
  * keys and the new values contain the depths.
  *
  * @since Hyperdrive 1.0.0
- * @license ISC
- * @link https://gist.github.com/vhs/2c805d3c9f9abe584ba22c5b5e35b9a3
- * @link https://stackoverflow.com/q/44304599/712334
  * @param array $array A multidimensional array of variable depth.
  * @param array $accumulator A reference identifier for a stored result.
  * @param integer [$depth = 1] Starting depth for array search.
@@ -218,7 +194,7 @@ function array_moonwalk( $array, &$accumulator, &$depth = 1, $recursing = false 
 }
 
 /**
- * Gets dependency data.
+ * Get dependency data.
  *
  * Constructs a multidimensional array of dependency data
  * given an array of `$handles`.
@@ -251,26 +227,23 @@ function get_dependency_data( $handles ) {
 }
 
 /**
- * Gets enqueued dependencies.
+ * Get enqueued dependencies.
  *
  * @since Hyperdrive 1.0.0
- * @todo Eliminate use of global namespace.
- * @todo Investigate potential use of `all_deps` method.
  * @return An array of enqueued _WP_Dependency handle objects.
  */
 function get_enqueued_scripts() {
 	$wp_scripts = \wp_scripts();
 	foreach ( $wp_scripts->queue as $handle ) {
-		$enqueued_scripts[] = $wp_scripts->registered[ $handle ];
+		$enqueued_scripts[] = get_dep_for_handle( $handle );
 	}
 	return $enqueued_scripts;
 }
 
 /**
- * Gets dependency for `$handle`.
+ * Get dependency.
  *
  * @since Hyperdrive 1.0.0
- * @todo Eliminate use of global namespace.
  * @param string $handle The handle.
  * @return A _WP_Dependency handle object.
  */
@@ -280,7 +253,7 @@ function get_dep_for_handle( $handle ) {
 }
 
 /**
- * Gets locator for `$handle`.
+ * Get dependency locator.
  *
  * @since Hyperdrive 1.0.0
  * @param string $handle The handle.
@@ -295,11 +268,11 @@ function get_src_for_handle( $handle ) {
 }
 
 /**
- * Gets all dependencies for a given handle.
+ * Get dependency handles.
  *
  * @since Hyperdrive 1.0.0
  * @param string $handle The handle.
- * @return An array of handles for dependencies of `$handle`.
+ * @return An array of dependency handles.
  */
 function get_deps_for_handle( $handle ) {
 	$dep = get_dep_for_handle( $handle );
