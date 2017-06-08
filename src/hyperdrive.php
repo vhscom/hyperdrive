@@ -170,10 +170,10 @@ EOD;
  * Enter hyperspace.
  *
  * @since Hyperdrive 1.0.0
- * @param string $dark_energy A Fetch Inject script.
+ * @param string $dark_matter A Fetch Inject script.
  */
-function enter_hyperspace( $dark_energy ) {
-	echo "<script>{$dark_energy}</script>";
+function enter_hyperspace( $dark_matter ) {
+	echo "<script>{$dark_matter}</script>";
 }
 
 /**
