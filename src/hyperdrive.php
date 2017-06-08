@@ -227,19 +227,13 @@ function get_dependency_data( $handles ) {
 	foreach ( $handles as $handle ) {
 		$source_url = get_src_for_handle( $handle );
 		if ( $source_url ) {
-			$dependency_data[] = array(
-				$handle,
-				$source_url,
-				array(), // Maintain thrust.
-			);
+			$dependency_data[] = [ $handle, $source_url, [] ];
 		}
 		$deps = get_deps_for_handle( $handle );
 		if ( count( $deps ) > 0 ) {
-			$dependency_data[] = array(
-				$handle,
-				'', // Maintain thrust.
-				get_dependency_data( $deps ),
-			);
+			$dependency_data[] = [
+				$handle, '', get_dependency_data( $deps )
+			];
 		}
 	}
 	return $dependency_data;
