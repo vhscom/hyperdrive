@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0-beta.6"></a>
+# [1.0.0-beta.6](https://codeberg.org/vhs/hyperdrive/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2017-06-08)
+
+
+### Bug Fixes
+
+* **$hyperdrive:** remove jquery migrate ([90edd69](https://codeberg.org/vhs/hyperdrive/commit/90edd69)), closes [#72](https://codeberg.org/vhs/hyperdrive/issues/72)
+* **$hyperdrive:** stop loading jquery via script ([2027bdf](https://codeberg.org/vhs/hyperdrive/commit/2027bdf)), closes [#71](https://codeberg.org/vhs/hyperdrive/issues/71)
+
+
+
 <a name="1.0.0-beta.5"></a>
 # [1.0.0-beta.5](https://codeberg.org/vhs/hyperdrive/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2017-05-31)
 
