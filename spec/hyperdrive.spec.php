@@ -265,5 +265,53 @@ describe('hyperdrive', function () {
         ->toMatch("/Hyperdrive\s{$reSemVer}/")
         ->toMatch("/Fetch\sInject\s{$reSemVer}/");
     });
+
+    describe('common syntax errors', function () {
+      given('reSyntaxErrors', function () {
+        return ',\s*?\]|,\s*?\)|\(\s*?,|\]\s*?\[|\)\s*?\(';
+      });
+      given('singleCommonDeepDifferentDepths', function () {
+        return $this->fixtures->singleCommonDeepDifferentDepths;
+      });
+      given('complexCommonDeepWithFaux', function () {
+        return $this->fixtures->complexCommonDeepWithFaux;
+      });
+
+      it('does not error for `singleCommonDeepDifferentDepths`', function () {
+        $antiparticles = generate_antimatter(
+          $this->singleCommonDeepDifferentDepths
+        );
+
+        expect(
+          fold_spacetime($antiparticles)
+        )
+          ->toBeA('string')
+          ->not->toMatch("/{$this->reSyntaxErrors}/");
+      });
+
+      it('does not error for `multipleCommonDeepDifferentDepths`', function () {
+        $antiparticles = generate_antimatter(
+          $this->multipleCommonDeepDifferentDepths
+        );
+
+        expect(
+          fold_spacetime($antiparticles)
+        )
+          ->toBeA('string')
+          ->not->toMatch("/{$this->reSyntaxErrors}/");
+      });
+
+      it('does not error for `complexCommonDeepWithFaux`', function () {
+        $antiparticles = generate_antimatter(
+          $this->complexCommonDeepWithFaux
+        );
+
+        expect(
+          fold_spacetime($antiparticles)
+        )
+          ->toBeA('string')
+          ->not->toMatch("/{$this->reSyntaxErrors}/");
+      });
+    });
   });
 });
