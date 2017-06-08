@@ -75,7 +75,7 @@ defined( 'ABSPATH' ) && add_filter(
  * and used by this method.
  *
  * @since Hyperdrive 1.0.0
- * @return Associative array with destination coordinates.
+ * @return Multidimensional array of destination coordinates.
  */
 function calibrate_thrusters() {
 	$coordinates = [];
@@ -83,11 +83,11 @@ function calibrate_thrusters() {
 	foreach ( $scripts as $script ) {
 		if ( empty( $script->extra['conditional'] ) ) {
 			// It's a good thing you were wearing that helmet.
-			$coordinates[] = array(
+			$coordinates[] = [
 				$script->handle,
 				get_src_for_handle( $script->handle ),
 				get_dependency_data( $script->deps ),
-			);
+			];
 			// Not in here, mister! This is a Mercedes!
 			\wp_dequeue_script( $script->handle );
 		}
@@ -130,7 +130,7 @@ function generate_antimatter( $coordinates ) {
  * to handle page resource Fetch Injection.
  *
  * @since Hyperdrive 1.0.0
- * @param array $antiparticles Antimatter particle array.
+ * @param array $antiparticles Antimatter particles.
  * @return A Fetch Inject script.
  */
 function fold_spacetime( $antiparticles ) {
@@ -219,7 +219,7 @@ function array_moonwalk( $array, &$accumulator, &$depth = 1, $recursing = false 
  * given an array of `$handles`.
  *
  * @since Hyperdrive 1.0.0
- * @param array(string) $handles An array of handles.
+ * @param array<string> $handles An array of handles.
  * @return Dependency data matching expected structure.
  */
 function get_dependency_data( $handles ) {
