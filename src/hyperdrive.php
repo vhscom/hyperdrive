@@ -79,14 +79,15 @@ defined( 'ABSPATH' ) && add_filter(
  */
 function calibrate_thrusters() {
 	$coordinates = [];
-	$scripts = get_enqueued_deps( \wp_scripts() );
-	foreach ( $scripts as $script ) {
-		if ( empty( $script->extra['conditional'] ) ) {
+	$wp_scripts = \wp_scripts();
+	$enqueued_scripts = get_enqueued_deps( $wp_scripts );
+	foreach ( $enqueued_scripts as $enqueued ) {
+		if ( empty( $enqueued->extra['conditional'] ) ) {
 			// It's a good thing you were wearing that helmet.
 			$coordinates[] = [
-				$script->handle,
-				get_src_for_handle( $script->handle ),
-				get_dependency_data( $script->deps ),
+				$enqueued->handle,
+				get_src_for_handle( $wp_scripts, $enqueued->handle ),
+				get_dependency_data( $wp_scripts, $enqueued->deps ),
 			];
 			// Not in here, mister! This is a Mercedes!
 			\wp_dequeue_script( $script->handle );
@@ -219,20 +220,21 @@ function array_moonwalk( $array, &$accumulator, &$depth = 1, $recursing = false 
  * given an array of `$handles`.
  *
  * @since Hyperdrive 1.0.0
- * @param array<string> $handles An array of handles.
+ * @param object $instance Instance of WP_Dependencies.
+ * @param string[] $handles An array of handles.
  * @return Dependency data matching expected structure.
  */
-function get_dependency_data( $handles ) {
+function get_dependency_data( $instance, $handles ) {
 	$dependency_data = [];
 	foreach ( $handles as $handle ) {
-		$source_url = get_src_for_handle( $handle );
+		$source_url = get_src_for_handle( $instance, $handle );
 		if ( $source_url ) {
 			$dependency_data[] = [ $handle, $source_url, [] ];
 		}
-		$deps = get_deps_for_handle( $handle );
+		$deps = get_deps_for_handle( $instance, $handle );
 		if ( count( $deps ) > 0 ) {
 			$dependency_data[] = [
-				$handle, '', get_dependency_data( $deps )
+				$handle, '', get_dependency_data( $instance, $deps )
 			];
 		}
 	}
@@ -258,28 +260,25 @@ function get_enqueued_deps( $instance ) {
  * Get dependency for script or style.
  *
  * @since Hyperdrive 1.0.0
+ * @param object $instance Instance of WP_Dependencies.
  * @param string $handle The handle.
- * @param string [$type = 'script'] The kind of dependency.
  * @return A _WP_Dependency handle object.
  */
-function get_dep_for_handle( $handle, $type = 'script' ) {
-	return $type === 'style'
-		? \wp_styles()->registered[ $handle ]
-		: \wp_scripts()->registered[ $handle ];
+function get_dep_for_handle( $instance, $handle ) {
+	return $instance->registered[ $handle ];
 }
 
 /**
  * Get dependency locator.
  *
  * @since Hyperdrive 1.0.0
+ * @param object $instance Instance of WP_Dependencies.
  * @param string $handle The handle.
  * @return Locator associated with handle, or empty string.
  */
-function get_src_for_handle( $handle ) {
-	$dep = get_dep_for_handle( $handle );
-	$suffix = ( $dep->src && $dep->ver )
-		? "?ver={$dep->ver}"
-		: '';
+function get_src_for_handle( $instance, $handle ) {
+	$dep = get_dep_for_handle( $instance, $handle );
+	$suffix = ( $dep->src && $dep->ver ) ? "?ver={$dep->ver}" : '';
 	return "{$dep->src}{$suffix}";
 }
 
@@ -287,10 +286,10 @@ function get_src_for_handle( $handle ) {
  * Get dependency handles.
  *
  * @since Hyperdrive 1.0.0
+ * @param object $instance Instance of WP_Dependencies.
  * @param string $handle The handle.
  * @return An array of dependency handles.
  */
-function get_deps_for_handle( $handle ) {
-	$dep = get_dep_for_handle( $handle );
-	return $dep->deps;
+function get_deps_for_handle( $instance, $handle ) {
+	return get_dep_for_handle( $instance, $handle )->deps;
 }
