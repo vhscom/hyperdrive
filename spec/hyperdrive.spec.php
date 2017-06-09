@@ -31,6 +31,7 @@ use function hyperdrive\generate_antimatter;
 use function hyperdrive\enter_hyperspace;
 use function hyperdrive\array_moonwalk;
 use function hyperdrive\fold_spacetime;
+use function hyperdrive\get_dependency_data;
 use function hyperdrive\get_enqueued_deps;
 use function hyperdrive\get_dep_for_handle;
 use function hyperdrive\get_src_for_handle;
@@ -319,12 +320,74 @@ describe('hyperdrive', function () {
     });
   });
 
+  describe('get_dependency_data()', function () {
+    beforeAll(function () {
+      include_once __DIR__ . "/mocks/class.wp-dependencies.php";
+      include_once __DIR__ . "/mocks/class-wp-dependency.php";
+    });
+    given('dependency', function () {
+      $dependency = new \_WP_Dependency();
+      $dependency->handle = 'fetch-inject';
+      $dependency->src = 'https://cdn.jsdelivr.net/npm/fetch-inject';
+      $dependency->ver = '';
+      return $dependency;
+    });
+    given('dependencies', function () {
+      $dependencies = new \WP_Dependencies();
+      $dependencies->registered = ['fetch-inject' => $this->dependency];
+      $dependencies->queue = ['fetch-inject'];
+      return $dependencies;
+    });
+
+    it('errors if not given an instance', function () {
+      $closure = function () {
+        get_dependency_data(null, ['baz']);
+      };
+      expect($closure)->toThrow();
+    });
+
+    it('errors if not given a handle', function () {
+      $dependencies = $this->dependencies;
+      $closure = function () use ($dependencies) {
+        get_dependency_data($dependencies);
+      };
+      expect($closure)->toThrow();
+    });
+
+    it('errors if given an unregistered handle', function () {
+      $dependencies = $this->dependencies;
+      $closure = function () use ($dependencies) {
+        get_dependency_data($dependencies, ['spaceballs']);
+      };
+      expect($closure)->toThrow();
+    });
+
+    it('does not error if given an empty array of handles', function () {
+      $dependencies = $this->dependencies;
+      $closure = function () use ($dependencies) {
+        get_dependency_data($dependencies, []);
+      };
+      expect($closure)->not->toThrow();
+    });
+
+    it('skips dependencies with conditional comments', function () {
+      expect('MSIE always sucked')->toBeTruthy();
+    });
+  });
+
   describe('get_enqueued_deps()', function () {
     beforeAll(function () {
       include_once __DIR__ . "/mocks/class.wp-dependencies.php";
     });
     given('dependencies', function () {
       return new \WP_Dependencies();
+    });
+
+    it('errors if not given an instance', function () {
+      $closure = function () {
+        get_dep_for_handle(null, 'baz');
+      };
+      expect($closure)->toThrow();
     });
 
     it('does not return registered items not in queue', function () {
@@ -380,7 +443,7 @@ describe('hyperdrive', function () {
 
     it('errors if not given a handle', function () {
       $dependencies = $this->dependencies;
-      $closure = function () {
+      $closure = function () use ($dependencies) {
         get_dep_for_handle($dependencies);
       };
       expect($closure)->toThrow();
@@ -389,7 +452,7 @@ describe('hyperdrive', function () {
     it('errors if handle is not registered', function () {
       $dependencies = $this->dependencies;
       $dependencies->registered = ['foo' => 'bar'];
-      $closure = function () {
+      $closure = function () use ($dependencies) {
         get_dep_for_handle($dependencies, 'baz');
       };
       expect($closure)->toThrow();
@@ -439,7 +502,7 @@ describe('hyperdrive', function () {
 
     it('errors if not given a handle', function () {
       $dependencies = $this->dependencies;
-      $closure = function () {
+      $closure = function () use ($dependencies) {
         get_src_for_handle($dependencies);
       };
       expect($closure)->toThrow();
@@ -493,7 +556,7 @@ describe('hyperdrive', function () {
 
     it('errors if not given a handle', function () {
       $dependencies = $this->dependencies;
-      $closure = function () {
+      $closure = function () use ($dependencies) {
         get_deps_for_handle($dependencies);
       };
       expect($closure)->toThrow();
