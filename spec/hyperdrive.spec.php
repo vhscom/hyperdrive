@@ -32,6 +32,8 @@ use function hyperdrive\enter_hyperspace;
 use function hyperdrive\array_moonwalk;
 use function hyperdrive\fold_spacetime;
 use function hyperdrive\get_enqueued_deps;
+use function hyperdrive\get_dep_for_handle;
+use function hyperdrive\get_src_for_handle;
 
 describe('hyperdrive', function () {
   describe('enter_hyperspace()', function () {
@@ -354,6 +356,51 @@ describe('hyperdrive', function () {
       )
         ->toContain('baz')
         ->not->toContain('bat');
+    });
+  });
+
+  describe('get_dep_for_handle()', function () {
+    beforeAll(function () {
+      include_once __DIR__ . "/mocks/class.wp-dependencies.php";
+    });
+
+    it('errors if not given an instance', function () {
+      $closure = function () {
+        get_dep_for_handle($instance, 'baz');
+      };
+      expect($closure)->toThrow();
+    });
+
+    it('errors if not given a handle', function () {
+      $instance = new \WP_Dependencies();
+      $closure = function () {
+        get_dep_for_handle($instance);
+      };
+      expect($closure)->toThrow();
+    });
+
+    it('errors if handle is not registered', function () {
+      $instance = new \WP_Dependencies();
+      $instance->registered = ['foo' => 'bar'];
+      $closure = function () {
+        get_dep_for_handle($instance, 'baz');
+      };
+      expect($closure)->toThrow();
+    });
+
+    it('returns registered item given handle', function () {
+      $instance = new \WP_Dependencies();
+      $instance->registered = ['foo' => 'bar'];
+      expect(
+        get_dep_for_handle($instance, 'foo')
+      )->toBe('bar');
+    });
+
+    it('does not return unexpected registered items', function () {
+      $instance = new \WP_Dependencies();
+      $instance->registered = ['foo' => 'bar', 'baz' => 'bat'];
+      expect(get_dep_for_handle($instance, 'foo'))->toBe('bar');
+      expect(get_dep_for_handle($instance, 'baz'))->toBe('bat');
     });
   });
 });
