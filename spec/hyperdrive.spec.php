@@ -217,7 +217,7 @@ describe('hyperdrive', function () {
 
     it('deduplicates an array at different depths', function () {
       $firstWithCommonDeep = $this->multipleCommonDeepDifferentDepths[0];
-      $secondWithCommonDeep = $this->multipleCommonDeepDifferentDepths[1][2][0];
+      $secondWithCommonDeep = $this->multipleCommonDeepDifferentDepths[1][2][2];
       $dependencies = $this->multipleCommonDeepDifferentDepths;
       $expected = [
         '/js/global.js?ver=1.0' => 1,
@@ -227,7 +227,7 @@ describe('hyperdrive', function () {
         '/js/jquery.hoverIntent.js' => 2
       ];
 
-      expect($firstWithCommonDeep[2])->toBe($firstWithCommonDeep[2]);
+      expect($firstWithCommonDeep[2])->toBe($secondWithCommonDeep[2]);
       $antiparticles = generate_antimatter(
         $this->multipleCommonDeepDifferentDepths
       );
