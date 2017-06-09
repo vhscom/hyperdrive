@@ -247,6 +247,7 @@ function get_dependency_data( $handles ) {
  * @return An array of queued _WP_Dependency handle objects.
  */
 function get_enqueued_deps( $instance ) {
+	$enqueued_deps = [];
 	foreach ( $instance->queue as $handle ) {
 		$enqueued_deps[] = $instance->registered[ $handle ];
 	}

@@ -31,6 +31,7 @@ use function hyperdrive\generate_antimatter;
 use function hyperdrive\enter_hyperspace;
 use function hyperdrive\array_moonwalk;
 use function hyperdrive\fold_spacetime;
+use function hyperdrive\get_enqueued_deps;
 
 describe('hyperdrive', function () {
   describe('enter_hyperspace()', function () {
@@ -312,6 +313,49 @@ describe('hyperdrive', function () {
           ->toBeA('string')
           ->not->toMatch("/{$this->reSyntaxErrors}/");
       });
+    });
+  });
+
+  describe('get_enqueued_deps()', function () {
+    beforeAll(function () {
+      include_once __DIR__ . "/mocks/class.wp-dependencies.php";
+    });
+
+    it('errors if `queue` does not exist', function () {
+      $instance = new \WP_Dependencies();
+      $closure = function () {
+        unset($instance->queue);
+        get_enqueued_deps($instance);
+      };
+      expect($closure)->toThrow();
+    });
+
+    it('errors if `registred` does not exist', function () {
+      $instance = new \WP_Dependencies();
+      $closure = function () {
+        unset($instance->registered);
+        get_enqueued_deps($instance);
+      };
+      expect($closure)->toThrow();
+    });
+
+    it('has no results with `registered` but an empty `queue`', function () {
+      $instance = new \WP_Dependencies();
+      $instance->registered = ['foo'];
+      expect($instance->registered)->not->toHaveLength(0);
+      expect($instance->queue)->toHaveLength(0);
+      expect(
+        get_enqueued_deps($instance)
+      )->toBe([]);
+    });
+
+    it('gives value of `registered` items in `queue`', function () {
+      $instance = new \WP_Dependencies();
+      $instance->queue = ['foo', 'baz'];
+      $instance->registered = ['foo' => 'bar', 'baz' => 'bat'];
+      expect(
+        get_enqueued_deps($instance)
+      )->toBe(['bar', 'bat']);
     });
   });
 });
