@@ -333,7 +333,7 @@ describe('hyperdrive', function () {
 
     it('returns all expected items', function () {
       $instance = new \WP_Dependencies();
-      $instance->queue = ['foo', 'bar', 'baz', 'bat'];
+      $instance->queue = ['foo', 'bat'];
       $instance->registered = ['foo' => 'foo', 'rab' => 'oof', 'bat' => 'bat'];
       expect(
         get_enqueued_deps($instance)
