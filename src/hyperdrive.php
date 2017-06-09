@@ -79,7 +79,7 @@ defined( 'ABSPATH' ) && add_filter(
  */
 function calibrate_thrusters() {
 	$coordinates = [];
-	$scripts = get_enqueued_scripts();
+	$scripts = get_enqueued_deps( \wp_scripts() );
 	foreach ( $scripts as $script ) {
 		if ( empty( $script->extra['conditional'] ) ) {
 			// It's a good thing you were wearing that helmet.
@@ -243,26 +243,28 @@ function get_dependency_data( $handles ) {
  * Get enqueued dependencies.
  *
  * @since Hyperdrive 1.0.0
- * @return An array of enqueued _WP_Dependency handle objects.
+ * @param object $instance Instance of WP_Dependencies.
+ * @return An array of queued _WP_Dependency handle objects.
  */
-function get_enqueued_scripts() {
-	$wp_scripts = \wp_scripts();
-	foreach ( $wp_scripts->queue as $handle ) {
-		$enqueued_scripts[] = get_dep_for_handle( $handle );
+function get_enqueued_deps( $instance ) {
+	foreach ( $instance->queue as $handle ) {
+		$enqueued_deps[] = $instance->registered[ $handle ];
 	}
-	return $enqueued_scripts;
+	return $enqueued_deps;
 }
 
 /**
- * Get dependency.
+ * Get dependency for script or style.
  *
  * @since Hyperdrive 1.0.0
  * @param string $handle The handle.
+ * @param string [$type = 'script'] The kind of dependency.
  * @return A _WP_Dependency handle object.
  */
-function get_dep_for_handle( $handle ) {
-	$wp_scripts = \wp_scripts();
-	return $wp_scripts->registered[ $handle ];
+function get_dep_for_handle( $handle, $type = 'script' ) {
+	return $type === 'style'
+		? \wp_styles()->registered[ $handle ]
+		: \wp_scripts()->registered[ $handle ];
 }
 
 /**
