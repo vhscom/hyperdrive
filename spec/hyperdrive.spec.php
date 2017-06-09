@@ -471,7 +471,7 @@ describe('hyperdrive', function () {
     });
     given('dependency', function () {
       $dependency = new \_WP_Dependency();
-      $dependency->handle = 'hack-css';
+      $dependency->handle = 'fetch-inject';
       $dependency->src = 'https://cdn.jsdelivr.net/npm/hack';
       $dependency->ver = '';
       $dependency->deps = [];
@@ -479,14 +479,14 @@ describe('hyperdrive', function () {
     });
     given('dependencies', function () {
       $dependencies = new \WP_Dependencies();
-      $dependencies->registered = ['hack-css' => $this->dependency];
-      $dependencies->queue = ['hack-css'];
+      $dependencies->registered = ['fetch-inject' => $this->dependency];
+      $dependencies->queue = ['fetch-inject'];
       return $dependencies;
     });
 
     it('errors if not given an instance', function () {
       $closure = function () {
-        get_deps_for_handle(null, 'hack-css');
+        get_deps_for_handle(null, 'fetch-inject');
       };
       expect($closure)->toThrow();
     });
