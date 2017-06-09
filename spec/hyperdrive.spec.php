@@ -34,6 +34,7 @@ use function hyperdrive\fold_spacetime;
 use function hyperdrive\get_enqueued_deps;
 use function hyperdrive\get_dep_for_handle;
 use function hyperdrive\get_src_for_handle;
+use function hyperdrive\get_deps_for_handle;
 
 describe('hyperdrive', function () {
   describe('enter_hyperspace()', function () {
@@ -322,19 +323,22 @@ describe('hyperdrive', function () {
     beforeAll(function () {
       include_once __DIR__ . "/mocks/class.wp-dependencies.php";
     });
+    given('dependencies', function () {
+      return new \WP_Dependencies();
+    });
 
     it('does not return registered items not in queue', function () {
-      $dependencies = new \WP_Dependencies();
+      $dependencies = $this->dependencies;
       $dependencies->registered = ['foo'];
       expect($dependencies->registered)->not->toHaveLength(0);
       expect($dependencies->queue)->toHaveLength(0);
       expect(
         get_enqueued_deps($dependencies)
-      )->toBe([]);
+      )->toBeEmpty();
     });
 
     it('returns all expected items', function () {
-      $dependencies = new \WP_Dependencies();
+      $dependencies = $this->dependencies;
       $dependencies->queue = ['foo', 'bat', 'rab'];
       $dependencies->registered = [
         'foo' => 'foo',
@@ -348,7 +352,7 @@ describe('hyperdrive', function () {
     });
 
     it('does not return unexpected items', function () {
-      $dependencies = new \WP_Dependencies();
+      $dependencies = $this->dependencies;
       $dependencies->queue = ['bar'];
       $dependencies->registered = ['bar' => 'baz', 'bat' => 'bat'];
       expect(
@@ -363,16 +367,19 @@ describe('hyperdrive', function () {
     beforeAll(function () {
       include_once __DIR__ . "/mocks/class.wp-dependencies.php";
     });
+    given('dependencies', function () {
+      return new \WP_Dependencies();
+    });
 
     it('errors if not given an instance', function () {
       $closure = function () {
-        get_dep_for_handle($dependencies, 'baz');
+        get_dep_for_handle(null, 'baz');
       };
       expect($closure)->toThrow();
     });
 
     it('errors if not given a handle', function () {
-      $dependencies = new \WP_Dependencies();
+      $dependencies = $this->dependencies;
       $closure = function () {
         get_dep_for_handle($dependencies);
       };
@@ -380,7 +387,7 @@ describe('hyperdrive', function () {
     });
 
     it('errors if handle is not registered', function () {
-      $dependencies = new \WP_Dependencies();
+      $dependencies = $this->dependencies;
       $dependencies->registered = ['foo' => 'bar'];
       $closure = function () {
         get_dep_for_handle($dependencies, 'baz');
@@ -389,7 +396,7 @@ describe('hyperdrive', function () {
     });
 
     it('returns registered item given handle', function () {
-      $dependencies = new \WP_Dependencies();
+      $dependencies = $this->dependencies;
       $dependencies->registered = ['foo' => 'bar'];
       expect(
         get_dep_for_handle($dependencies, 'foo')
@@ -397,7 +404,7 @@ describe('hyperdrive', function () {
     });
 
     it('does not return unexpected registered items', function () {
-      $dependencies = new \WP_Dependencies();
+      $dependencies = $this->dependencies;
       $dependencies->registered = ['foo' => 'bar', 'baz' => 'bat'];
       expect(get_dep_for_handle($dependencies, 'foo'))->toBe('bar');
       expect(get_dep_for_handle($dependencies, 'baz'))->toBe('bat');
@@ -425,13 +432,13 @@ describe('hyperdrive', function () {
 
     it('errors if not given an instance', function () {
       $closure = function () {
-        get_src_for_handle($dependencies, 'baz');
+        get_src_for_handle(null, 'baz');
       };
       expect($closure)->toThrow();
     });
 
     it('errors if not given a handle', function () {
-      $dependencies = new \WP_Dependencies();
+      $dependencies = $this->dependencies;
       $closure = function () {
         get_src_for_handle($dependencies);
       };
@@ -454,6 +461,67 @@ describe('hyperdrive', function () {
       expect(
         get_src_for_handle($dependencies, 'fetch-inject')
       )->not->toContain("?ver=");
+    });
+  });
+
+  describe('get_deps_for_handle()', function () {
+    beforeAll(function () {
+      include_once __DIR__ . "/mocks/class.wp-dependencies.php";
+      include_once __DIR__ . "/mocks/class-wp-dependency.php";
+    });
+    given('dependency', function () {
+      $dependency = new \_WP_Dependency();
+      $dependency->handle = 'hack-css';
+      $dependency->src = 'https://cdn.jsdelivr.net/npm/hack';
+      $dependency->ver = '';
+      $dependency->deps = [];
+      return $dependency;
+    });
+    given('dependencies', function () {
+      $dependencies = new \WP_Dependencies();
+      $dependencies->registered = ['hack-css' => $this->dependency];
+      $dependencies->queue = ['hack-css'];
+      return $dependencies;
+    });
+
+    it('errors if not given an instance', function () {
+      $closure = function () {
+        get_deps_for_handle(null, 'hack-css');
+      };
+      expect($closure)->toThrow();
+    });
+
+    it('errors if not given a handle', function () {
+      $dependencies = $this->dependencies;
+      $closure = function () {
+        get_deps_for_handle($dependencies);
+      };
+      expect($closure)->toThrow();
+    });
+
+    it('returns empty if no dependencies of dependency', function () {
+      $dependencies = $this->dependencies;
+      $dependencyHandle = $this->dependency->handle;
+      $dependentDependencies = $this->dependency->deps;
+      expect($dependencies->queue)->toContain($dependencyHandle);
+      expect($dependencies->registered[$dependencyHandle])->toBeTruthy();
+      expect($dependentDependencies)->toHaveLength(0);
+      expect(
+        get_deps_for_handle($dependencies, $dependencyHandle)
+      )->toBeEmpty();
+    });
+
+    it('returns handles if dependencies of dependency', function () {
+      $dependencies = $this->dependencies;
+      $dependencyHandle = $this->dependency->handle;
+      $this->dependency->deps = ['foo', 'bar', 'baz', 'bat'];
+      $dependentDependencies = $this->dependency->deps;
+      expect($dependencies->queue)->toContain($dependencyHandle);
+      expect($dependencies->registered[$dependencyHandle])->toBeTruthy();
+      expect($dependentDependencies)->toHaveLength(4);
+      expect(
+        get_deps_for_handle($dependencies, $dependencyHandle)
+      )->toBe($dependentDependencies);
     });
   });
 });
