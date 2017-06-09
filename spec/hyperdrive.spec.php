@@ -321,25 +321,7 @@ describe('hyperdrive', function () {
       include_once __DIR__ . "/mocks/class.wp-dependencies.php";
     });
 
-    it('errors if `queue` does not exist', function () {
-      $instance = new \WP_Dependencies();
-      $closure = function () {
-        unset($instance->queue);
-        get_enqueued_deps($instance);
-      };
-      expect($closure)->toThrow();
-    });
-
-    it('errors if `registred` does not exist', function () {
-      $instance = new \WP_Dependencies();
-      $closure = function () {
-        unset($instance->registered);
-        get_enqueued_deps($instance);
-      };
-      expect($closure)->toThrow();
-    });
-
-    it('has no results with `registered` but an empty `queue`', function () {
+    it('does not return registered items not in queue', function () {
       $instance = new \WP_Dependencies();
       $instance->registered = ['foo'];
       expect($instance->registered)->not->toHaveLength(0);
@@ -349,13 +331,24 @@ describe('hyperdrive', function () {
       )->toBe([]);
     });
 
-    it('gives value of `registered` items in `queue`', function () {
+    it('returns all expected items', function () {
       $instance = new \WP_Dependencies();
       $instance->queue = ['foo', 'baz'];
       $instance->registered = ['foo' => 'bar', 'baz' => 'bat'];
       expect(
         get_enqueued_deps($instance)
       )->toBe(['bar', 'bat']);
+    });
+
+    it('does not return unexpected items', function () {
+      $instance = new \WP_Dependencies();
+      $instance->queue = ['bar'];
+      $instance->registered = ['bar' => 'baz', 'bat' => 'bat'];
+      expect(
+        get_enqueued_deps($instance)
+      )
+        ->toContain('baz')
+        ->not->toContain('bat');
     });
   });
 });
