@@ -324,35 +324,35 @@ describe('hyperdrive', function () {
     });
 
     it('does not return registered items not in queue', function () {
-      $instance = new \WP_Dependencies();
-      $instance->registered = ['foo'];
-      expect($instance->registered)->not->toHaveLength(0);
-      expect($instance->queue)->toHaveLength(0);
+      $dependencies = new \WP_Dependencies();
+      $dependencies->registered = ['foo'];
+      expect($dependencies->registered)->not->toHaveLength(0);
+      expect($dependencies->queue)->toHaveLength(0);
       expect(
-        get_enqueued_deps($instance)
+        get_enqueued_deps($dependencies)
       )->toBe([]);
     });
 
     it('returns all expected items', function () {
-      $instance = new \WP_Dependencies();
-      $instance->queue = ['foo', 'bat', 'rab'];
-      $instance->registered = [
+      $dependencies = new \WP_Dependencies();
+      $dependencies->queue = ['foo', 'bat', 'rab'];
+      $dependencies->registered = [
         'foo' => 'foo',
         'rab' => 'oof',
         'bat' => 'bat',
         'baz' => 'baz'
       ];
       expect(
-        get_enqueued_deps($instance)
+        get_enqueued_deps($dependencies)
       )->toBe(['foo', 'bat', 'oof']);
     });
 
     it('does not return unexpected items', function () {
-      $instance = new \WP_Dependencies();
-      $instance->queue = ['bar'];
-      $instance->registered = ['bar' => 'baz', 'bat' => 'bat'];
+      $dependencies = new \WP_Dependencies();
+      $dependencies->queue = ['bar'];
+      $dependencies->registered = ['bar' => 'baz', 'bat' => 'bat'];
       expect(
-        get_enqueued_deps($instance)
+        get_enqueued_deps($dependencies)
       )
         ->toContain('baz')
         ->not->toContain('bat');
@@ -366,41 +366,94 @@ describe('hyperdrive', function () {
 
     it('errors if not given an instance', function () {
       $closure = function () {
-        get_dep_for_handle($instance, 'baz');
+        get_dep_for_handle($dependencies, 'baz');
       };
       expect($closure)->toThrow();
     });
 
     it('errors if not given a handle', function () {
-      $instance = new \WP_Dependencies();
+      $dependencies = new \WP_Dependencies();
       $closure = function () {
-        get_dep_for_handle($instance);
+        get_dep_for_handle($dependencies);
       };
       expect($closure)->toThrow();
     });
 
     it('errors if handle is not registered', function () {
-      $instance = new \WP_Dependencies();
-      $instance->registered = ['foo' => 'bar'];
+      $dependencies = new \WP_Dependencies();
+      $dependencies->registered = ['foo' => 'bar'];
       $closure = function () {
-        get_dep_for_handle($instance, 'baz');
+        get_dep_for_handle($dependencies, 'baz');
       };
       expect($closure)->toThrow();
     });
 
     it('returns registered item given handle', function () {
-      $instance = new \WP_Dependencies();
-      $instance->registered = ['foo' => 'bar'];
+      $dependencies = new \WP_Dependencies();
+      $dependencies->registered = ['foo' => 'bar'];
       expect(
-        get_dep_for_handle($instance, 'foo')
+        get_dep_for_handle($dependencies, 'foo')
       )->toBe('bar');
     });
 
     it('does not return unexpected registered items', function () {
-      $instance = new \WP_Dependencies();
-      $instance->registered = ['foo' => 'bar', 'baz' => 'bat'];
-      expect(get_dep_for_handle($instance, 'foo'))->toBe('bar');
-      expect(get_dep_for_handle($instance, 'baz'))->toBe('bat');
+      $dependencies = new \WP_Dependencies();
+      $dependencies->registered = ['foo' => 'bar', 'baz' => 'bat'];
+      expect(get_dep_for_handle($dependencies, 'foo'))->toBe('bar');
+      expect(get_dep_for_handle($dependencies, 'baz'))->toBe('bat');
+    });
+  });
+
+  describe('get_src_for_handle()', function () {
+    beforeAll(function () {
+      include_once __DIR__ . "/mocks/class.wp-dependencies.php";
+      include_once __DIR__ . "/mocks/class-wp-dependency.php";
+    });
+    given('dependency', function () {
+      $dependency = new \_WP_Dependency();
+      $dependency->handle = 'fetch-inject';
+      $dependency->src = 'https://cdn.jsdelivr.net/npm/fetch-inject';
+      $dependency->ver = '';
+      return $dependency;
+    });
+    given('dependencies', function () {
+      $dependencies = new \WP_Dependencies();
+      $dependencies->registered = ['fetch-inject' => $this->dependency];
+      $dependencies->queue = ['fetch-inject'];
+      return $dependencies;
+    });
+
+    it('errors if not given an instance', function () {
+      $closure = function () {
+        get_src_for_handle($dependencies, 'baz');
+      };
+      expect($closure)->toThrow();
+    });
+
+    it('errors if not given a handle', function () {
+      $dependencies = new \WP_Dependencies();
+      $closure = function () {
+        get_src_for_handle($dependencies);
+      };
+      expect($closure)->toThrow();
+    });
+
+    it('returns a string with version query', function () {
+      $dependencies = $this->dependencies;
+      $dependency = $this->dependency;
+      $version = '1.8.1';
+      $dependency->ver = $version;
+      expect(
+        get_src_for_handle($dependencies, 'fetch-inject')
+      )->toContain("?ver=$version");
+    });
+
+    it('returns a string without version query', function () {
+      $dependencies = $this->dependencies;
+      $dependency = $this->dependency;
+      expect(
+        get_src_for_handle($dependencies, 'fetch-inject')
+      )->not->toContain("?ver=");
     });
   });
 });
