@@ -19,8 +19,6 @@ matrix:
   fast_finish: true
   include:
     - php: 7.1
-      env: WP_VERSION=nightly
-    - php: 7.1
       env: WP_VERSION=latest COVERAGE=yes
     - php: 7.0
       env: WP_VERSION=latest
@@ -29,7 +27,7 @@ matrix:
     - php: 5.6
       env: WP_VERSION=latest
     - php: 5.6
-      env: WP_VERSION=latest
+      env: WP_VERSION=nightly
     - php: 5.6
       env: WP_TRAVISCI=phpcs
   allow_failures:
