@@ -80,14 +80,15 @@ defined( 'ABSPATH' ) && add_filter(
 function calibrate_thrusters() {
 	$coordinates = [];
 	$wp_scripts = \wp_scripts();
-	$enqueued_scripts = get_enqueued_deps( $wp_scripts );
-	foreach ( $enqueued_scripts as $enqueued ) {
-		if ( empty( $enqueued->extra['conditional'] ) ) {
+	$wp_styles = \wp_styles();
+	$scripts = get_enqueued_deps( $wp_scripts );
+	foreach ( $scripts as $script ) {
+		if ( empty( $script->extra['conditional'] ) ) {
 			// It's a good thing you were wearing that helmet.
 			$coordinates[] = [
-				$enqueued->handle,
-				get_src_for_handle( $wp_scripts, $enqueued->handle ),
-				get_dependency_data( $wp_scripts, $enqueued->deps ),
+				$script->handle,
+				get_src_for_handle( $wp_scripts, $script->handle ),
+				get_dependency_data( $wp_scripts, $script->deps ),
 			];
 			// Not in here, mister! This is a Mercedes!
 			\wp_dequeue_script( $script->handle );
