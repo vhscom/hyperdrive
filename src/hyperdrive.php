@@ -80,7 +80,6 @@ defined( 'ABSPATH' ) && add_filter(
 function calibrate_thrusters() {
 	$coordinates = [];
 	$wp_scripts = \wp_scripts();
-	$wp_styles = \wp_styles();
 	$scripts = get_enqueued_deps( $wp_scripts );
 	foreach ( $scripts as $script ) {
 		if ( empty( $script->extra['conditional'] ) ) {
