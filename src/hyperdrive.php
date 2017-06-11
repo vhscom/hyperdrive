@@ -115,8 +115,8 @@ function generate_antimatter( $coordinates ) {
 		! empty( $locator ) && $antiparticles[] = "{$locator}";
 		$dimensions && $antiparticles[] = generate_antimatter( $dimensions, true );
 	}
+	array_multisort( $antiparticles ); // vhs/hyperdrive/issues/78
 	is_array( reset( $antiparticles ) ) && $antiparticles = reset( $antiparticles );
-	array_multisort( $antiparticles );
 	$antiparticles = array_map('unserialize', array_unique(
 		array_map( 'serialize', $antiparticles )
 	));
