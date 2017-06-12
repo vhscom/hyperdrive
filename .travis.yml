@@ -19,7 +19,7 @@ matrix:
   fast_finish: true
   include:
     - php: 7.1
-      env: WP_VERSION=latest COVERAGE=yes
+      env: WP_VERSION=latest # COVERAGE=yes
     - php: 7.0
       env: WP_VERSION=latest
     - php: 5.6
