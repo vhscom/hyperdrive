@@ -38,6 +38,13 @@ use function hyperdrive\get_src_for_handle;
 use function hyperdrive\get_deps_for_handle;
 
 describe('hyperdrive', function () {
+  given('fixtures', function () {
+    $path = __DIR__ . '/fixtures/dependencies';
+    $core = json_decode(file_get_contents("{$path}/core.json"));
+    $theme = json_decode(file_get_contents("{$path}/theme.json"));
+    return ['core' => $core, 'theme' => $theme];
+  });
+
   describe('enter_hyperspace()', function () {
     it('echos empty script given empty string', function () {
       $closure = function () { enter_hyperspace(''); };
@@ -56,18 +63,12 @@ describe('hyperdrive', function () {
   });
 
   describe('generate_antimatter()', function () {
-    given('fixtures', function () {
-      return json_decode(
-        file_get_contents(__DIR__ . "/fixtures/dependencies.json")
-      );
-    });
-
     describe('handles a single dependency', function () {
       given('dependencyWithQuery', function () {
-        return $this->fixtures->singleWithQuery;
+        return $this->fixtures['core']->singleWithQuery;
       });
       given('dependencyWithoutQuery', function () {
-        return $this->fixtures->singleWithoutQuery;
+        return $this->fixtures['core']->singleWithoutQuery;
       });
 
       it('has expected locator with a query', function () {
@@ -89,7 +90,7 @@ describe('hyperdrive', function () {
 
     describe('handles two shallow dependencies', function () {
       given('dependencies', function () {
-        return $this->fixtures->twoIndependent;
+        return $this->fixtures['core']->twoIndependent;
       });
 
       it('has expected locators', function () {
@@ -107,10 +108,10 @@ describe('hyperdrive', function () {
 
     describe('handles faux compound deep dependencies', function () {
       given('dependencyWithoutLocator', function () {
-        return $this->fixtures->withoutLocator;
+        return $this->fixtures['core']->withoutLocator;
       });
       given('fauxCompoundDeep', function () {
-        return $this->fixtures->fauxCompoundDeep;
+        return $this->fixtures['core']->fauxCompoundDeep;
       });
 
       it('has expected deep dependencies', function () {
@@ -165,10 +166,10 @@ describe('hyperdrive', function () {
 
     describe('removes common deep dependencies at same depth', function () {
       given('singleCommonDeepSameDepth', function () {
-        return $this->fixtures->singleCommonDeepSameDepth;
+        return $this->fixtures['core']->singleCommonDeepSameDepth;
       });
       given('multipleCommonDeepSameDepth', function () {
-        return $this->fixtures->multipleCommonDeepSameDepth;
+        return $this->fixtures['core']->multipleCommonDeepSameDepth;
       });
 
       it('removes single common deep dependency', function () {
@@ -208,16 +209,34 @@ describe('hyperdrive', function () {
           ->toBe($expected);
       });
     });
+
+    describe('accounts for real world use cases', function () {
+      given('viceDependencies', function () {
+        return $this->fixtures['theme']->vice->v1_5_9;
+      });
+      it('has expected dependencies for vice theme', function () {
+        $expected = [
+          '/wp-content/themes/vice/js/jquery.fullPage.js?ver=20140825',
+          '/wp-content/themes/vice/js/jquery.slimScroll.js?ver=20140825',
+          '/wp-content/themes/vice/js/qt-jquerylibraries.js?ver=20140825',
+          '/wp-content/themes/vice/js/qt-main.js?ver=20140825',
+          'https://maps.googleapis.com/maps/api/js',
+          'https://www.google.com/jsapi',
+          [
+            'wp-includes/js/jquery/jquery.js?ver=1.12.4'
+          ]
+        ];
+
+        expect(
+          generate_antimatter($this->viceDependencies)
+        )->toBe($expected);
+      });
+    });
   });
 
   describe('array_moonwalk()', function () {
-    given('fixtures', function () {
-      return json_decode(
-        file_get_contents(__DIR__ . "/fixtures/dependencies.json")
-      );
-    });
     given('multipleCommonDeepDifferentDepths', function () {
-      return $this->fixtures->multipleCommonDeepDifferentDepths;
+      return $this->fixtures['core']->multipleCommonDeepDifferentDepths;
     });
 
     it('deduplicates an array at different depths', function () {
@@ -248,13 +267,8 @@ describe('hyperdrive', function () {
   });
 
   describe('fold_spacetime()', function () {
-    given('fixtures', function () {
-      return json_decode(
-        file_get_contents(__DIR__ . "/fixtures/dependencies.json")
-      );
-    });
     given('multipleCommonDeepDifferentDepths', function () {
-      return $this->fixtures->multipleCommonDeepDifferentDepths;
+      return $this->fixtures['core']->multipleCommonDeepDifferentDepths;
     });
 
     it('outputs string containing program names and versions', function () {
@@ -276,10 +290,10 @@ describe('hyperdrive', function () {
         return ',\s*?\]|,\s*?\)|\(\s*?,|\]\s*?\[|\)\s*?\(';
       });
       given('singleCommonDeepDifferentDepths', function () {
-        return $this->fixtures->singleCommonDeepDifferentDepths;
+        return $this->fixtures['core']->singleCommonDeepDifferentDepths;
       });
       given('complexCommonDeepWithFaux', function () {
-        return $this->fixtures->complexCommonDeepWithFaux;
+        return $this->fixtures['core']->complexCommonDeepWithFaux;
       });
 
       it('does not error for `singleCommonDeepDifferentDepths`', function () {
