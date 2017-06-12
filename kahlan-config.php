@@ -5,7 +5,6 @@ use Kahlan\Reporter\Coverage\Exporter\Clover;
 // Override default options.
 // https://kahlan.github.io/docs/cli-options.html
 $commandLine = $this->commandLine();
-$commandLine->option('ff', 'default', 1); // fast fail
 $commandLine->option('coverage', 'default', 2); // organize report by
 $commandLine->option(
   'coverage-clover', 'default', 'clover.xml'
