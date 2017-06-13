@@ -18,7 +18,7 @@
 <p align="center">
   Traduções:
   <a href="docs/README_ru.md">Pу́сский</a>,
-  <a href="docs/README_es-419.md">Español</a>
+  <a href="docs/README_es-419.md">Español</a>,
   <a href="docs/README_pt-br.md">Brazilian Portuguese</a>
 </p>
 
@@ -70,7 +70,7 @@ E, embora a Hyperdrive possa ter uma barra alta de qualidade, não deixe que iss
 
 Sempre que possível, os proprietários de projetos, colaboradores e contribuidores devem abraçar os [valores do Agile Manifesto](https://pragdave.me/blog/2014/03/04/time-to-kill-agile.html):
 
-> - **Os individuos e as interações** sobre Processos e Ferramentas
+> - **Individuos e Interações** sobre Processos e Ferramentas
 > - **Software de Trabalho** sobre Documentação Abrangente
 > - **Colaboração do Cliente** sobre Negociação de Contratos, e
 > - **Respondendo à Mudança** sobre Como Seguir um Plano
