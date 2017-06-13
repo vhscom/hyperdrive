@@ -54,6 +54,7 @@ defined( 'ABSPATH' )
  * Prevent WordPress from loading jQuery Migrate.
  *
  * @since 1.0.0
+ * @todo Restore for release candidates.
  * @link https://stackoverflow.com/a/25977181/712334
  * @param WP_Scripts $scripts Default WordPress scripts.
  */

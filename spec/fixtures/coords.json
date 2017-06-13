@@ -1,0 +1,5 @@
+{
+  "themes": {
+    "poseidon": [["poseidon-jquery-navigation","/wp-content/themes/poseidon/js/navigation.js?ver=20170127",[["jquery","",[["jquery-core","/wp-includes/js/jquery/jquery.js?ver=1.12.4",[]]]]]],["poseidon-jquery-sticky-header","/wp-content/themes/poseidon/js/sticky-header.js?ver=20170203",[["jquery","",[["jquery-core","/wp-includes/js/jquery/jquery.js?ver=1.12.4",[]]]]]]]
+  }
+}

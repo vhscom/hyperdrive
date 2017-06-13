@@ -39,10 +39,9 @@ use function hyperdrive\get_deps_for_handle;
 
 describe('hyperdrive', function () {
   given('fixtures', function () {
-    $path = __DIR__ . '/fixtures/dependencies';
-    $core = json_decode(file_get_contents("{$path}/core.json"));
-    $theme = json_decode(file_get_contents("{$path}/theme.json"));
-    return ['core' => $core, 'theme' => $theme];
+    $core = json_decode(file_get_contents(__DIR__ . '/fixtures/core.json'));
+    $coords = json_decode(file_get_contents(__DIR__ . '/fixtures/coords.json'));
+    return ['core' => $core, 'coords' => $coords];
   });
 
   describe('enter_hyperspace()', function () {
@@ -210,25 +209,22 @@ describe('hyperdrive', function () {
       });
     });
 
-    describe('accounts for real world use cases', function () {
-      given('viceDependencies', function () {
-        return $this->fixtures['theme']->vice->v1_5_9;
+    describe('works in real world use cases', function () {
+      given('poseidonTheme', function () {
+        return $this->fixtures['coords']->themes->poseidon;
       });
-      it('has expected dependencies for vice theme', function () {
+
+      it('works with the poseidon theme', function () {
         $expected = [
-          '/wp-content/themes/vice/js/jquery.fullPage.js?ver=20140825',
-          '/wp-content/themes/vice/js/jquery.slimScroll.js?ver=20140825',
-          '/wp-content/themes/vice/js/qt-jquerylibraries.js?ver=20140825',
-          '/wp-content/themes/vice/js/qt-main.js?ver=20140825',
-          'https://maps.googleapis.com/maps/api/js',
-          'https://www.google.com/jsapi',
+          '/wp-content/themes/poseidon/js/navigation.js?ver=20170127',
+          '/wp-content/themes/poseidon/js/sticky-header.js?ver=20170203',
           [
-            'wp-includes/js/jquery/jquery.js?ver=1.12.4'
+            '/wp-includes/js/jquery/jquery.js?ver=1.12.4'
           ]
         ];
 
         expect(
-          generate_antimatter($this->viceDependencies)
+          generate_antimatter($this->poseidonTheme)
         )->toBe($expected);
       });
     });
@@ -272,7 +268,7 @@ describe('hyperdrive', function () {
     });
 
     it('outputs string containing program names and versions', function () {
-      $reSemVer = '\bv?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b';
+      $reSemVer = '\bv?(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)(?:-[\da-z\-]+(?:\.[\da-z\-]+)*)?(?:\+[\da-z\-]+(?:\.[\da-z\-]+)*)?\b';
       $antiparticles = generate_antimatter(
         $this->multipleCommonDeepDifferentDepths
       );
