@@ -70,31 +70,26 @@ defined( 'ABSPATH' ) && add_filter(
 /**
  * Calibrate thrusters.
  *
- * Creates an associative array containing structured data required
- * for Fetch Injection. Also dequeues enqueued scripts so WordPress
- * doesn't load them. Data structure is assumed by functions using
- * and used by this method.
+ * Creates an associative array containing destination coordinate data.
+ * Also dequeues enqueued dependencies so WordPress doesn't load them.
  *
  * @since Hyperdrive 1.0.0
- * @return Multidimensional array of destination coordinates.
+ * @return Multidimensional array of coordinates.
  */
 function calibrate_thrusters() {
-	$coordinates = [];
 	$wp_scripts = \wp_scripts();
-	$scripts = get_enqueued_deps( $wp_scripts );
-	foreach ( $scripts as $script ) {
-		if ( empty( $script->extra['conditional'] ) ) {
-			// It's a good thing you were wearing that helmet.
-			$coordinates[] = [
+	return array_reduce(
+		get_enqueued_deps( $wp_scripts ),
+		function ( $acc, $script ) use ( $wp_scripts ) {
+			\wp_dequeue_script( $script->handle );
+			empty( $script->extra['conditional'] ) && $acc[] = [
 				$script->handle,
 				get_src_for_handle( $wp_scripts, $script->handle ),
-				get_dependency_data( $wp_scripts, $script->deps ),
+				get_dependency_data( $wp_scripts, $script->deps )
 			];
-			// Not in here, mister! This is a Mercedes!
-			\wp_dequeue_script( $script->handle );
+			return $acc;
 		}
-	}
-	return $coordinates;
+	);
 }
 
 /**
@@ -182,12 +177,16 @@ function enter_hyperspace( $dark_matter ) {
  * Engage the hyperdrive.
  *
  * @since Hyperdrive 1.0.0
- * @return A black hole.
+ * @return Spaceballs.
  */
 function engage() {
 	enter_hyperspace( // Sir hadn't you better buckle up?
-		fold_spacetime( generate_antimatter( calibrate_thrusters() ) )
-	);
+		fold_spacetime(
+			generate_antimatter(
+				calibrate_thrusters( \wp_scripts() )
+			)
+		)
+	); // They've gone Plaid.
 }
 
 /**
@@ -226,20 +225,15 @@ function array_moonwalk( $array, &$accumulator, &$depth = 1, $recursing = false 
  * @return Dependency data matching expected structure.
  */
 function get_dependency_data( $instance, $handles ) {
-	$dependency_data = [];
-	foreach ( $handles as $handle ) {
-		$source_url = get_src_for_handle( $instance, $handle );
-		if ( $source_url ) {
-			$dependency_data[] = [ $handle, $source_url, [] ];
-		}
-		$deps = get_deps_for_handle( $instance, $handle );
-		if ( count( $deps ) > 0 ) {
-			$dependency_data[] = [
-				$handle, '', get_dependency_data( $instance, $deps )
-			];
-		}
-	}
-	return $dependency_data;
+	return array_reduce( $handles, function ( $acc, $curr ) use ( $instance ) {
+		$src = get_src_for_handle( $instance, $curr );
+		$deps = get_dependency_data(
+			$instance,
+			get_deps_for_handle( $instance, $curr )
+		);
+		$acc[] = [ $curr, $src, ! empty( $deps ) ? $deps : [] ];
+		return $acc;
+	});
 }
 
 /**
