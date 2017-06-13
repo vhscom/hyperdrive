@@ -13,7 +13,7 @@
 
 <h4 align="center">O meio mais rápido de carregar páginas no WordPress</h4>
 
-<p align="center"><em>Hyperdrive é um plugin do WordPress que aumenta a performance do seu utilizando <a href="https://fetch.spec.whatwg.org/">padrões Web modernos</a>. Com base em testes iniciais do Hyperdrive <a href="https://hackernoon.com/putting-wordpress-into-hyperdrive-4705450dffc2">demonstrou</a> uma redução de 200 a 300% da latência percebida no tema Twenty Seventeen.</em></p>
+<p align="center"><em>Hyperdrive é um plugin do WordPress que aumenta a performance utilizando <a href="https://fetch.spec.whatwg.org/">padrões Web modernos</a>. Com base em testes iniciais do Hyperdrive <a href="https://hackernoon.com/putting-wordpress-into-hyperdrive-4705450dffc2">demonstrou</a> uma redução de 200 a 300% da latência percebida no tema Twenty Seventeen.</em></p>
 
 <p align="center">
   Traduções:
@@ -24,7 +24,7 @@
 
 ## Como funciona?
 
-Hyperdrive utiliza uma tecnica de performance conhecida como [Fetch Injection](https://hackcabin.com/post/managing-async-dependencies-javascript/) disponível em [diversos navegadores](http://caniuse.com/#search=fetch). Fetch Injection é alimentado pelo [Fetch](https://github.com/whatwg/fetch), uma moderna substituição do Ajax.
+Hyperdrive utiliza uma técnica de performance conhecida como [Fetch Injection](https://hackcabin.com/post/managing-async-dependencies-javascript/) disponível em [diversos navegadores](http://caniuse.com/#search=fetch). Fetch Injection é alimentado pelo [Fetch](https://github.com/whatwg/fetch), uma moderna substituição do Ajax.
 
 ## Instalação
 
