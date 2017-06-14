@@ -4,7 +4,6 @@
 </h1>
 
 <p align="center">
-  <a href="bitcoin:1JmCunf75rwnfH3nLxXG6TxTnhSkcyFpFa?amount=0.005&label=Comfusion&message=Donation%20for%20Hyperdrive"><img src="https://img.shields.io/badge/donate-0.005%20coins-9FBD00.svg?style=flat-square" alt="Donate"></a>
   <a href="https://packagist.org/packages/vhs/hyperdrive"><img src="https://img.shields.io/packagist/v/vhs/hyperdrive.svg?style=flat-square" alt="Packagist"></a>
   <a href="https://php.net/"><img src="https://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg?style=flat-square" alt="PHP"></a>
   <a href="https://wordpress.com/"><img src="https://img.shields.io/badge/wordpress-%3E%3D%204.6-0087BE.svg?style=flat-square" alt="WordPress"></a>
