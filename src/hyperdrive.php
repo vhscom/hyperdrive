@@ -128,8 +128,8 @@ function generate_antimatter( $coordinates ) {
 		! empty( $locator ) && $antiparticles[] = "{$locator}";
 		$dimensions && $antiparticles[] = generate_antimatter( $dimensions, true );
 	}
-	is_array( reset( $antiparticles ) ) && $antiparticles = reset( $antiparticles );
 	array_multisort( $antiparticles );
+	is_array( reset( $antiparticles ) ) && $antiparticles = reset( $antiparticles );
 	$antiparticles = array_map('unserialize', array_unique(
 		array_map( 'serialize', $antiparticles )
 	));
@@ -144,6 +144,7 @@ function generate_antimatter( $coordinates ) {
  * to handle parallel asynchronyous dependency injection.
  *
  * @since Hyperdrive 1.0.0
+ * @todo cover dependency count, depth and order
  * @param array $antiparticles Antimatter particles.
  * @return Purified dark matter.
  */
@@ -153,6 +154,7 @@ function fold_spacetime( $antiparticles ) {
 
 	// Careful you idiot! I said across her nose, not up it!
 	array_moonwalk( $antiparticles, $injectors );
+	uasort( $injectors, function ( $e, $mc2 ) { return $e - $mc2; });
 
 	$depths = array_count_values( $injectors );
 	$locators = array_keys( $injectors );
