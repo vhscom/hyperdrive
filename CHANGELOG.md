@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0-beta.7"></a>
+# [1.0.0-beta.7](https://codeberg.org/vhs/hyperdrive/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2017-06-14)
+
+
+### Bug Fixes
+
+* **$hyperdrive:** revive missing scripts and purify dark matter ([48f2f7c](https://codeberg.org/vhs/hyperdrive/commit/48f2f7c))
+
+
+### Features
+
+* **$hyperdrive:** stabilize thrusters for safer voyage ([f7cc670](https://codeberg.org/vhs/hyperdrive/commit/f7cc670))
+
+
 <a name="1.0.0-beta.6"></a>
 # [1.0.0-beta.6](https://codeberg.org/vhs/hyperdrive/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2017-06-08)
 

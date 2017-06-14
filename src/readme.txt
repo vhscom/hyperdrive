@@ -1,7 +1,7 @@
 === Hyperdrive ===
 
 Contributors: nielslange, eirastudios, omrobbie, shantiscript, ariffsetiawan, ervannur, ipututoya, auraanar, 3hartanto, ervannur, joedewaweb
-Donate link: https://me.and.co/vhsllc/?pay=15.00&for=Hyperdrive
+Donate link: bitcoin:1JmCunf75rwnfH3nLxXG6TxTnhSkcyFpFa?amount=0.005&label=Comfusion&message=Donation%20for%20Hyperdrive
 Tags: performance, speed, async, javascript, fetch
 Requires at least: 4.6
 Tested up to: 4.8
@@ -52,6 +52,11 @@ If you experience any issues with automatic installation, or would prefer to ins
 Please visit [the official repository](https://codeberg.org/vhs/hyperdrive) on GitHub for contributing guidelines.
 
 == Changelog ==
+
+**1.0.0-beta.7**
+
+* Purify and distill dark matter
+* Stabilize thrusters for safer voyage
 
 **1.0.0-beta.6**
 
