@@ -8,7 +8,7 @@
  * @license     AGPL-3.0 or any later version
  *
  * Hyperdrive - The fastest way to load pages in WordPress.
- * Copyright (C) 2017  VHS <josh@vhs.codeberg.page>
+ * Copyright (c) 2017  VHS <josh@vhs.codeberg.page> (https://vhs.codeberg.page)
  *
  * Hyperdrive is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
