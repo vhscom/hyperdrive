@@ -18,7 +18,8 @@
 <p align="center">
   Переводы:
   <a href="../README.md">English</a>,
-  <a href="README_es-419.md">español</a>
+  <a href="README_es-419.md">Español</a>,
+  <a href="README_pt-br.md">Português</a>
 </p>
 
 ## Как это работает

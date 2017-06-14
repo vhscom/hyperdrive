@@ -17,9 +17,9 @@
 
 <p align="center">
   Traduções:
+  <a href="../README.md">English</a>,
   <a href="docs/README_ru.md">Pу́сский</a>,
-  <a href="docs/README_es-419.md">Español</a>,
-  <a href="docs/README_pt-br.md">Brazilian Portuguese</a>
+  <a href="docs/README_es-419.md">Español</a>
 </p>
 
 ## Como funciona?
