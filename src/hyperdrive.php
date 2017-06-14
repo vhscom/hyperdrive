@@ -91,14 +91,14 @@ defined( 'ABSPATH' ) && add_filter(
  * Also dequeues enqueued dependencies so WordPress doesn't load them.
  *
  * @since Hyperdrive 1.0.0
+ * @todo Remove ABSPATH after some Patchwork
  * @return Multidimensional array of coordinates.
  */
-function calibrate_thrusters() {
-	$wp_scripts = \wp_scripts();
+function calibrate_thrusters( $wp_scripts ) {
 	return array_reduce(
 		get_enqueued_deps( $wp_scripts ),
 		function ( $acc, $script ) use ( $wp_scripts ) {
-			\wp_dequeue_script( $script->handle );
+			defined( 'ABSPATH' ) && \wp_dequeue_script( $script->handle );
 			empty( $script->extra['conditional'] ) && $acc[] = [
 				$script->handle,
 				get_src_for_handle( $wp_scripts, $script->handle ),
@@ -126,10 +126,14 @@ function generate_antimatter( $coordinates ) {
 	foreach ( $coordinates as $coordinate ) {
 		list( $handle, $locator, $dimensions ) = $coordinate;
 		! empty( $locator ) && $antiparticles[] = "{$locator}";
-		$dimensions && $antiparticles[] = generate_antimatter( $dimensions, true );
+		$dimensions && $antiparticles[] = generate_antimatter(
+			$dimensions, true
+		);
 	}
 	array_multisort( $antiparticles );
-	is_array( reset( $antiparticles ) ) && $antiparticles = reset( $antiparticles );
+	is_array(
+		reset( $antiparticles )
+	) && $antiparticles = reset( $antiparticles );
 	$antiparticles = array_map('unserialize', array_unique(
 		array_map( 'serialize', $antiparticles )
 	));
@@ -244,6 +248,7 @@ function array_moonwalk( $array, &$accumulator, &$depth = 1, $recursing = false 
  * @return Dependency data matching expected structure.
  */
 function get_dependency_data( $instance, $handles ) {
+	if ( ! $handles ) return [];
 	return array_reduce( $handles, function ( $acc, $curr ) use ( $instance ) {
 		$src = get_src_for_handle( $instance, $curr );
 		$deps = get_dependency_data(

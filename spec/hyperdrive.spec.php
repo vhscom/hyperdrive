@@ -27,6 +27,7 @@
 
 namespace hyperdrive\spec;
 
+use function hyperdrive\calibrate_thrusters;
 use function hyperdrive\generate_antimatter;
 use function hyperdrive\enter_hyperspace;
 use function hyperdrive\array_moonwalk;
@@ -330,6 +331,94 @@ describe('hyperdrive', function () {
     });
   });
 
+  describe('calibrate_thrusters()', function () {
+    beforeAll(function () {
+      include_once __DIR__ . "/mocks/class.wp-dependencies.php";
+      include_once __DIR__ . "/mocks/class-wp-dependency.php";
+    });
+    given('fetchInject', function () {
+      $dependency = new \_WP_Dependency();
+      $dependency->handle = 'fetch-inject';
+      $dependency->src = 'https://cdn.jsdelivr.net/npm/fetch-inject';
+      $dependency->ver = '';
+      $dependency->deps = [];
+      return $dependency;
+    });
+    given('backbone', function () {
+      $dependency = new \_WP_Dependency();
+      $dependency->handle = 'backbone';
+      $dependency->src = 'https://cdn.jsdelivr.net/npm/backbone';
+      $dependency->ver = '3.0.15';
+      $dependency->deps = ['jquery'];
+      return $dependency;
+    });
+    given('jquery', function () {
+      $dependency = new \_WP_Dependency();
+      $dependency->handle = 'jquery';
+      $dependency->src = 'https://cdn.jsdelivr.net/npm/jquery';
+      $dependency->ver = '3.2.1';
+      $dependency->deps = [];
+      return $dependency;
+    });
+    given('dependencies', function () {
+      $dependencies = new \WP_Dependencies();
+      $dependencies->registered = ['fetch-inject' => $this->fetchInject];
+      $dependencies->queue = ['fetch-inject'];
+      return $dependencies;
+    });
+
+    it('errors if not given dependencies', function () {
+      $closure = function () {
+        calibrate_thrusters(null);
+      };
+      expect($closure)->toThrow();
+    });
+
+    it('does not error if no dependencies queued', function () {
+      $dependencies = $this->dependencies;
+      $dependencies->queue = [];
+      $closure = function () use ($dependencies) {
+        calibrate_thrusters($dependencies);
+      };
+      expect($closure)->not->toThrow();
+    });
+
+    it('finds coords given one shallow dependency', function () {
+      $dependencies = $this->dependencies;
+      $expected = [[
+        'fetch-inject',
+        'https://cdn.jsdelivr.net/npm/fetch-inject',
+        []
+      ]];
+      expect(
+        calibrate_thrusters($dependencies)
+      )->toBe($expected);
+    });
+
+    it('finds coords given one shallow w/deep dependency', function () {
+      $dependencies = $this->dependencies;
+      $dependencies->registered = [
+        'backbone' => $this->backbone,
+        'jquery' => $this->jquery
+      ];
+      $dependencies->queue = ['backbone'];
+      $expected = [[
+        'backbone',
+        'https://cdn.jsdelivr.net/npm/backbone?ver=3.0.15',
+        [[
+          'jquery', 'https://cdn.jsdelivr.net/npm/jquery?ver=3.2.1', []
+        ]]
+      ]];
+      expect(
+        calibrate_thrusters($dependencies)
+      )->toBe($expected);
+    });
+
+    it('skips dependencies with conditional comments', function () {
+      expect('MSIE always sucked')->toBeTruthy();
+    });
+  });
+
   describe('get_dependency_data()', function () {
     beforeAll(function () {
       include_once __DIR__ . "/mocks/class.wp-dependencies.php";
@@ -349,7 +438,7 @@ describe('hyperdrive', function () {
       return $dependencies;
     });
 
-    it('errors if not given an instance', function () {
+    it('errors if not given dependencies', function () {
       $closure = function () {
         get_dependency_data(null, ['baz']);
       };
@@ -380,9 +469,7 @@ describe('hyperdrive', function () {
       expect($closure)->not->toThrow();
     });
 
-    it('skips dependencies with conditional comments', function () {
-      expect('MSIE always sucked')->toBeTruthy();
-    });
+    // @TODO: Add more coverage
   });
 
   describe('get_enqueued_deps()', function () {
@@ -393,7 +480,7 @@ describe('hyperdrive', function () {
       return new \WP_Dependencies();
     });
 
-    it('errors if not given an instance', function () {
+    it('errors if not given dependencies', function () {
       $closure = function () {
         get_dep_for_handle(null, 'baz');
       };
@@ -444,7 +531,7 @@ describe('hyperdrive', function () {
       return new \WP_Dependencies();
     });
 
-    it('errors if not given an instance', function () {
+    it('errors if not given dependencies', function () {
       $closure = function () {
         get_dep_for_handle(null, 'baz');
       };
@@ -503,7 +590,7 @@ describe('hyperdrive', function () {
       return $dependencies;
     });
 
-    it('errors if not given an instance', function () {
+    it('errors if not given dependencies', function () {
       $closure = function () {
         get_src_for_handle(null, 'baz');
       };
@@ -557,7 +644,7 @@ describe('hyperdrive', function () {
       return $dependencies;
     });
 
-    it('errors if not given an instance', function () {
+    it('errors if not given dependencies', function () {
       $closure = function () {
         get_deps_for_handle(null, 'fetch-inject');
       };
