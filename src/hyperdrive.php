@@ -137,15 +137,15 @@ function generate_antimatter( $coordinates ) {
 }
 
 /**
- * Convert antiparticles.
+ * Fold spacetime.
  *
  * Performs a moonwalk to dedupe any remaining multidimensional
- * dopplegangers in alternate dimensions and constructs a script
- * to handle page resource Fetch Injection.
+ * dopplegangers in alternate dimensions and uses Fetch Inject
+ * to handle parallel asynchronyous dependency injection.
  *
  * @since Hyperdrive 1.0.0
  * @param array $antiparticles Antimatter particles.
- * @return A Fetch Inject script.
+ * @return Purified dark matter.
  */
 function fold_spacetime( $antiparticles ) {
 	$injection = '';
