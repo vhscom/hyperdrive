@@ -17,8 +17,8 @@
 
 <p align="center">
   Translations:
-  <a href="docs/README_ru.md">ру́сский</a>,
-  <a href="docs/README_es-419.md">español</a>,
+  <a href="docs/README_ru.md">Pу́сский</a>,
+  <a href="docs/README_es-419.md">Español</a>,
   <a href="docs/README_pt-br.md">Português</a>
 </p>
 
