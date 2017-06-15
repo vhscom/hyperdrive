@@ -211,8 +211,23 @@ describe('hyperdrive', function () {
     });
 
     describe('works in real world use cases', function () {
-      given('poseidonTheme', function () {
-        return $this->fixtures['coords']->themes->poseidon;
+      given('themes', function () {
+        return $this->fixtures['coords']->themes;
+      });
+
+      it('works with the twenty seventeen theme', function () {
+        $expected = [
+          '/wp-content/themes/twentyseventeen/assets/js/global.js?ver=1.0',
+          '/wp-content/themes/twentyseventeen/assets/js/jquery.scrollTo.js?ver=2.1.2',
+          '/wp-content/themes/twentyseventeen/assets/js/skip-link-focus-fix.js?ver=1.0',
+          [
+            '/wp-includes/js/jquery/jquery.js?ver=1.12.4'
+          ]
+        ];
+
+        expect(
+          generate_antimatter($this->themes->twentyseventeen)
+        )->toBe($expected);
       });
 
       it('works with the poseidon theme', function () {
@@ -225,7 +240,7 @@ describe('hyperdrive', function () {
         ];
 
         expect(
-          generate_antimatter($this->poseidonTheme)
+          generate_antimatter($this->themes->poseidon)
         )->toBe($expected);
       });
     });

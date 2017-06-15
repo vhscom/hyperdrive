@@ -1,5 +1,6 @@
 {
   "themes": {
+    "twentyseventeen": [["twentyseventeen-skip-link-focus-fix","/wp-content/themes/twentyseventeen/assets/js/skip-link-focus-fix.js?ver=1.0",[]],["twentyseventeen-global","/wp-content/themes/twentyseventeen/assets/js/global.js?ver=1.0",[["jquery","",[["jquery-core","/wp-includes/js/jquery/jquery.js?ver=1.12.4",[]]]]]],["jquery-scrollto","/wp-content/themes/twentyseventeen/assets/js/jquery.scrollTo.js?ver=2.1.2",[["jquery","",[["jquery-core","/wp-includes/js/jquery/jquery.js?ver=1.12.4",[]]]]]]],
     "poseidon": [["poseidon-jquery-navigation","/wp-content/themes/poseidon/js/navigation.js?ver=20170127",[["jquery","",[["jquery-core","/wp-includes/js/jquery/jquery.js?ver=1.12.4",[]]]]]],["poseidon-jquery-sticky-header","/wp-content/themes/poseidon/js/sticky-header.js?ver=20170203",[["jquery","",[["jquery-core","/wp-includes/js/jquery/jquery.js?ver=1.12.4",[]]]]]]]
   }
 }
