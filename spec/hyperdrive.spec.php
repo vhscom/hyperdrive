@@ -44,6 +44,9 @@ describe('hyperdrive', function () {
     $coords = json_decode(file_get_contents(__DIR__ . '/fixtures/coords.json'));
     return ['core' => $core, 'coords' => $coords];
   });
+  given('reSyntaxErrors', function () {
+    return ',\s*?\]|,\s*?\)|\(\s*?,|\]\s*?\[|\)\s*?\(';
+  });
 
   describe('enter_hyperspace()', function () {
     it('echos empty script given empty string', function () {
@@ -209,41 +212,6 @@ describe('hyperdrive', function () {
           ->toBe($expected);
       });
     });
-
-    describe('works in real world use cases', function () {
-      given('themes', function () {
-        return $this->fixtures['coords']->themes;
-      });
-
-      it('works with the twenty seventeen theme', function () {
-        $expected = [
-          '/wp-content/themes/twentyseventeen/assets/js/global.js?ver=1.0',
-          '/wp-content/themes/twentyseventeen/assets/js/jquery.scrollTo.js?ver=2.1.2',
-          '/wp-content/themes/twentyseventeen/assets/js/skip-link-focus-fix.js?ver=1.0',
-          [
-            '/wp-includes/js/jquery/jquery.js?ver=1.12.4'
-          ]
-        ];
-
-        expect(
-          generate_antimatter($this->themes->twentyseventeen)
-        )->toBe($expected);
-      });
-
-      it('works with the poseidon theme', function () {
-        $expected = [
-          '/wp-content/themes/poseidon/js/navigation.js?ver=20170127',
-          '/wp-content/themes/poseidon/js/sticky-header.js?ver=20170203',
-          [
-            '/wp-includes/js/jquery/jquery.js?ver=1.12.4'
-          ]
-        ];
-
-        expect(
-          generate_antimatter($this->themes->poseidon)
-        )->toBe($expected);
-      });
-    });
   });
 
   describe('array_moonwalk()', function () {
@@ -298,9 +266,6 @@ describe('hyperdrive', function () {
     });
 
     describe('common syntax errors', function () {
-      given('reSyntaxErrors', function () {
-        return ',\s*?\]|,\s*?\)|\(\s*?,|\]\s*?\[|\)\s*?\(';
-      });
       given('singleCommonDeepDifferentDepths', function () {
         return $this->fixtures['core']->singleCommonDeepDifferentDepths;
       });
@@ -697,6 +662,48 @@ describe('hyperdrive', function () {
       expect(
         get_deps_for_handle($dependencies, $dependencyHandle)
       )->toBe($dependentDependencies);
+    });
+  });
+
+  describe('operates in real world conditions', function () {
+    given('themes', function () {
+      return $this->fixtures['coords']->themes;
+    });
+    given('combos', function () {
+      return $this->fixtures['coords']->combos;
+    });
+
+    it('twenty seventeen theme', function () {
+      $coords = $this->themes->twentyseventeen;
+      $matter = fold_spacetime(generate_antimatter($coords));
+      array_walk_recursive($coords, function ($element) use ($matter) {
+        if (filter_var($element, FILTER_VALIDATE_URL)) {
+          expect($matter)->toContain($element);
+        }
+      });
+      expect($matter)->not->toMatch("/{$this->reSyntaxErrors}/");
+    });
+
+    it('poseidon theme', function () {
+      $coords = $this->themes->poseidon;
+      $matter = fold_spacetime(generate_antimatter($coords));
+      array_walk_recursive($coords, function ($element) use ($matter) {
+        if (filter_var($element, FILTER_VALIDATE_URL)) {
+          expect($matter)->toContain($element);
+        }
+      });
+      expect($matter)->not->toMatch("/{$this->reSyntaxErrors}/");
+    });
+
+    it('hestia theme with woocommerce plugin', function () {
+      $coords = $this->combos->hestia_woocommerce;
+      $matter = fold_spacetime(generate_antimatter($coords));
+      array_walk_recursive($coords, function ($element) use ($matter) {
+        if (filter_var($element, FILTER_VALIDATE_URL)) {
+          expect($matter)->toContain($element);
+        }
+      });
+      expect($matter)->not->toMatch("/{$this->reSyntaxErrors}/");
     });
   });
 });
