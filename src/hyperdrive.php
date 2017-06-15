@@ -92,25 +92,10 @@ defined( 'ABSPATH' ) && add_filter(
  *
  * @since Hyperdrive 1.0.0
  * @todo Remove ABSPATH after some Patchwork
- * @param WP_Scripts $wp_scripts Scripts to calibrate.
- * @param WP_Styles $wp_styles Styles to calibrate.
  * @return Multidimensional array of coordinates.
  */
-function calibrate_thrusters( $wp_scripts, $wp_styles ) {
-	$styles = array_reduce(
-		get_enqueued_deps( $wp_styles ),
-		function ( $acc, $style ) use ( $wp_styles ) {
-			defined( 'ABSPATH' ) && \wp_dequeue_style( $style->handle );
-			empty( $style->extra['conditional'] ) && $acc[] = [
-				$style->handle,
-				get_src_for_handle( $wp_styles, $style->handle ),
-				get_dependency_data( $wp_styles, $style->deps )
-			];
-			return $acc;
-		},
-		[]
-	);
-	$scripts = array_reduce(
+function calibrate_thrusters( $wp_scripts ) {
+	return array_reduce(
 		get_enqueued_deps( $wp_scripts ),
 		function ( $acc, $script ) use ( $wp_scripts ) {
 			defined( 'ABSPATH' ) && \wp_dequeue_script( $script->handle );
@@ -120,10 +105,8 @@ function calibrate_thrusters( $wp_scripts, $wp_styles ) {
 				get_dependency_data( $wp_scripts, $script->deps )
 			];
 			return $acc;
-		},
-		[]
+		}
 	);
-	return array_merge( $scripts, $styles );
 }
 
 /**
@@ -214,21 +197,18 @@ function enter_hyperspace( $dark_matter ) {
 }
 
 /**
- * Engage the Hyperdrive.
+ * Engage the hyperdrive.
  *
  * @since Hyperdrive 1.0.0
  * @global $wp_scripts Instance of WP_Scripts
- * @global $wp_styles Instance of WP_Styles
  * @return Spaceballs.
  */
 function engage() {
-	global $wp_scripts, $wp_styles;
+	global $wp_scripts;
 	enter_hyperspace( // Sir hadn't you better buckle up?
 		fold_spacetime(
 			generate_antimatter(
-				calibrate_thrusters(
-					$wp_scripts, $wp_styles
-				)
+				calibrate_thrusters( $wp_scripts )
 			)
 		)
 	); // Ah, buckle this! LUDICROUS SPEED! *GO!*

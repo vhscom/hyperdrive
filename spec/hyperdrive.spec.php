@@ -360,106 +360,57 @@ describe('hyperdrive', function () {
       $dependency->deps = [];
       return $dependency;
     });
-    given('webfonts', function () {
-      $dependency = new \_WP_Dependency();
-      $dependency->handle = 'twentyseventeen-fonts';
-      $dependency->src = 'https://fonts.googleapis.com/css?family=Libre+Franklin%3A300%2C300i%2C400%2C400i%2C600%2C600i%2C800%2C800i&subset=latin%2Clatin-ext';
-      $dependency->deps = [];
-      return $dependency;
-    });
-    given('scriptDependencies', function () {
+    given('dependencies', function () {
       $dependencies = new \WP_Dependencies();
-      $dependencies->registered = [
-        'fetch-inject' => $this->fetchInject
-      ];
+      $dependencies->registered = ['fetch-inject' => $this->fetchInject];
       $dependencies->queue = ['fetch-inject'];
       return $dependencies;
     });
-    given('styleDependencies', function () {
-      $dependencies = new \WP_Dependencies();
-      $dependencies->registered = [
-        'twentyseventeen-fonts' => $this->webfonts
-      ];
-      $dependencies->queue = ['twentyseventeen-fonts'];
-      return $dependencies;
-    });
 
-    it('errors if not given style dependencies', function () {
-      $scriptDependencies = $this->scriptDependencies;
-      $closure = function () use ($scriptDependencies) {
-        calibrate_thrusters($scriptDependencies);
+    it('errors if not given dependencies', function () {
+      $closure = function () {
+        calibrate_thrusters(null);
       };
       expect($closure)->toThrow();
     });
 
-    it('errors if not given script dependencies', function () {
-      $scriptDependencies = $this->scriptDependencies;
-      $styleDependencies = $this->styleDependencies;
-      $closure = function () use ($styleDependencies) {
-        // If you're clever you'll notice `$scriptDependencies` not in scope
-        calibrate_thrusters($scriptDependencies, $styleDependencies);
-      };
-      expect($closure)->toThrow();
-    });
-
-    it('does not error if script queue empty', function () {
-      $scriptDependencies = $this->scriptDependencies;
-      $styleDependencies = $this->styleDependencies;
-      $scriptDependencies->queue = [];
-      $closure = function () use ($scriptDependencies, $styleDependencies) {
-        calibrate_thrusters($scriptDependencies, $styleDependencies);
+    it('does not error if no dependencies queued', function () {
+      $dependencies = $this->dependencies;
+      $dependencies->queue = [];
+      $closure = function () use ($dependencies) {
+        calibrate_thrusters($dependencies);
       };
       expect($closure)->not->toThrow();
     });
 
-    it('does not error if style queue empty', function () {
-      $scriptDependencies = $this->scriptDependencies;
-      $styleDependencies = $this->styleDependencies;
-      $styleDependencies->queue = [];
-      $closure = function () use ($scriptDependencies, $styleDependencies) {
-        calibrate_thrusters($scriptDependencies, $styleDependencies);
-      };
-      expect($closure)->not->toThrow();
-    });
-
-    it('finds coords given one shallow script dependency', function () {
-      $scriptDependencies = $this->scriptDependencies;
-      $styleDependencies = $this->styleDependencies;
+    it('finds coords given one shallow dependency', function () {
+      $dependencies = $this->dependencies;
       $expected = [[
         'fetch-inject',
         'https://cdn.jsdelivr.net/npm/fetch-inject',
         []
-      ], [
-        'twentyseventeen-fonts',
-        'https://fonts.googleapis.com/css?family=Libre+Franklin%3A300%2C300i%2C400%2C400i%2C600%2C600i%2C800%2C800i&subset=latin%2Clatin-ext',
-        []
       ]];
       expect(
-        calibrate_thrusters($scriptDependencies, $styleDependencies)
+        calibrate_thrusters($dependencies)
       )->toBe($expected);
     });
 
-    it('finds coords given shallow script w/deep dependency', function () {
-      $scriptDependencies = $this->scriptDependencies;
-      $styleDependencies = $this->styleDependencies;
-      $scriptDependencies->registered = [
+    it('finds coords given one shallow w/deep dependency', function () {
+      $dependencies = $this->dependencies;
+      $dependencies->registered = [
         'backbone' => $this->backbone,
         'jquery' => $this->jquery
       ];
-      $scriptDependencies->queue = ['backbone'];
+      $dependencies->queue = ['backbone'];
       $expected = [[
         'backbone',
         'https://cdn.jsdelivr.net/npm/backbone?ver=3.0.15',
         [[
           'jquery', 'https://cdn.jsdelivr.net/npm/jquery?ver=3.2.1', []
         ]]
-      ], [
-        'twentyseventeen-fonts',
-        'https://fonts.googleapis.com/css?family=Libre+Franklin%3A300%2C300i%2C400%2C400i%2C600%2C600i%2C800%2C800i&subset=latin%2Clatin-ext',
-        []
       ]];
       expect(
-        calibrate_thrusters($scriptDependencies, $styleDependencies)
+        calibrate_thrusters($dependencies)
       )->toBe($expected);
     });
 
