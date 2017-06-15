@@ -200,16 +200,18 @@ function enter_hyperspace( $dark_matter ) {
  * Engage the hyperdrive.
  *
  * @since Hyperdrive 1.0.0
+ * @global $wp_scripts Instance of WP_Scripts
  * @return Spaceballs.
  */
 function engage() {
+	global $wp_scripts;
 	enter_hyperspace( // Sir hadn't you better buckle up?
 		fold_spacetime(
 			generate_antimatter(
-				calibrate_thrusters( \wp_scripts() )
+				calibrate_thrusters( $wp_scripts )
 			)
 		)
-	); // They've gone Plaid.
+	); // Ah, buckle this! LUDICROUS SPEED! *GO!*
 }
 
 /**
