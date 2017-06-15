@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="1.0.0-beta.9"></a>
+# [1.0.0-beta.9](https://codeberg.org/vhs/hyperdrive/compare/v1.0.0-beta.8...v1.0.0-beta.9) (2017-06-15)
+
+
+### Reverts
+
+* **$hyperdrive:** async load styles in addition to scripts ([1616a52](https://codeberg.org/vhs/hyperdrive/commit/1616a52))
+
+
+
 <a name="1.0.0-beta.8"></a>
 # [1.0.0-beta.8](https://codeberg.org/vhs/hyperdrive/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2017-06-15)
 
