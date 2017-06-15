@@ -53,6 +53,10 @@ Please visit [the official repository](https://codeberg.org/vhs/hyperdrive) on G
 
 == Changelog ==
 
+**1.0.0-beta.8**
+
+* Adds a feature allowing both scripts and styles to load asynchronously
+
 **1.0.0-beta.7**
 
 * Purify and distill dark matter
