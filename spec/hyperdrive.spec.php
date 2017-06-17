@@ -686,15 +686,17 @@ describe('hyperdrive', function () {
       }
     });
 
-    it('supports popular plugins', function () {
-      $coords = $this->combos->hestia_woocommerce;
-      $matter = fold_spacetime(generate_antimatter($coords));
-      array_walk_recursive($coords, function ($element) use ($matter) {
-        if (filter_var($element, FILTER_VALIDATE_URL)) {
-          expect($matter)->toContain($element);
-        }
-      });
-      expect($matter)->not->toMatch("/{$this->reSyntaxErrors}/");
+    it('works with various plugin combinations', function () {
+      $combos = $this->combos;
+      foreach ($combos as $coords) {
+        $matter = fold_spacetime(generate_antimatter($coords));
+        array_walk_recursive($coords, function ($element) use ($matter) {
+          if (filter_var($element, FILTER_VALIDATE_URL)) {
+            expect($matter)->toContain($element);
+          }
+        });
+        expect($matter)->not->toMatch("/{$this->reSyntaxErrors}/");
+      }
     });
   });
 });
