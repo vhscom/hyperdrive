@@ -2,7 +2,7 @@
 
 Contributors: nielslange, eirastudios, omrobbie, shantiscript, ariffsetiawan, ervannur, ipututoya, auraanar, 3hartanto, ervannur, joedewaweb
 Donate link: bitcoin:1JmCunf75rwnfH3nLxXG6TxTnhSkcyFpFa?amount=0.005&label=Comfusion&message=Donation%20for%20Hyperdrive
-Tags: performance, speed, async, javascript, fetch
+Tags: performance, speed, async, javascript, seo
 Requires at least: 4.6
 Tested up to: 4.8
 Stable tag: trunk
