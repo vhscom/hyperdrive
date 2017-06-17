@@ -673,29 +673,20 @@ describe('hyperdrive', function () {
       return $this->fixtures['coords']->combos;
     });
 
-    it('twenty seventeen theme', function () {
-      $coords = $this->themes->twentyseventeen;
-      $matter = fold_spacetime(generate_antimatter($coords));
-      array_walk_recursive($coords, function ($element) use ($matter) {
-        if (filter_var($element, FILTER_VALIDATE_URL)) {
-          expect($matter)->toContain($element);
-        }
-      });
-      expect($matter)->not->toMatch("/{$this->reSyntaxErrors}/");
+    it('works with various themes', function () {
+      $themes = $this->themes;
+      foreach ($themes as $coords) {
+        $matter = fold_spacetime(generate_antimatter($coords));
+        array_walk_recursive($coords, function ($element) use ($matter) {
+          if (filter_var($element, FILTER_VALIDATE_URL)) {
+            expect($matter)->toContain($element);
+          }
+        });
+        expect($matter)->not->toMatch("/{$this->reSyntaxErrors}/");
+      }
     });
 
-    it('poseidon theme', function () {
-      $coords = $this->themes->poseidon;
-      $matter = fold_spacetime(generate_antimatter($coords));
-      array_walk_recursive($coords, function ($element) use ($matter) {
-        if (filter_var($element, FILTER_VALIDATE_URL)) {
-          expect($matter)->toContain($element);
-        }
-      });
-      expect($matter)->not->toMatch("/{$this->reSyntaxErrors}/");
-    });
-
-    it('hestia theme with woocommerce plugin', function () {
+    it('supports popular plugins', function () {
       $coords = $this->combos->hestia_woocommerce;
       $matter = fold_spacetime(generate_antimatter($coords));
       array_walk_recursive($coords, function ($element) use ($matter) {
