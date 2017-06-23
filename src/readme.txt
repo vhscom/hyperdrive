@@ -1,10 +1,13 @@
 === Hyperdrive ===
 
-Contributors: nielslange, eirastudios, omrobbie, shantiscript, ariffsetiawan, ervannur, ipututoya, auraanar, 3hartanto, ervannur, joedewaweb
-Donate link: bitcoin:1JmCunf75rwnfH3nLxXG6TxTnhSkcyFpFa?amount=0.005&label=Comfusion&message=Donation%20for%20Hyperdrive
+Author: vhs
+Author URI: https://vhs.codeberg.page
+Contributors: nielslange, eirastudios, ariffsetiawan
+Donate link: https://go.vhs.codeberg.page/gotcoin
 Tags: performance, speed, async, javascript, seo
 Requires at least: 4.6
 Tested up to: 4.8
+Version: 1.0.0-beta.9
 Stable tag: trunk
 License: AGPL-3.0 or any later version
 License URI: https://codeberg.org/vhs/hyperdrive/blob/master/COPYING
@@ -18,7 +21,7 @@ Hyperdrive speeds up your website by using modern web standards and can reduce p
 **Coming soon**
 - The `1.0.0` release, codenamed [Wesley Crusher](https://stt.wiki/wiki/Wesley_Crusher).
 
-**Planned updates**
+**Planned updates**https://go.vhs.codeberg.page/gotcoin
 - Admin UI with warp speed configuration options
 
 Thank you for getting involved in the Hyperdrive beta. *Prepare for Ludicrous Speed*.
