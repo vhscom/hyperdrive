@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="http://hyperdrive.vhs.codeberg.page"><img src="https://codeberg.org/vhs/hyperdrive/blob/master/logo.png" alt="Hyperdrive плагин для WordPress" title="Самый быстрый способ загрузки страниц на WordPress" width="888"></a>
+  <a href="http://hyperdrive.vhs.codeberg.page"><img src="https://codeberg.org/vhs/hyperdrive/raw/branch/master/logo.png" alt="Hyperdrive плагин для WordPress" title="Самый быстрый способ загрузки страниц на WordPress" width="888"></a>
   <span style="clip: rect(1px, 1px, 1px, 1px); clip-path: polygon(0px 0px, 0px 0px,0px 0px, 0px 0px); position: absolute !important; white-space: nowrap; height: 1px; width: 1px; overflow: hidden;">Hyperdrive</span>
 </h1>
 
@@ -52,7 +52,7 @@ Hyperdrive использует технику оптимизации, изве�
 ```shell
 ssh user:pass@wordpressbox.tld
 z plugins
-curl -O https://raw.githubusercontent.com/vhs/hyperdrive/master/src/hyperdrive.php
+curl -O https://codeberg.org/vhs/hyperdrive/raw/branch/master/src/hyperdrive.php
 wp plugin activate hyperdrive
 ```
 
@@ -87,4 +87,4 @@ Hyperdrive принимает к рассмотрению любые вопро�
 
 ## Лицензия
 
-[![AGPL-3.0 or any later version](https://img.shields.io/github/license/vhs/hyperdrive.svg?style=flat-square)](https://codeberg.org/vhs/hyperdrive/blob/master/COPYING)
+[![AGPL-3.0 or any later version](https://img.shields.io/github/license/vhs/hyperdrive.svg?style=flat-square)](https://codeberg.org/vhs/hyperdrive/src/branch/master/COPYING)

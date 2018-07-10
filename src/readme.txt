@@ -1,13 +1,13 @@
 === Hyperdrive ===
 
 Contributors: nielslange, eirastudios, ariffsetiawan
-Donate link: https://go.vhs.codeberg.page/gotcoin
+Donate link: https://go.vhs.codeberg.page/donate
 Tags: performance, speed, async, javascript, seo
 Requires at least: 4.6
 Tested up to: 4.8
 Stable tag: trunk
 License: AGPL-3.0 or any later version
-License URI: https://codeberg.org/vhs/hyperdrive/blob/master/COPYING
+License URI: https://codeberg.org/vhs/hyperdrive/src/branch/master/COPYING
 
 The fastest way to load pages in WordPress.
 
@@ -15,10 +15,10 @@ The fastest way to load pages in WordPress.
 
 Hyperdrive speeds up your website by using modern web standards and can reduce perceived latency for first time visitors from 200 to 300% or greater depending on theme. Repeat visitors will experience even greater performance.
 
-**Coming soon**
-- The `1.0.0` release, codenamed [Wesley Crusher](https://stt.wiki/wiki/Wesley_Crusher).
+**Next release**
+- The `1.0.0` release candidate, codenamed [Wesley Crusher](https://stt.wiki/wiki/Wesley_Crusher).
 
-**Planned updates**https://go.vhs.codeberg.page/gotcoin
+**Planned updates**
 - Admin UI with warp speed configuration options
 
 Thank you for getting involved in the Hyperdrive beta. *Prepare for Ludicrous Speed*.
@@ -49,7 +49,7 @@ If you experience any issues with automatic installation, or would prefer to ins
 
 == Contributing ==
 
-Please visit [the official repository](https://codeberg.org/vhs/hyperdrive) on GitHub for contributing guidelines.
+Please visit [the official repository](https://codeberg.org/vhs/hyperdrive/) for contributing guidelines.
 
 == Changelog ==
 

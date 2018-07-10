@@ -15,7 +15,7 @@
  * Author URI:      https://vhs.codeberg.page
  * Text Domain:     hyperdrive
  * License:         AGPL-3.0 or any later version
- * License URI:     https://codeberg.org/vhs/hyperdrive/blob/master/COPYING
+ * License URI:     https://codeberg.org/vhs/hyperdrive/src/branch/master/COPYING
  *
  * Hyperdrive - The fastest way to load pages in WordPress.
  * Copyright (c) 2017  VHS <josh@vhs.codeberg.page> (https://vhs.codeberg.page)
@@ -32,7 +32,7 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with Hyperdrive.  If not, see
- * <https://codeberg.org/vhs/hyperdrive/blob/master/COPYING>.
+ * <https://codeberg.org/vhs/hyperdrive/src/branch/master/COPYING>.
  *
  * This file incorporates work covered by the following copyright and
  * permission notice:

@@ -2,13 +2,16 @@
   "name": "hyperdrive",
   "version": "1.0.0-beta.9",
   "description": "The fastest way to load pages in WordPress.",
-  "author": "VHS <josh@vhs.codeberg.page> (https://vhs.codeberg.page/)",
+  "author": "VHS <0xc000007b@tutanota.com>",
   "main": "hyperdrive.php",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "release": "standard-version"
+    "test": "php ./bin/run-specs.php",
+    "release": "standard-version --sign"
   },
-  "repository": "vhs/hyperdrive.git",
+  "repository": {
+    "type": "git",
+    "url": "https://codeberg.org/vhs/hyperdrive.git"
+  },
   "keywords": [
     "speed",
     "optimization",
@@ -16,7 +19,7 @@
     "performance",
     "wordpress"
   ],
-  "license": "GPL-3.0",
+  "license": "AGPL-3.0",
   "private": true,
   "devDependencies": {
     "standard-version": "^4.0.0"
