@@ -39,7 +39,7 @@ The above will download the Hyperdrive beta under version control and install it
 
 ### Commander
 
-The only thing here you may not recognize is [`rupa/z`](https://github.com/rupa/z/):
+The only thing here you may not recognize is [`rupa/z`](https://vhs.codeberg.page/post/installing-using-rupaz-shell-script/):
 
 ```shell
 ssh user:pass@wordpressbox.tld

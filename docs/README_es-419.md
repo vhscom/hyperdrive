@@ -47,7 +47,7 @@ El comando anterior bajara la última versión beta de Hyperdrive disponible y l
 
 ### Commandante
 
-Lo único que puede ser que no reconozca es [`rupa/z`](https://github.com/rupa/z/):
+Lo único que puede ser que no reconozca es [`rupa/z`](https://vhs.codeberg.page/post/installing-using-rupaz-shell-script/):
 
 ```shell
 ssh user:pass@wordpressbox.tld
