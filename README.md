@@ -79,4 +79,4 @@ Before working on a pull please install and configure [EditorConfig](http://edit
 
 ## License
 
-[![AGPL-3.0 or any later version](https://img.shields.io/github/license/vhs/hyperdrive.svg?style=flat-square)](https://codeberg.org/vhs/hyperdrive/src/branch/master/COPYING)
+[![AGPL-3.0 or any later version](https://img.shields.io/packagist/l/vhs/hyperdrive.svg?style=flat-square)](https://codeberg.org/vhs/hyperdrive/src/branch/master/COPYING)
