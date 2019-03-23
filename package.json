@@ -19,7 +19,7 @@
     "performance",
     "wordpress"
   ],
-  "license": "AGPL-3.0",
+  "license": "AGPL-3.0-or-later",
   "private": true,
   "devDependencies": {
     "standard-version": "^4.0.0"
