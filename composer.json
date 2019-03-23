@@ -2,7 +2,7 @@
   "name": "vhs/hyperdrive",
   "description": "The fastest way to load pages in WordPress.",
   "keywords": ["wordpress", "wp", "performance", "plugin", "hyperdrive"],
-  "homepage": "https://hyperdrive.vhs.codeberg.page",
+  "homepage": "https://vhs.codeberg.page/code/hyperdrive/",
   "license": "AGPL-3.0-or-later",
   "authors": [{
     "name": "VHS",
