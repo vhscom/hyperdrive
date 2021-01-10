@@ -22,7 +22,7 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with Hyperdrive.  If not, see
- * <https://codeberg.org/vhs/hyperdrive/src/branch/master/COPYING>.
+ * <https://code.vhs.codeberg.page/vhs/hyperdrive/src/branch/trunk/COPYING>.
  */
 
 namespace hyperdrive\spec;

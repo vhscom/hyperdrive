@@ -2,7 +2,7 @@
 
 > The fastest way to load pages in WordPress.
 
-![Hyperdrive plugin for WordPress logo](https://codeberg.org/vhs/hyperdrive/raw/branch/master/logo.png)
+![Hyperdrive plugin for WordPress logo](https://code.vhs.codeberg.page/vhs/hyperdrive/raw/branch/trunk/logo.png)
 
 ![Latest version on Packagist](https://img.shields.io/packagist/v/vhs/hyperdrive.svg?style=flat-square)
 ![Supported PHP versions](https://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg?style=flat-square)
@@ -44,7 +44,7 @@ The only thing here you may not recognize is [`rupa/z`](https://vhs.codeberg.pag
 ```shell
 ssh user:pass@wordpressbox.tld
 z plugins
-curl -O https://codeberg.org/vhs/hyperdrive/raw/branch/master/src/hyperdrive.php
+curl -O https://code.vhs.codeberg.page/vhs/hyperdrive/raw/branch/trunk/src/hyperdrive.php
 wp plugin activate hyperdrive
 ```
 
@@ -79,4 +79,4 @@ Before working on a pull please install and configure [EditorConfig](http://edit
 
 ## License
 
-[![AGPL-3.0 or any later version](https://img.shields.io/packagist/l/vhs/hyperdrive.svg?style=flat-square)](https://codeberg.org/vhs/hyperdrive/src/branch/master/COPYING)
+[![AGPL-3.0 or any later version](https://img.shields.io/packagist/l/vhs/hyperdrive.svg?style=flat-square)](https://code.vhs.codeberg.page/vhs/hyperdrive/src/branch/trunk/COPYING)

@@ -8,14 +8,14 @@
  * @license     AGPL-3.0 or any later version
  *
  * Plugin Name:     Hyperdrive
- * Plugin URI:      https://codeberg.org/vhs/hyperdrive
+ * Plugin URI:      https://code.vhs.codeberg.page/vhs/hyperdrive
  * Description:     The fastest way to load pages in WordPress.
  * Version:         1.0.0-beta.9
  * Author:          VHS
  * Author URI:      https://vhs.codeberg.page
  * Text Domain:     hyperdrive
  * License:         AGPL-3.0 or any later version
- * License URI:     https://codeberg.org/vhs/hyperdrive/src/branch/master/COPYING
+ * License URI:     https://code.vhs.codeberg.page/vhs/hyperdrive/src/branch/trunk/COPYING
  *
  * Hyperdrive - The fastest way to load pages in WordPress.
  * Copyright (c) 2017  VHS <josh@vhs.codeberg.page> (https://vhs.codeberg.page)
@@ -32,7 +32,7 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with Hyperdrive.  If not, see
- * <https://codeberg.org/vhs/hyperdrive/src/branch/master/COPYING>.
+ * <https://code.vhs.codeberg.page/vhs/hyperdrive/src/branch/trunk/COPYING>.
  *
  * This file incorporates work covered by the following copyright and
  * permission notice:

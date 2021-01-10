@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="http://hyperdrive.vhs.codeberg.page"><img src="https://codeberg.org/vhs/hyperdrive/raw/branch/master/logo.png" alt="Hyperdrive plugin for WordPress" title="Hyperdrive - The fastest way to load pages in WordPress" width="888"></a>
+  <a href="http://hyperdrive.vhs.codeberg.page"><img src="https://code.vhs.codeberg.page/vhs/hyperdrive/raw/branch/trunk/logo.png" alt="Hyperdrive plugin for WordPress" title="Hyperdrive - The fastest way to load pages in WordPress" width="888"></a>
   <span style="clip: rect(1px, 1px, 1px, 1px); clip-path: polygon(0px 0px, 0px 0px,0px 0px, 0px 0px); position: absolute !important; white-space: nowrap; height: 1px; width: 1px; overflow: hidden;">Hyperdrive</span>
 </h1>
 
@@ -52,7 +52,7 @@ A única coisa aqui que você poderá não reconhecer é isso [`rupa/z`](https:/
 ```shell
 ssh user:pass@wordpressbox.tld
 z plugins
-curl -O https://codeberg.org/vhs/hyperdrive/raw/branch/master/src/hyperdrive.php
+curl -O https://code.vhs.codeberg.page/vhs/hyperdrive/raw/branch/trunk/src/hyperdrive.php
 wp plugin activate hyperdrive
 ```
 
@@ -87,4 +87,4 @@ Antes de trabalhar em um pull, instale e configure o [EditorConfig](http://edito
 
 ## Licença
 
-[![AGPL-3.0 ou qualquer versão posterior](https://img.shields.io/github/license/vhs/hyperdrive.svg?style=flat-square)](https://codeberg.org/vhs/hyperdrive/src/branch/master/COPYING)
+[![AGPL-3.0 ou qualquer versão posterior](https://img.shields.io/github/license/vhs/hyperdrive.svg?style=flat-square)](https://code.vhs.codeberg.page/vhs/hyperdrive/src/branch/trunk/COPYING)

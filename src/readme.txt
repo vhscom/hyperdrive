@@ -7,7 +7,7 @@ Requires at least: 4.6
 Tested up to: 4.8
 Stable tag: trunk
 License: AGPL-3.0 or any later version
-License URI: https://codeberg.org/vhs/hyperdrive/src/branch/master/COPYING
+License URI: https://code.vhs.codeberg.page/vhs/hyperdrive/src/branch/trunk/COPYING
 
 The fastest way to load pages in WordPress.
 
@@ -38,7 +38,7 @@ If you have Composer installed on your WordPress site you can install Hyperdrive
 1. Install with `composer require vhs/hyperdrive` from a terminal connected to your WordPress site.
 2. Activate the plugin through the *Plugins* menu in WordPress.
 
-If you have any issues with this approach, please [let engineering know](https://codeberg.org/vhs/hyperdrive/issues/new).
+If you have any issues with this approach, please [let engineering know](https://code.vhs.codeberg.page/vhs/hyperdrive/issues/new).
 
 = Manual Transmission =
 
@@ -49,7 +49,7 @@ If you experience any issues with automatic installation, or would prefer to ins
 
 == Contributing ==
 
-Please visit [the official repository](https://codeberg.org/vhs/hyperdrive/) for contributing guidelines.
+Please visit [the official repository](https://code.vhs.codeberg.page/vhs/hyperdrive/) for contributing guidelines.
 
 == Changelog ==
 
